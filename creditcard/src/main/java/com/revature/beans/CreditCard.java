@@ -13,7 +13,11 @@ import java.util.Date;
 public class CreditCard {
 
     @Id
-    int id;
+    Integer id;
+
+    @Valid
+    @NotNull
+    Integer customerId;
 
     @Valid
     @NotNull
@@ -21,7 +25,7 @@ public class CreditCard {
 
     @Valid
     @NotNull
-    long number;
+    Long number;
 
     @Valid
     @NotNull
@@ -29,17 +33,29 @@ public class CreditCard {
 
     @Valid
     @NotNull
-    int validate;
+    Integer validate;
 
-    public int getId() {return id;}
-    public void setId(int id) {this.id = id;}
+    public CreditCard() {super();}
+
+    public CreditCard(Integer customerId, String fullName, Long number, Date expDate, Integer validate) {
+        this.customerId = customerId;
+        this.fullName = fullName;
+        this.number = number;
+        this.expDate = expDate;
+        this.validate = validate;
+    }
+
+    public Integer getCustomerId() {return customerId;}
+    public void setCustomerId(Integer customerId) {this.customerId = customerId;}
+    public Integer getId() {return id;}
+    public void setId(Integer id) {this.id = id;}
     public String getFullName() {return fullName;}
     public void setFullName(String fullName) {this.fullName = fullName;}
-    public long getNumber() {return number;}
-    public void setNumber(long number) {this.number = number;}
+    public Long getNumber() {return number;}
+    public void setNumber(Long number) {this.number = number;}
     public Date getExpDate() {return expDate;}
     public void setExpDate(Date expDate) {this.expDate = expDate;}
-    public int getValidate() {return validate;}
+    public Integer getValidate() {return validate;}
     public void setValidate(int validate) {this.validate = validate;}
 }
 
