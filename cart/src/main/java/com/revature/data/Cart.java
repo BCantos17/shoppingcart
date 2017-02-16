@@ -7,15 +7,15 @@ import java.util.List;
 public class Cart {
 
     @Id
-    private Integer cartId;
+    private String cartId;
     private Integer userId;
     private List<Item> item;
 
     public Cart() {
     }
 
-    public Cart(int carId, int userId, List<Item> item) {
-        this.cartId = carId;
+    public Cart(String cartId, Integer userId, List<Item> item) {
+        this.cartId = cartId;
         this.userId = userId;
         this.item = item;
     }
@@ -23,25 +23,25 @@ public class Cart {
     @Override
     public String toString() {
         return "Cart{" +
-                "carId=" + cartId +
+                "cartId='" + cartId + '\'' +
                 ", userId=" + userId +
                 ", item=" + item +
                 '}';
     }
 
-    public int getCarId() {
+    public String getCartId() {
         return cartId;
     }
 
-    public void setCarId(int carId) {
-        this.cartId = carId;
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
