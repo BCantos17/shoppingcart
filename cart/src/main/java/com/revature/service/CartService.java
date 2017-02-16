@@ -20,8 +20,8 @@ public class CartService {
     }
 
     //find by cart id
-    public Cart findOne(Integer integer){
-        return this.repository.findOne(integer);
+    public Cart findOne(String id){
+        return this.repository.findOne(id);
     }
 
     //retrieve by user id
