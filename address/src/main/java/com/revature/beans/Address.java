@@ -12,11 +12,11 @@ import javax.validation.constraints.NotNull;
 public class Address{
 
     @Id
-    int id;
+    Integer id;
 
     @Valid
     @NotNull
-    int customerId;
+    Integer customerId;
 
     @Valid
     @NotNull
@@ -26,6 +26,7 @@ public class Address{
     @NotNull
     String line1;
 
+    @Valid
     String line2;
 
     @Valid
@@ -40,11 +41,23 @@ public class Address{
     @NotNull
     int zipCode;
 
+    public Address() {super();}
+
     public Address(int customerId, String fullName, String line1, String line2, String city, String state, int zipCode) {
         this.customerId = customerId;
         this.fullName = fullName;
         this.line1 = line1;
         this.line2 = line2;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+    }
+
+    public Address(int id, int customerId, String fullName, String line1, String city, String state, int zipCode) {
+        this.id = id;
+        this.customerId = customerId;
+        this.fullName = fullName;
+        this.line1 = line1;
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
