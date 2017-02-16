@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface AddressRepository extends MongoRepository<Address, Integer> {
     @Override
-    <S extends Address> S insert(S address);
+    Address insert(Address address);
+
+    @Override
+    Address save(Address address);
 
     List<Address> findByCustomerId(int customerId);
 
