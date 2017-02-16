@@ -36,11 +36,6 @@
 			<artifactId>spring-cloud-starter-eureka</artifactId>
             <version>RELEASE</version>
 		</dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-netflix-eureka-server</artifactId>
-            <version>RELEASE</version>
-        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
