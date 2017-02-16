@@ -28,7 +28,7 @@ public class CreditCardService {
         return repository.findByCustomerId(customerId);
     }
 
-    public void delete(Integer id){
+    public void delete(String id){
         repository.delete(id);
     }
 }
