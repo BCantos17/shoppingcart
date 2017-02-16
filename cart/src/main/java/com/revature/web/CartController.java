@@ -27,7 +27,7 @@ public class CartController {
     @RequestMapping(value="/cart/{id}",
                     method=RequestMethod.GET,
                     produces=APPLICATION_JSON_VALUE)
-    public Cart findById(@PathVariable Integer id){
+    public Cart findById(@PathVariable String id){
         return service.findOne(id);
     }
 

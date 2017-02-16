@@ -1,17 +1,21 @@
 package com.revature.data;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Item {
 
-    private Integer productId;
+    @Id
+    private String itemId;
+    private String productId;
     private Integer quantity;
 
     public Item() {
     }
 
-    public Item(int productId, Integer quantity) {
+    public Item(String itemId, String productId, Integer quantity) {
+        this.itemId = itemId;
         this.productId = productId;
         this.quantity = quantity;
     }
@@ -19,16 +23,25 @@ public class Item {
     @Override
     public String toString() {
         return "Item{" +
-                "productId=" + productId +
+                "itemId='" + itemId + '\'' +
+                ", productId='" + productId + '\'' +
                 ", quantity=" + quantity +
                 '}';
     }
 
-    public int getProductId() {
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
