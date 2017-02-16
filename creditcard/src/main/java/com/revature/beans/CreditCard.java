@@ -13,7 +13,7 @@ import java.util.Date;
 public class CreditCard {
 
     @Id
-    Integer id;
+    String id;
 
     @Valid
     @NotNull
@@ -37,7 +37,7 @@ public class CreditCard {
 
     public CreditCard() {super();}
 
-    public CreditCard(Integer customerId, String fullName, Long number, Date expDate, Integer validate) {
+    public CreditCard(int customerId, String fullName, Long number, Date expDate, Integer validate) {
         this.customerId = customerId;
         this.fullName = fullName;
         this.number = number;
@@ -45,10 +45,10 @@ public class CreditCard {
         this.validate = validate;
     }
 
-    public Integer getCustomerId() {return customerId;}
-    public void setCustomerId(Integer customerId) {this.customerId = customerId;}
-    public Integer getId() {return id;}
-    public void setId(Integer id) {this.id = id;}
+    public int getCustomerId() {return customerId;}
+    public void setCustomerId(int customerId) {this.customerId = customerId;}
+    public String getId() {return id;}
+    public void setId(String id) {this.id = id;}
     public String getFullName() {return fullName;}
     public void setFullName(String fullName) {this.fullName = fullName;}
     public Long getNumber() {return number;}

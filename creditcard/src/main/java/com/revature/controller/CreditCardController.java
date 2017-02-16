@@ -15,7 +15,7 @@ public class CreditCardController {
     @Autowired
     public void setService(CreditCardService service) {this.service = service;}
 
-    @RequestMapping(value = "/address",
+    @RequestMapping(value = "/creditCard",
             method = RequestMethod.POST,
             consumes= MediaType.APPLICATION_JSON_VALUE,
             produces=MediaType.APPLICATION_JSON_VALUE)
@@ -23,7 +23,7 @@ public class CreditCardController {
         return service.insert(address);
     }
 
-    @RequestMapping(value = "/address/update",
+    @RequestMapping(value = "/creditCard/update",
             method = RequestMethod.PUT,
             consumes= MediaType.APPLICATION_JSON_VALUE,
             produces=MediaType.APPLICATION_JSON_VALUE)
@@ -31,17 +31,17 @@ public class CreditCardController {
         return service.save(address);
     }
 
-    @RequestMapping(value = "/address/customer/{customerId}",
+    @RequestMapping(value = "/creditCard/customer/{customerId}",
             method = RequestMethod.GET,
             produces=MediaType.APPLICATION_JSON_VALUE)
     public List<CreditCard> findByCustomerId(@PathVariable Integer customerId){
         return service.findByCustomerId(customerId);
     }
 
-    @RequestMapping(value = "/address/delete/{id}",
+    @RequestMapping(value = "/creditCard/delete/{id}",
             method = RequestMethod.DELETE,
             produces=MediaType.APPLICATION_JSON_VALUE)
-    public void delete(@PathVariable Integer id){
+    public void delete(@PathVariable String id){
         service.delete(id);
     }
 }
