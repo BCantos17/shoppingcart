@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface AddressRepository extends MongoRepository<Address, Integer> {
+public interface AddressRepository extends MongoRepository<Address, String> {
     @Override
     Address insert(Address address);
 
@@ -15,5 +15,5 @@ public interface AddressRepository extends MongoRepository<Address, Integer> {
     List<Address> findByCustomerId(int customerId);
 
     @Override
-    void delete(Integer id);
+    void delete(String id);
 }

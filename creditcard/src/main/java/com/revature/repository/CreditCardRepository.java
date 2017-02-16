@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface CreditCardRepository extends MongoRepository<CreditCard, Integer>{
+public interface CreditCardRepository extends MongoRepository<CreditCard, String>{
     @Override
     CreditCard insert(CreditCard address);
 
@@ -16,5 +16,5 @@ public interface CreditCardRepository extends MongoRepository<CreditCard, Intege
     List<CreditCard> findByCustomerId(int customerId);
 
     @Override
-    void delete(Integer id);
+    void delete(String id);
 }

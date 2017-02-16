@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 public class Address{
 
     @Id
-    Integer id;
+    String id;
 
     @Valid
     @NotNull
@@ -53,7 +53,7 @@ public class Address{
         this.zipCode = zipCode;
     }
 
-    public Address(int id, int customerId, String fullName, String line1, String city, String state, int zipCode) {
+    public Address(String id, int customerId, String fullName, String line1, String city, String state, int zipCode) {
         this.id = id;
         this.customerId = customerId;
         this.fullName = fullName;
@@ -63,8 +63,8 @@ public class Address{
         this.zipCode = zipCode;
     }
 
-    public int getId() {return id;}
-    public void setId(int id) {this.id = id;}
+    public String getId() {return id;}
+    public void setId(String id) {this.id = id;}
     public String getFullName() {return fullName;}
     public void setFullName(String fullName) {this.fullName = fullName;}
     public String getLine1() {return line1;}

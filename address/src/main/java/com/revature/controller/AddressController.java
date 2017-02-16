@@ -41,7 +41,7 @@ public class AddressController {
     @RequestMapping(value = "/address/delete/{id}",
             method = RequestMethod.DELETE,
             produces=MediaType.APPLICATION_JSON_VALUE)
-    public void delete(@PathVariable Integer id){
+    public void delete(@PathVariable String id){
         service.delete(id);
     }
 }
