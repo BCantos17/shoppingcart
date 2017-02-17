@@ -22,5 +22,6 @@
         <module>price</module>
         <module>product</module>
         <module>shipping</module>
+        <module>eureka</module>
 	</modules>
 </project>
