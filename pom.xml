@@ -11,8 +11,6 @@
 	<name>shoppingcart</name>
 	<description>Demo project for Spring Boot</description>
 
-
-
 	<modules>
 		<module>address</module>
         <module>zuulgateway</module>
@@ -23,5 +21,6 @@
         <module>product</module>
         <module>shipping</module>
         <module>eureka</module>
+        <module>apigateway</module>
 	</modules>
 </project>
