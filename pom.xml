@@ -15,7 +15,7 @@
 
 	<modules>
 		<module>address</module>
-        <module>apigateway</module>
+        <module>zuulgateway</module>
         <module>cart</module>
         <module>creditcard</module>
         <module>discount</module>
