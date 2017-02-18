@@ -18,20 +18,20 @@ public class BillingController {
     @Autowired
     public void setDelegate(BusinessDelegate delegate) {this.delegate = delegate;}
 
-    @RequestMapping(value = "/address/add",
+    @RequestMapping(value = "/address/insert",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Address> addAddress(@RequestBody Address address) {
-        return delegate.addAddress(address);
+        return delegate.insertAddress(address);
     }
 
-    @RequestMapping(value = "/address/update",
+    @RequestMapping(value = "/address/save",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Address> updateAddress(@RequestBody Address address) {
-        return delegate.updateAddress(address);
+        return delegate.saveAddress(address);
     }
 
     @RequestMapping(value = "/address/byId/{customerId}",

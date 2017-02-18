@@ -19,7 +19,7 @@ public class AddressController {
     @Autowired
     public void setService(AddressService service) {this.service = service;}
 
-    @RequestMapping(value = "/add",
+    @RequestMapping(value = "/insert",
                     method = RequestMethod.POST,
                     consumes= MediaType.APPLICATION_JSON_VALUE,
                     produces=MediaType.APPLICATION_JSON_VALUE)
@@ -33,7 +33,7 @@ public class AddressController {
         return returnEntity;
     }
 
-    @RequestMapping(value = "/update",
+    @RequestMapping(value = "/save",
             method = RequestMethod.PUT,
             consumes= MediaType.APPLICATION_JSON_VALUE,
             produces=MediaType.APPLICATION_JSON_VALUE)
@@ -76,7 +76,6 @@ public class AddressController {
                 returnEntity = new ResponseEntity(addresses, HttpStatus.NOT_FOUND);
             else
                 returnEntity = new ResponseEntity<>(addresses, HttpStatus.OK);
-            System.out.println("In controller " + returnEntity.getStatusCode());
         } catch (RuntimeException e) {
             returnEntity = new ResponseEntity(addresses, HttpStatus.BAD_REQUEST);
         }
@@ -88,7 +87,6 @@ public class AddressController {
     public ResponseEntity delete(@PathVariable String id){
         ResponseEntity returnEntity;
         try {
-            System.out.println(id);
             service.delete(id);
             returnEntity = new ResponseEntity<>(HttpStatus.OK);
         } catch (RuntimeException e) {

@@ -13,6 +13,9 @@ public interface CreditCardRepository extends MongoRepository<CreditCard, String
     @Override
     CreditCard save(CreditCard address);
 
+    @Override
+    List<CreditCard> findAll();
+
     List<CreditCard> findByCustomerId(int customerId);
 
     @Override
