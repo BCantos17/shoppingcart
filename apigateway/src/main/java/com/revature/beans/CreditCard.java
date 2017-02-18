@@ -3,12 +3,12 @@ package com.revature.beans;
 import java.util.Date;
 
 public class CreditCard {
-    String id;
-    Integer customerId;
-    String fullName;
-    Long number;
-    Date expDate;
-    Integer validate;
+    private String id;
+    private Integer customerId;
+    private String fullName;
+    private Long number;
+    private Date expDate;
+    private Integer validate;
 
     public CreditCard() {super();}
 

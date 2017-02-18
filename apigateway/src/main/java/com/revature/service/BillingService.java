@@ -1,8 +1,8 @@
 package com.revature.service;
 
-import com.revature.beans.Address;
+import com.revature.beans.Customer;
 import org.springframework.http.ResponseEntity;
 
 public interface BillingService {
-    ResponseEntity<Address> insertCustomerAddress(Address address);
+    ResponseEntity<Customer> insertCustomerAddress(Customer customer);
 }
