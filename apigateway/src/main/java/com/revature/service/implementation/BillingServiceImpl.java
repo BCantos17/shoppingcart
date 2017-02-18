@@ -27,7 +27,7 @@ public class BillingServiceImpl implements BillingService{
     @Autowired
     public void setDiscoveryClient(EurekaClient discoveryClient) {this.discoveryClient = discoveryClient;}
 
-    public ResponseEntity<Address> addAddress(Address address) {
+    public ResponseEntity<Address> insertAddress(Address address) {
         RestTemplate rest;
 
         Application addressApplication = discoveryClient.getApplication("address");
@@ -39,12 +39,12 @@ public class BillingServiceImpl implements BillingService{
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Address> entity = new HttpEntity<>(address, headers);
         rest = new RestTemplate();
-        final String addressURI = UriComponentsBuilder.fromHttpUrl(addressHost).path("address/add").build().toUriString();
+        final String addressURI = UriComponentsBuilder.fromHttpUrl(addressHost).path("address/insert").build().toUriString();
         ResponseEntity<Address> addressResponseEntity = rest.exchange(addressURI, HttpMethod.POST, entity, Address.class);
         return addressResponseEntity;
     }
 
-    public ResponseEntity<Address> updateAddress(Address address) {
+    public ResponseEntity<Address> saveAddress(Address address) {
         RestTemplate rest;
 
         Application addressApplication = discoveryClient.getApplication("address");
@@ -56,7 +56,7 @@ public class BillingServiceImpl implements BillingService{
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Address> entity = new HttpEntity<>(address, headers);
         rest = new RestTemplate();
-        final String addressURI = UriComponentsBuilder.fromHttpUrl(addressHost).path("address/update").build().toUriString();
+        final String addressURI = UriComponentsBuilder.fromHttpUrl(addressHost).path("address/save").build().toUriString();
         ResponseEntity<Address> addressResponseEntity = rest.exchange(addressURI, HttpMethod.PUT, entity, Address.class);
         return addressResponseEntity;
     }

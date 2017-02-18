@@ -16,8 +16,8 @@ public class BusinessDelegateImpl implements BusinessDelegate{
     @Autowired
     public void setBillingService(BillingService billingService) {this.billingService = billingService;}
 
-    public ResponseEntity<Address> addAddress(Address address) {return billingService.addAddress(address);}
-    public ResponseEntity<Address> updateAddress(Address address) {return billingService.updateAddress(address);}
+    public ResponseEntity<Address> insertAddress(Address address) {return billingService.insertAddress(address);}
+    public ResponseEntity<Address> saveAddress(Address address) {return billingService.saveAddress(address);}
     public ResponseEntity<List<Address>> findByCustomerId(Integer customerId) {return billingService.findByCustomerId(customerId);}
     public ResponseEntity deleteAddress(String id) {return billingService.deleteAddress(id);}
 }
