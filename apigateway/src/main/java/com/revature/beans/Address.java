@@ -9,10 +9,11 @@ public class Address{
     private String city;
     private String state;
     private int zipCode;
+    private boolean isBilling;
 
     public Address() {super();}
 
-    public Address(int customerId, String fullName, String line1, String line2, String city, String state, int zipCode) {
+    public Address(Integer customerId, String fullName, String line1, String line2, String city, String state, int zipCode, boolean isBilling) {
         this.customerId = customerId;
         this.fullName = fullName;
         this.line1 = line1;
@@ -20,16 +21,17 @@ public class Address{
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
+        this.isBilling = isBilling;
     }
 
-    public Address(String id, int customerId, String fullName, String line1, String city, String state, int zipCode) {
-        this.id = id;
+    public Address(Integer customerId, String fullName, String line1, String city, String state, int zipCode, boolean isBilling) {
         this.customerId = customerId;
         this.fullName = fullName;
         this.line1 = line1;
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
+        this.isBilling = isBilling;
     }
 
     public String getId() {return id;}
@@ -48,4 +50,6 @@ public class Address{
     public void setZipCode(int zipCode) {this.zipCode = zipCode;}
     public int getCustomerId() {return customerId;}
     public void setCustomerId(int customerId) {this.customerId = customerId;}
+    public boolean isBilling() {return isBilling;}
+    public void setBilling(boolean billing) {isBilling = billing;}
 }

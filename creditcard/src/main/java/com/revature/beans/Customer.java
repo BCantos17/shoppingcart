@@ -8,18 +8,18 @@ import javax.validation.constraints.NotNull;
 public class Customer {
 
     @Id
-    int id;
+    private int id;
 
     @Valid
     @NotNull
-    String firstName;
+    private String firstName;
 
     @Valid
     @NotNull
-    String lastName;
+    private String lastName;
 
     @Valid
-    CreditCard card;
+    private CreditCard card;
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}

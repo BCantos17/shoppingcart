@@ -1,12 +1,12 @@
 package com.revature.beans;
 
 public class Customer {
-    int id;
-    String firstName;
-    String lastName;
-    Address billingAddress;
-    Address shippingAddress;
-    CreditCard card;
+    private int id;
+    private String firstName;
+    private String lastName;
+    private Address billingAddress;
+    private Address shippingAddress;
+    private CreditCard card;
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
