@@ -1,44 +1,13 @@
 package com.revature.beans;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-@Document
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Address{
-
-    @Id
     private String id;
-
-    @Valid
-    @NotNull
     private Integer customerId;
-
-    @Valid
-    @NotNull
     private String fullName;
-
-    @Valid
-    @NotNull
     private String line1;
-
-    @Valid
     private String line2;
-
-    @Valid
-    @NotNull
     private String city;
-
-    @Valid
-    @NotNull
     private String state;
-
-    @Valid
-    @NotNull
     private int zipCode;
 
     public Address() {super();}
