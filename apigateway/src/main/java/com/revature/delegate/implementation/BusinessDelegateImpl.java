@@ -1,6 +1,7 @@
 package com.revature.delegate.implementation;
 
 import com.revature.beans.Address;
+import com.revature.beans.CreditCard;
 import com.revature.delegate.BusinessDelegate;
 import com.revature.service.BillingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,12 @@ public class BusinessDelegateImpl implements BusinessDelegate{
 
     public ResponseEntity<Address> insertAddress(Address address) {return billingService.insertAddress(address);}
     public ResponseEntity<Address> saveAddress(Address address) {return billingService.saveAddress(address);}
-    public ResponseEntity<List<Address>> findByCustomerId(Integer customerId) {return billingService.findByCustomerId(customerId);}
+    public ResponseEntity<List<Address>> findAddressByCustomerId(Integer customerId) {return billingService.findAddressByCustomerId(customerId);}
     public ResponseEntity deleteAddress(String id) {return billingService.deleteAddress(id);}
+
+
+    public ResponseEntity<CreditCard> insertCreditCard(CreditCard creditCard) {return billingService.insertCreditCard(creditCard);}
+    public ResponseEntity<CreditCard> saveCreditCard(CreditCard creditCard) {return billingService.saveCreditCard(creditCard);}
+    public ResponseEntity<List<CreditCard>> findCreditCardByCustomerId(Integer customerId) {return billingService.findCreditCardByCustomerId(customerId);}
+    public ResponseEntity deleteCreditCard(String id) {return billingService.deleteCreditCard(id);}
 }
