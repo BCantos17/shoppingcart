@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController()
 @RequestMapping("/billing")
 public class BillingController {
 
@@ -23,5 +23,7 @@ public class BillingController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Address> createAssessment(@RequestBody Address address) {return delegate.addAddress(address);}
+    public ResponseEntity<Address> createAssessment(@RequestBody Address address) {
+        return delegate.addAddress(address);
+    }
 }

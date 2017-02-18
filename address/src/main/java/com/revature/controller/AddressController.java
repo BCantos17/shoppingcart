@@ -11,17 +11,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/address")
 public class AddressController {
     private AddressService service;
 
     @Autowired
     public void setService(AddressService service) {this.service = service;}
 
-    @RequestMapping(value = "/address",
+    @RequestMapping(value = "/",
                     method = RequestMethod.POST,
                     consumes= MediaType.APPLICATION_JSON_VALUE,
                     produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Address> insert(@RequestBody Address address){
+        System.out.println(address.getCustomerId());
         ResponseEntity<Address> returnEntity;
         try {
             returnEntity = new ResponseEntity(service.insert(address), HttpStatus.CREATED);
@@ -31,7 +33,7 @@ public class AddressController {
         return returnEntity;
     }
 
-    @RequestMapping(value = "/address/update",
+    @RequestMapping(value = "/update",
             method = RequestMethod.PUT,
             consumes= MediaType.APPLICATION_JSON_VALUE,
             produces=MediaType.APPLICATION_JSON_VALUE)
@@ -45,7 +47,7 @@ public class AddressController {
         return returnEntity;
     }
 
-    @RequestMapping(value = "/address/customer/{customerId}",
+    @RequestMapping(value = "/customer/{customerId}",
             method = RequestMethod.GET,
             produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Address>> findByCustomerId(@PathVariable Integer customerId){
@@ -62,7 +64,7 @@ public class AddressController {
         return returnEntity;
     }
 
-    @RequestMapping(value = "/address/delete/{id}",
+    @RequestMapping(value = "/delete/{id}",
             method = RequestMethod.DELETE,
             produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity delete(@PathVariable String id){

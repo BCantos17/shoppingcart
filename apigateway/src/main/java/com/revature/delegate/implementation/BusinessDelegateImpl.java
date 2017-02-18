@@ -5,7 +5,9 @@ import com.revature.delegate.BusinessDelegate;
 import com.revature.service.BillingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BusinessDelegateImpl implements BusinessDelegate{
     private BillingService billingService;
 
