@@ -1,7 +1,8 @@
 package com.revature.delegate;
 
-/**
- * Created by bcant on 2/18/2017.
- */
+import com.revature.beans.Address;
+import org.springframework.http.ResponseEntity;
+
 public interface BusinessDelegate {
+    ResponseEntity<Address> addAddress(Address address);
 }

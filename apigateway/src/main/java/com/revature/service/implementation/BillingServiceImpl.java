@@ -4,7 +4,6 @@ import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
 import com.revature.beans.Address;
-import com.revature.beans.Customer;
 import com.revature.service.BillingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -22,7 +21,7 @@ public class BillingServiceImpl implements BillingService{
     @Autowired
     public void setDiscoveryClient(EurekaClient discoveryClient) {this.discoveryClient = discoveryClient;}
 
-    public ResponseEntity<Customer> insertCustomerAddress(Customer customer) {
+    public ResponseEntity<Address> addAddress(Address address) {
         RestTemplate rest;
 
         Application addressApplication = discoveryClient.getApplication("address");
@@ -31,10 +30,10 @@ public class BillingServiceImpl implements BillingService{
         String addressHost = "http://" + addressInstanceInfo.getHostName() + ":" + addressInstanceInfo.getPort() + "/";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Customer> entity = new HttpEntity<>(customer, headers);
+        HttpEntity<Address> entity = new HttpEntity<>(address, headers);
         rest = new RestTemplate();
         final String addressURI = UriComponentsBuilder.fromHttpUrl(addressHost).path("address/address/").build().toUriString();
-        ResponseEntity<Customer> addressResponseEntity = rest.exchange(addressURI, HttpMethod.POST, entity, Customer.class);
+        ResponseEntity<Address> addressResponseEntity = rest.exchange(addressURI, HttpMethod.POST, entity, Address.class);
         return addressResponseEntity;
     }
 }
