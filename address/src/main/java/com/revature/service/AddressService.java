@@ -19,16 +19,12 @@ public class AddressService {
     public Address insert(Address address){
         return repository.insert(address);
     }
-
     public Address save(Address address){
         return repository.save(address);
     }
-
+    public List<Address> findAll(){ return  repository.findAll(); }
     public List<Address> findByCustomerId(int customerId){
         return repository.findByCustomerId(customerId);
     }
-
-    public void delete(String id){
-        repository.delete(id);
-    }
+    public void delete(String id){repository.delete(id);}
 }
