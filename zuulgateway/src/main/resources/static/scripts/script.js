@@ -10,9 +10,9 @@ angular.module("MainApp").controller("MainController", function($scope){
     }).when('/Cart', {
         templateUrl:"../partials/cart.html",
         controller:'CartController'
-    }).when('Billing', {
+    }).when('/Billing', {
         templateUrl:'../partials/billing.html',
-        controller:'billingController'
+        controller:'BillingController'
     });
 });
 
@@ -27,8 +27,6 @@ angular.module("MainApp").controller('CartController', function ($scope) {
     $scope.subtotal = $scope.price * $scope.quantity;
 });
 
-angular.module("MainApp").controller('CartController', function ($scope) {
-    $scope.price = 22;
-    $scope.quantity = 10;
-    $scope.subtotal = $scope.price * $scope.quantity;
+angular.module("MainApp").controller('BillingController', function ($scope) {
+
 });
