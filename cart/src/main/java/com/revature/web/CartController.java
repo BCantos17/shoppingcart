@@ -3,6 +3,8 @@ package com.revature.web;
 import com.revature.data.Cart;
 import com.revature.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -21,8 +23,8 @@ public class CartController {
             method = RequestMethod.POST,
             produces = APPLICATION_JSON_VALUE,
             consumes = APPLICATION_JSON_VALUE)
-    public Cart save(@RequestBody Cart cart) {
-        return service.save(cart);
+    public ResponseEntity<Cart> save(@RequestBody Cart cart) {
+        return new ResponseEntity<>(service.save(cart), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/",
@@ -36,8 +38,8 @@ public class CartController {
     @RequestMapping(value = "/{id}",
             method = RequestMethod.GET,
             produces = APPLICATION_JSON_VALUE)
-    public Cart findById(@PathVariable String id) {
-        return service.findOne(id);
+    public ResponseEntity<Cart> findById(@PathVariable String id) {
+        return new ResponseEntity<>(service.findOne(id), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/cart/user/{userId}",
@@ -48,7 +50,7 @@ public class CartController {
     }
 
     @RequestMapping(value = "/cart/deleteItem/{itemId}",
-            method = RequestMethod.POST,
+            method = RequestMethod.PUT,
             produces = APPLICATION_JSON_VALUE,
             consumes = APPLICATION_JSON_VALUE)
     public Cart deleteItemFromCart(@RequestBody Cart cart, @PathVariable String itemId) {
@@ -64,7 +66,7 @@ public class CartController {
     }
 
     @RequestMapping(value = "/cart/insertItem/{productId}/{itemQuantity}",
-            method = RequestMethod.POST,
+            method = RequestMethod.PUT,
             produces = APPLICATION_JSON_VALUE,
             consumes = APPLICATION_JSON_VALUE)
     public Cart insertItemToCart(@RequestBody Cart cart, @PathVariable String productId, @PathVariable Integer itemQuantity) {

@@ -6,12 +6,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 
@@ -20,20 +20,20 @@ import static org.mockito.Mockito.when;
 public class ProductApplicationTests {
 
     private TestRestTemplate restTemplate;
+    @MockBean
     private Product product;
 
 
     @Before
     public void setUp() throws Exception {
         restTemplate = new TestRestTemplate();
-        Product mockProduct = mock(Product.class);
-        when(mockProduct.getManufacturer()).thenReturn("Unilever");
-        when(mockProduct.getDescription()).thenReturn("Soap");
-        when(mockProduct.getPrice()).thenReturn(1.29);
-        when(mockProduct.getProductId()).thenReturn(5);
-        when(mockProduct.getProductName()).thenReturn("Dove");
-        when(mockProduct.getProductImage()).thenReturn("");
-        when(mockProduct.getAvailableQuantity()).thenReturn(7);
+        when(product.getManufacturer()).thenReturn("Unilever");
+        when(product.getDescription()).thenReturn("Soap");
+        when(product.getPrice()).thenReturn(1.29);
+        when(product.getProductId()).thenReturn(5);
+        when(product.getProductName()).thenReturn("Dove");
+        when(product.getProductImage()).thenReturn("");
+        when(product.getAvailableQuantity()).thenReturn(7);
     }
 
     @After
