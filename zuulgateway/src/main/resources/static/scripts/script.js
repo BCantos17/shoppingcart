@@ -5,7 +5,6 @@ angular.module("MainApp").config(function($logProvider){
 });
 angular.module("MainApp").controller("MainController", function($scope){
 
-
 }).config(function ($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix("");
     $routeProvider.when('/', {
