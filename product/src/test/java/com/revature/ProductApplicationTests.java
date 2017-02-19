@@ -30,6 +30,7 @@ public class ProductApplicationTests {
         product.setPrice(1.29);
         product.setProductId(5);
         product.setProductName("Dove");
+        product.setProductImage("");
     }
 
     @After

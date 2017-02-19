@@ -10,6 +10,15 @@ public class Product {
     private double price;
     private String description;
     private String manufacturer;
+    private String productImage;
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
 
     public Product() {
         super();
