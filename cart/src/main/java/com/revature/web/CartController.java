@@ -38,8 +38,8 @@ public class CartController {
     @RequestMapping(value = "/{id}",
             method = RequestMethod.GET,
             produces = APPLICATION_JSON_VALUE)
-    public Cart findById(@PathVariable String id) {
-        return service.findOne(id);
+    public ResponseEntity<Cart> findById(@PathVariable String id) {
+        return new ResponseEntity<>(service.findOne(id), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/cart/user/{userId}",

@@ -23,5 +23,6 @@
         <module>eureka</module>
         <module>apigateway</module>
 		<module>cartgateway</module>
+		<module>ui</module>
 	</modules>
 </project>
