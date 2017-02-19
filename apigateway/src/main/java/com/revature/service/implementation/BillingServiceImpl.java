@@ -42,7 +42,8 @@ public class BillingServiceImpl implements BillingService{
         HttpEntity<Address> entity = new HttpEntity<>(address, headers);
         rest = new RestTemplate();
         final String addressURI = UriComponentsBuilder.fromHttpUrl(addressHost).path("address/insert").build().toUriString();
-        return rest.exchange(addressURI, HttpMethod.POST, entity, Address.class);
+        ResponseEntity<Address> addressResponseEntity = rest.exchange(addressURI, HttpMethod.POST, entity, Address.class);
+        return addressResponseEntity;
     }
 
     public ResponseEntity<Address> saveAddress(Address address) {
@@ -58,7 +59,8 @@ public class BillingServiceImpl implements BillingService{
         HttpEntity<Address> entity = new HttpEntity<>(address, headers);
         rest = new RestTemplate();
         final String addressURI = UriComponentsBuilder.fromHttpUrl(addressHost).path("address/save").build().toUriString();
-        return rest.exchange(addressURI, HttpMethod.PUT, entity, Address.class);
+        ResponseEntity<Address> addressResponseEntity = rest.exchange(addressURI, HttpMethod.PUT, entity, Address.class);
+        return addressResponseEntity;
     }
 
     public ResponseEntity<List<Address>> findAddressByCustomerId(Integer customerId) {
@@ -79,9 +81,10 @@ public class BillingServiceImpl implements BillingService{
             addressResponseEntity = rest.getForEntity(addressURI, Address[].class);
             addresses = Arrays.asList(addressResponseEntity.getBody());
         } catch(RuntimeException e){
-            new ResponseEntity<>(addresses, HttpStatus.NOT_FOUND);
+            addressResponseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(addresses, addressResponseEntity.getStatusCode());
+        return new ResponseEntity<>(addresses,
+                addressResponseEntity.getStatusCode());
     }
 
     public ResponseEntity<Serializable> deleteAddress(String id) {
@@ -97,7 +100,8 @@ public class BillingServiceImpl implements BillingService{
         HttpEntity<Address> entity = new HttpEntity<>(headers);
         rest = new RestTemplate();
         final String addressURI = UriComponentsBuilder.fromHttpUrl(addressHost).path("address/delete/").path(id).build().toUriString();
-        return rest.exchange(addressURI, HttpMethod.DELETE, entity, Serializable.class);
+        ResponseEntity<Serializable> addressResponseEntity = rest.exchange(addressURI, HttpMethod.DELETE, entity, Serializable.class);
+        return addressResponseEntity;
     }
 
     /************************************ Credit card MicroService **********************************/
@@ -115,7 +119,8 @@ public class BillingServiceImpl implements BillingService{
         HttpEntity<CreditCard> entity = new HttpEntity<>(creditCard, headers);
         rest = new RestTemplate();
         final String creditCardURI = UriComponentsBuilder.fromHttpUrl(creditCardHost).path("creditCard/insert").build().toUriString();
-        return rest.exchange(creditCardURI, HttpMethod.POST, entity, CreditCard.class);
+        ResponseEntity<CreditCard> addressResponseEntity = rest.exchange(creditCardURI, HttpMethod.POST, entity, CreditCard.class);
+        return addressResponseEntity;
     }
 
     public ResponseEntity<CreditCard> saveCreditCard(CreditCard creditCard) {
@@ -131,7 +136,8 @@ public class BillingServiceImpl implements BillingService{
         HttpEntity<CreditCard> entity = new HttpEntity<>(creditCard, headers);
         rest = new RestTemplate();
         final String creditCardURI = UriComponentsBuilder.fromHttpUrl(creditCardHost).path("creditCard/save").build().toUriString();
-        return rest.exchange(creditCardURI, HttpMethod.PUT, entity, CreditCard.class);
+        ResponseEntity<CreditCard> creditCardResponseEntity = rest.exchange(creditCardURI, HttpMethod.PUT, entity, CreditCard.class);
+        return creditCardResponseEntity;
     }
 
     public ResponseEntity<List<CreditCard>> findCreditCardByCustomerId(Integer customerId) {
@@ -145,20 +151,22 @@ public class BillingServiceImpl implements BillingService{
         rest = new RestTemplate();
         final String creditCardURI = UriComponentsBuilder.fromHttpUrl(creditCardHost).path("creditCard/customer/").path(customerId.toString()).build().toUriString();
 
-        ResponseEntity<CreditCard[]> creditCardResponseEntity;
+        ResponseEntity<CreditCard[]> creditCardResponseEntity = null;
         List<CreditCard> creditCards = new ArrayList<>();
 
         try{
             creditCardResponseEntity = rest.getForEntity(creditCardURI, CreditCard[].class);
             creditCards = Arrays.asList(creditCardResponseEntity.getBody());
         } catch(RuntimeException e){
-            return new ResponseEntity<>(creditCards, HttpStatus.NOT_FOUND);
+            creditCardResponseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(creditCards, creditCardResponseEntity.getStatusCode());
+        return new ResponseEntity<>(creditCards,
+                creditCardResponseEntity.getStatusCode());
     }
 
     public ResponseEntity<Serializable> deleteCreditCard(String id) {
         RestTemplate rest;
+
         Application creditCardApplication = discoveryClient.getApplication("creditCard");
         // Get a random instance of a service to prevent overloading one service.
         InstanceInfo creditCardInstanceInfo = creditCardApplication.getInstances().get(random.nextInt(creditCardApplication.getInstances().size()));
@@ -169,6 +177,7 @@ public class BillingServiceImpl implements BillingService{
         HttpEntity<Address> entity = new HttpEntity<>(headers);
         rest = new RestTemplate();
         final String creditCardURI = UriComponentsBuilder.fromHttpUrl(creditCardHost).path("creditCard/delete/").path(id).build().toUriString();
-        return rest.exchange(creditCardURI, HttpMethod.DELETE, entity, Serializable.class);
+        ResponseEntity<Serializable> creditCardResponseEntity = rest.exchange(creditCardURI, HttpMethod.DELETE, entity, Serializable.class);
+        return creditCardResponseEntity;
     }
 }
