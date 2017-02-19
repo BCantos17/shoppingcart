@@ -1,4 +1,4 @@
-package com.revature.services;
+package com.revature.service;
 
 import com.revature.beans.Cart;
 import org.springframework.cloud.netflix.feign.FeignClient;

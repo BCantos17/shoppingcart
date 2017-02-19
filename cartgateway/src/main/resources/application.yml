@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: cartgateway
-
-server:
-  port: 7211

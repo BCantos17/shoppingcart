@@ -1,7 +1,7 @@
 package com.revature.web;
 
 import com.revature.beans.Cart;
-import com.revature.services.CartService;
+import com.revature.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
