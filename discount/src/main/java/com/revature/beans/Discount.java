@@ -1,3 +1,5 @@
+package com.revature.beans;
+
 public class Discount {
     private int discountId;
     private int discountAmount;
