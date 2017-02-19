@@ -17,7 +17,7 @@ public class CartController {
         this.service = service;
     }
 
-    @RequestMapping(value = "/cart",
+    @RequestMapping(value = "/",
             method = RequestMethod.POST,
             produces = APPLICATION_JSON_VALUE,
             consumes = APPLICATION_JSON_VALUE)
@@ -25,7 +25,7 @@ public class CartController {
         return service.save(cart);
     }
 
-    @RequestMapping(value = "/cart",
+    @RequestMapping(value = "/",
             method = RequestMethod.PUT,
             produces = APPLICATION_JSON_VALUE,
             consumes = APPLICATION_JSON_VALUE)
@@ -33,7 +33,7 @@ public class CartController {
         return service.save(cart);
     }
 
-    @RequestMapping(value = "/cart/{id}",
+    @RequestMapping(value = "/{id}",
             method = RequestMethod.GET,
             produces = APPLICATION_JSON_VALUE)
     public Cart findById(@PathVariable String id) {
