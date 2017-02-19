@@ -15,6 +15,9 @@ public interface AddressRepository extends MongoRepository<Address, String> {
     @Override
     Address save(Address address);
 
+    @Override
+    List<Address> findAll();
+
     List<Address> findByCustomerId(int customerId);
 
     @Override
