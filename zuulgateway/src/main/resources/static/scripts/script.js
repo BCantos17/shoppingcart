@@ -1,6 +1,10 @@
 angular.module("MainApp",['ngRoute']);
 
+angular.module("MainApp").config(function($logProvider){
+        $logProvider.debugEnabled(true);
+});
 angular.module("MainApp").controller("MainController", function($scope){
+
 
 }).config(function ($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix("");
@@ -25,8 +29,4 @@ angular.module("MainApp").controller('CartController', function ($scope) {
     $scope.price = 22;
     $scope.quantity = 10;
     $scope.subtotal = $scope.price * $scope.quantity;
-});
-
-angular.module("MainApp").controller('BillingController', function ($scope) {
-
 });
