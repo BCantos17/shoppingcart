@@ -13,15 +13,9 @@ public class CreditCardService {
 
     @Autowired
     public void setRepository(CreditCardRepository repository) {this.repository = repository;}
-    public CreditCard insert(CreditCard address){
-        return repository.insert(address);
-    }
-    public CreditCard save(CreditCard address){
-        return repository.save(address);
-    }
+    public CreditCard insert(CreditCard address){return repository.insert(address);}
+    public CreditCard save(CreditCard address){return repository.save(address);}
     public List<CreditCard> findAll(){ return  repository.findAll(); }
-    public List<CreditCard> findByCustomerId(int customerId){
-        return repository.findByCustomerId(customerId);
-    }
+    public List<CreditCard> findByCustomerId(int customerId){return repository.findByCustomerId(customerId);}
     public void delete(String id){repository.delete(id);}
 }
