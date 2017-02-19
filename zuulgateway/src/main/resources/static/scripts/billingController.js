@@ -1,4 +1,32 @@
 angular.module("MainApp").controller('BillingController', function ($http, $scope, $log) {
+
+    $log.debug('Starting Billing Controller');
+
+    // Make fake cusomter for presentation
+    $scope.customer = {
+        id: 7
+    };
+
+    $http({
+        url: "http://localhost:8723/shopping/billing/address/byId/" +$scope.customer.id ,
+        method: "GET"
+    }).then(function(response) {
+        //TODO map fetch stuff
+        $log.debug(response.data)
+    }, function(response) {
+        console.log("GET ALL: Failed to fetch addresses");
+    });
+
+    $http({
+        url: "http://localhost:8723/shopping/billing/creditCard/byId/" +$scope.customer.id ,
+        method: "GET"
+    }).then(function(response) {
+        //TODO map fetch stuff
+        $log.debug(response.data)
+    }, function(response) {
+        console.log("GET ALL: Failed to fetch credit card");
+    });
+
     $scope.send = function() {
         var billingAddress = {
             customerId: 7,
