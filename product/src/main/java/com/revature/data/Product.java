@@ -11,6 +11,15 @@ public class Product {
     private String description;
     private String manufacturer;
     private String productImage;
+    private int availableQuantity;
+
+    public int getAvailableQuantity() {
+        return availableQuantity;
+    }
+
+    public void setAvailableQuantity(int availableQuantity) {
+        this.availableQuantity = availableQuantity;
+    }
 
     public String getProductImage() {
         return productImage;

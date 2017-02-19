@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 
 @RunWith(SpringRunner.class)
@@ -24,13 +26,14 @@ public class ProductApplicationTests {
     @Before
     public void setUp() throws Exception {
         restTemplate = new TestRestTemplate();
-        product = new Product();
-        product.setManufacturer("Unilever");
-        product.setDescription("Soap");
-        product.setPrice(1.29);
-        product.setProductId(5);
-        product.setProductName("Dove");
-        product.setProductImage("");
+        Product mockProduct = mock(Product.class);
+        when(mockProduct.getManufacturer()).thenReturn("Unilever");
+        when(mockProduct.getDescription()).thenReturn("Soap");
+        when(mockProduct.getPrice()).thenReturn(1.29);
+        when(mockProduct.getProductId()).thenReturn(5);
+        when(mockProduct.getProductName()).thenReturn("Dove");
+        when(mockProduct.getProductImage()).thenReturn("");
+        when(mockProduct.getAvailableQuantity()).thenReturn(7);
     }
 
     @After
