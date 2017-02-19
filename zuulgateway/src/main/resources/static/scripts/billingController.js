@@ -27,29 +27,47 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
         console.log("GET ALL: Failed to fetch credit card");
     });
 
-    $scope.send = function() {
-        var billingAddress = {
-            customerId: 7,
-            fullName: $scope.billingFullName,
-            line1: $scope.billingLine1,
-            line2: $scope.billingLine2,
-            city: $scope.billingCity,
-            state: $scope.billingState,
-            zipCode: $scope.billingZipCode,
-            billing: true
+    $scope.sendShipping = function() {
+        $log.debug('in send shipping');
+        var shippingAddress = {
+            customerId:     $scope.customer.id,
+            fullName:       $scope.shippingFullName,
+            line1:          $scope.shippingLine1,
+            line2:          $scope.shippingLine2,
+            city:           $scope.shippingCity,
+            state:          $scope.shippingState,
+            zipCode:        $scope.shippingZipCode,
+            billing:        false
         };
 
-        $log.debug(billingAddress.fullName);
+        $http({
+            url:"http://localhost:8723/shopping/billing/address/insert",
+            method: "POST",
+            data: shippingAddress
+        }).then(function(response) {
+            $log.debug(response.data);
+            // reset form
+            $scope.shippingFullName = "";
+            $scope.shippingLine1    = "";
+            $scope.shippingLine2    = "";
+            $scope.shippingCity     = "";
+            $scope.shippingState    = "";
+            $scope.shippingZipCode  = "";
+        }, function(response) {
+            console.log("Errors in data you're sending");
+        });
+    }
 
-        var shippingAddress = {
-            customerId: 7,
-            fullName: $scope.shippingFullName,
-            line1: $scope.shippingLine1,
-            line2: $scope.shippingLine2,
-            city: $scope.shippingCity,
-            state: $scope.shippingState,
-            zipCode: $scope.shippingZipCode,
-            billing: false
+    $scope.sendBilling = function () {
+        var billingAddress = {
+            customerId: $scope.customer.id,
+            fullName:   $scope.billingFullName,
+            line1:      $scope.billingLine1,
+            line2:      $scope.billingLine2,
+            city:       $scope.billingCity,
+            state:      $scope.billingState,
+            zipCode:    $scope.billingZipCode,
+            billing:    true
         };
 
         $http({
@@ -57,29 +75,42 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
             method: "POST",
             data: billingAddress
         }).then(function(response) {
+            $log.debug(response.data);
             // reset form
-            $scope.billingFullName = "";
-            $scope.billingLine1 = "";
-            $scope.billingLine2 = "";
-            $scope.billingCity = "";
-            $scope.billingState = "";
-            $scope.billingZipCode = "";
+            $scope.billingFullName  = "";
+            $scope.billingLine1     = "";
+            $scope.billingLine2     = "";
+            $scope.billingCity      = "";
+            $scope.billingState     = "";
+            $scope.billingZipCode   = "";
         }, function(response) {
             console.log("Errors in data you're sending");
         });
+    }
+
+    $scope.sendCard = function () {
+        var card = {
+            customerId: $scope.customer.id,
+            fullName:   $scope.fullName,
+            number:     $scope.number,
+            expDate:    $scope.expYear + $scope.expMonth,
+            validate:   $scope.validate
+        };
+        
+        $log.debug(card.expDate);
 
         $http({
-            url:"http://localhost:8723/shopping/billing/address/insert",
+            url:"http://localhost:8723/shopping/billing/creditCard/insert",
             method: "POST",
-            data: shippingAddress
+            data: card
         }).then(function(response) {
+            $log.debug(response.data);
             // reset form
-            $scope.shippingFullName = "";
-            $scope.shippingLine1 = "";
-            $scope.shippingLine2 = "";
-            $scope.shippingCity = "";
-            $scope.shippingState = "";
-            $scope.shippingZipCode = "";
+            $scope.fullName = "";
+            $scope.number   = "";
+            $scope.expYear  = "";
+            $scope.expMonth = "";
+            $scope.validate = "";
         }, function(response) {
             console.log("Errors in data you're sending");
         });

@@ -7,24 +7,24 @@
 
     <div><h2></h2></div>
 
-    <div id="addShipping" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add New Shipping Address</h4>
-                </div>
-                <div class="modal-body">
-                    <form ng-submit="sendShipping()" >
+    <form ng-submit="sendShipping()" >
+        <div id="addShipping" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add New Shipping Address</h4>
+                    </div>
+                    <div class="modal-body">
 
                         <div class="form-group"> <!-- Full Name -->
                             <label for="shipping_full_name_id" class="control-label">Full Name</label>
-                            <input ng-model="shippingFullName" type="text" class="form-control" id="shipping_full_name_id" name="full_name" placeholder="John Deer">
+                            <input required ng-model="shippingFullName" type="text" class="form-control" id="shipping_full_name_id" name="full_name" placeholder="John Deer">
                         </div>
 
                         <div class="form-group"> <!-- Street 1 -->
                             <label for="shipping_street1_id" class="control-label">Street Address 1</label>
-                            <input ng-model="shippingLine1" type="text" class="form-control" id="shipping_street1_id" name="street1" placeholder="Street address, P.O. box, company name, c/o">
+                            <input required ng-model="shippingLine1" type="text" class="form-control" id="shipping_street1_id" name="street1" placeholder="Street address, P.O. box, company name, c/o">
                         </div>
 
                         <div class="form-group"> <!-- Street 2 -->
@@ -34,12 +34,12 @@
 
                         <div class="form-group"> <!-- City-->
                             <label for="shipping_city_id" class="control-label">City</label>
-                            <input ng-model="shippingCity" type="text" class="form-control" id="shipping_city_id" name="city" placeholder="Smallville">
+                            <input required ng-model="shippingCity" type="text" class="form-control" id="shipping_city_id" name="city" placeholder="Smallville">
                         </div>
 
                         <div class="form-group"> <!-- State Button -->
                             <label for="shipping_state_id" class="control-label">State</label>
-                            <select ng-model="shippingState" class="form-control" id="shipping_state_id">
+                            <select required ng-model="shippingState" class="form-control" id="shipping_state_id">
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
@@ -96,16 +96,17 @@
 
                         <div class="form-group"> <!-- Zip Code-->
                             <label for="shipping_zip_id" class="control-label">Zip Code</label>
-                            <input ng-model="shippingZipCode" type="text" class="form-control" id="shipping_zip_id" name="zip" placeholder="#####">
+                            <input required ng-model="shippingZipCode" type="text" class="form-control" id="shipping_zip_id" name="zip" placeholder="#####">
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success pull-left" data-dismiss="modal" ng-click="sendShipping()">Submit</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <div class="container col-md-12">
@@ -117,24 +118,24 @@
 
     <div><h2></h2></div>
 
-    <div id="addBilling" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add New Billing Address</h4>
-                </div>
-                <div class="modal-body">
-                    <form ng-submit="sendBilling()">
+    <form ng-submit="sendBilling()" >
+        <div id="addBilling" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add New Billing Address</h4>
+                    </div>
+                    <div class="modal-body">
 
                         <div class="form-group"> <!-- Full Name -->
                             <label for="billing_full_name_id" class="control-label">Full Name</label>
-                            <input ng-model="billingFullName" type="text" class="form-control" id="billing_full_name_id" name="full_name" placeholder="John Deer">
+                            <input required ng-model="billingFullName" type="text" class="form-control" id="billing_full_name_id" name="full_name" placeholder="John Deer">
                         </div>
 
                         <div class="form-group"> <!-- Street 1 -->
                             <label for="billing_street1_id" class="control-label">Street Address 1</label>
-                            <input ng-model="billingLine1" type="text" class="form-control" id="billing_street1_id" name="street1" placeholder="Street address, P.O. box, company name, c/o">
+                            <input required ng-model="billingLine1" type="text" class="form-control" id="billing_street1_id" name="street1" placeholder="Street address, P.O. box, company name, c/o">
                         </div>
 
                         <div class="form-group"> <!-- Street 2 -->
@@ -144,12 +145,12 @@
 
                         <div class="form-group"> <!-- City-->
                             <label for="billing_city_id" class="control-label">City</label>
-                            <input ng-model="billingCity" type="text" class="form-control" id="billing_city_id" name="city" placeholder="Smallville">
+                            <input required ng-model="billingCity" type="text" class="form-control" id="billing_city_id" name="city" placeholder="Smallville">
                         </div>
 
                         <div class="form-group"> <!-- State Button -->
                             <label for="billing_state_id" class="control-label">State</label>
-                            <select ng-model="billingState" class="form-control" id="billing_state_id">
+                            <select required ng-model="billingState" class="form-control" id="billing_state_id">
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
@@ -206,16 +207,17 @@
 
                         <div class="form-group"> <!-- Zip Code-->
                             <label for="billing_zip_id" class="control-label">Zip Code</label>
-                            <input ng-model="billingZipCode" type="text" class="form-control" id="billing_zip_id" name="zip" placeholder="#####">
+                            <input required ng-model="billingZipCode" type="text" class="form-control" id="billing_zip_id" name="zip" placeholder="#####">
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success pull-left" data-dismiss="modal" ng-click="sendBilling()">Submit</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <div class="container col-md-6">
@@ -226,32 +228,31 @@
     </button>
 
     <div><h2></h2></div>
+    <form ng-submit="sendCard()">
+        <div id="addCard" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
-    <div id="addCard" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add New Credit Card</h4>
+                    </div>
 
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add New Credit Card</h4>
-                </div>
-
-                <div class="modal-body">
-                    <form ng-submit="sendCard()">
+                    <div class="modal-body">
 
                         <div class="form-group">
                             <label  class="control-label" for="card-holder-name">Name on Card</label>
-                            <input ng-model="fullName" type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+                            <input required ng-model="fullName" type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="card-number">Card Number</label>
-                            <input ng-model="number" type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
+                            <input required ng-model="number" type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="expiry-month">Expiration Date</label>
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <select ng-model="expDate" class="form-control col-sm-2" name="expiry-month" id="expiry-month">
+                                    <select required ng-model="expMonth" class="form-control col-sm-2" name="expiry-month" id="expiry-month">
                                         <option>Month</option>
                                         <option value="01">Jan (01)</option>
                                         <option value="02">Feb (02)</option>
@@ -268,7 +269,7 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-3">
-                                    <select class="form-control" name="expiry-year">
+                                    <select required ng-model="expYear" class="form-control" name="expiry-year">
                                         <option value="13">2013</option>
                                         <option value="14">2014</option>
                                         <option value="15">2015</option>
@@ -286,16 +287,17 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="cvv">Card CVV</label>
-                            <input ng-model="validate" type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code">
+                            <input required ng-model="validate" type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code">
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success pull-left" data-dismiss="modal" ng-click="sendCard()">Submit</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     <div class="form-group container col-md-1"> <!-- Submit Button -->
         <button type="submit" class="btn btn-success">Overview</button>
     </div>
