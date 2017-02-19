@@ -1,0 +1,27 @@
+<div>
+    <form>
+        <label>
+            <input type="text" ng-model="productId">
+        </label>
+        <label>
+            <input type="text" ng-model="productName">
+        </label>
+        <label>
+            <input type="text" ng-model="price">
+        </label>
+        <label>
+            <input type="text" ng-model="description">
+        </label>
+        <label>
+            <input type="text" ng-model="manufacturer">
+        </label>
+        <label>
+            <input type="file" name="fileInput" id="fileInput">
+        </label>
+        <label>
+            <input type="text" ng-model="availableQuantity">
+        </label>
+        <p>{{productImage}}</p>
+        <button type="submit" ng-click="submitProductData()">Submit</button>
+    </form>
+</div>
