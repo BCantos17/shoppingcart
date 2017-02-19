@@ -68,6 +68,16 @@
             <artifactId>spring-cloud-commons</artifactId>
             <version>RELEASE</version>
         </dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-ribbon</artifactId>
+		</dependency>
+
     </dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -86,6 +96,18 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<requiresUnpack>
+						<dependency>
+							<groupId>com.netflix.eureka</groupId>
+							<artifactId>eureka-core</artifactId>
+						</dependency>
+						<dependency>
+							<groupId>com.netflix.eureka</groupId>
+							<artifactId>eureka-client</artifactId>
+						</dependency>
+					</requiresUnpack>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
