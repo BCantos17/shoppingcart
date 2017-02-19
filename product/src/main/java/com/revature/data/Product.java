@@ -1,9 +1,12 @@
 package com.revature.data;
 
+
+import org.springframework.data.annotation.Id;
+
 public class Product {
+    @Id
     private int productId;
     private String productName;
-    private String productImage;
     private double price;
     private String description;
     private String manufacturer;
@@ -28,14 +31,6 @@ public class Product {
         this.productName = productName;
     }
 
-    public String getProductImage() {
-        return productImage;
-    }
-
-    public void setProductImage(String productImage) {
-        this.productImage = productImage;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -58,5 +53,16 @@ public class Product {
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                '}';
     }
 }
