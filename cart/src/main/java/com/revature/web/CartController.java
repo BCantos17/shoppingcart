@@ -3,6 +3,8 @@ package com.revature.web;
 import com.revature.data.Cart;
 import com.revature.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -21,8 +23,8 @@ public class CartController {
             method = RequestMethod.POST,
             produces = APPLICATION_JSON_VALUE,
             consumes = APPLICATION_JSON_VALUE)
-    public Cart save(@RequestBody Cart cart) {
-        return service.save(cart);
+    public ResponseEntity<Cart> save(@RequestBody Cart cart) {
+        return new ResponseEntity<>(service.save(cart), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/",
