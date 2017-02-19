@@ -5,7 +5,23 @@
         New Address
     </button>
 
-    <div><h2></h2></div>
+    <form>
+        <ul>
+            <li ng-repeat="address in shippingAddresses">
+                <label>
+                    <input type="radio" ng-model="$address" value="{{address}}" required />{{address.fullName}}, {{address.line1}} {{address.line2}}, {{address.city}}, {{address.state}}, {{address.zipCode}}
+                </label>
+            </li>
+
+            <li ng-repeat="newAddress in addShippingAddresses">
+                <label>
+                    <input type="radio" ng-model="$newAddress" value="{{newAddress}}" required />{{newAddress.fullName}}, {{newAddress.line1}} {{newAddress.line2}}, {{newAddress.city}}, {{newAddress.state}}, {{newAddress.zipCode}}
+                </label>
+            </li>
+        </ul>
+    </form>
+
+    <div class="a-radio"><h2></h2></div>
 
     <form ng-submit="sendShipping()" >
         <div id="addShipping" class="modal fade" role="dialog">
@@ -116,7 +132,21 @@
         New Address
     </button>
 
-    <div><h2></h2></div>
+    <form>
+        <ul>
+            <li ng-repeat="address in billingAddresses">
+                <label>
+                    <input type="radio" ng-model="$address" value="{{address}}" required />{{address.fullName}}, {{address.line1}} {{address.line2}}, {{address.city}}, {{address.state}}, {{address.zipCode}}
+                </label>
+            </li>
+
+            <li ng-repeat="newAddress in addBillingAddresses">
+                <label>
+                    <input type="radio" ng-model="$newAddress" value="{{newAddress}}" required />{{newAddress.fullName}}, {{newAddress.line1}} {{newAddress.line2}}, {{newAddress.city}}, {{newAddress.state}}, {{newAddress.zipCode}}
+                </label>
+            </li>
+        </ul>
+    </form>
 
     <form ng-submit="sendBilling()" >
         <div id="addBilling" class="modal fade" role="dialog">
@@ -227,7 +257,22 @@
         New Card
     </button>
 
-    <div><h2></h2></div>
+    <form>
+        <ul>
+            <li ng-repeat="card in cards">
+                <label>
+                    <input type="radio" ng-model="$card" value="{{card}}" required />{{card.number}}
+                </label>
+            </li>
+
+            <li ng-repeat="newCard in addCard">
+                <label>
+                    <input type="radio" ng-model="$newCard" value="{{newCard}}" required />{{newCard.number}}
+                </label>
+            </li>
+        </ul>
+    </form>
+
     <form ng-submit="sendCard()">
         <div id="addCard" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -245,7 +290,7 @@
                             <input required ng-model="fullName" type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="card-number">Card Number</label>
+                            <label class="control-label" for="card-number" maxlength="16">Card Number</label>
                             <input required ng-model="number" type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
                         </div>
                         <div class="form-group">
