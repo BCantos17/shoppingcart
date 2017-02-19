@@ -48,7 +48,7 @@ public class CartController {
     }
 
     @RequestMapping(value = "/cart/deleteItem/{itemId}",
-            method = RequestMethod.POST,
+            method = RequestMethod.PUT,
             produces = APPLICATION_JSON_VALUE,
             consumes = APPLICATION_JSON_VALUE)
     public Cart deleteItemFromCart(@RequestBody Cart cart, @PathVariable String itemId) {
@@ -64,7 +64,7 @@ public class CartController {
     }
 
     @RequestMapping(value = "/cart/insertItem/{productId}/{itemQuantity}",
-            method = RequestMethod.POST,
+            method = RequestMethod.PUT,
             produces = APPLICATION_JSON_VALUE,
             consumes = APPLICATION_JSON_VALUE)
     public Cart insertItemToCart(@RequestBody Cart cart, @PathVariable String productId, @PathVariable Integer itemQuantity) {

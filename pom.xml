@@ -22,5 +22,6 @@
         <module>shipping</module>
         <module>eureka</module>
         <module>apigateway</module>
+		<module>cartgateway</module>
 	</modules>
 </project>
