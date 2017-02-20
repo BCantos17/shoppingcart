@@ -46,10 +46,18 @@ public class BusinessDelegateImpl implements BusinessDelegate{
         String itemIdGen = formData.getUserId() + formData.getProductId();
         Item newItem = new Item(itemIdGen, formData.getProductId(),formData.getQuantity());
         Cart cart = cartService.findCartById(formData.getCartId()).getBody();
+        if(cart.getItem() == null){
+            cart.setItem(new ArrayList<Item>());
+        }
         cart.getItem().add(newItem);
         return cartService.updateCart(cart);
     }
-
+    //Delete an item from the cart
+    public ResponseEntity<Cart> removeCartItem(CartFormData formData){
+        Cart cart = cartService.findCartById(formData.getCartId()).getBody();
+        cart.getItem().removeIf(item -> item.getItemId().equals(formData.getItemId()));
+        return cartService.updateCart(cart);
+    }
     //Update the quantity of an item from the cart
     public ResponseEntity<Cart> updateCartItemQuantity(CartFormData formData){
         Cart cart = cartService.findCartById(formData.getCartId()).getBody();
@@ -73,5 +81,11 @@ public class BusinessDelegateImpl implements BusinessDelegate{
             itemDTOList.add(newItem);
         }
         return new ResponseEntity<List<ItemDTO>>(itemDTOList, HttpStatus.OK);
+    }
+    //Empty cart
+    public ResponseEntity<Cart> emptyCart (CartFormData formData){
+        Cart cart = cartService.findCartById(formData.getCartId()).getBody();
+        cart.setItem(null);
+        return cartService.updateCart(cart);
     }
 }

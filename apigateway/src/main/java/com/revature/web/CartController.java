@@ -61,4 +61,20 @@ public class CartController {
         return delegate.addCartItem(formData);
     }
 
+    @RequestMapping(value="/removeCartItem",
+            method=RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Cart> removeCartItem(@RequestBody CartFormData formData){
+        return delegate.removeCartItem(formData);
+    }
+
+    @RequestMapping(value="/emptyCart",
+            method=RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Cart> emptyCart(@RequestBody CartFormData formData){
+        return delegate.emptyCart(formData);
+    }
+
 }
