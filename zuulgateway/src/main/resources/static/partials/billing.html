@@ -9,13 +9,13 @@
         <ul>
             <li ng-repeat="address in shippingAddresses">
                 <label>
-                    <input type="radio" ng-model="$address" value="{{address}}" required />{{address.fullName}}, {{address.line1}} {{address.line2}}, {{address.city}}, {{address.state}}, {{address.zipCode}}
+                    <input ng-change='insertAddress(address)' type="radio" ng-model="$address" value="{{address}}" required />{{address.fullName}}, {{address.line1}} {{address.line2}}, {{address.city}}, {{address.state}}, {{address.zipCode}}
                 </label>
             </li>
 
             <li ng-repeat="newAddress in addShippingAddresses">
                 <label>
-                    <input type="radio" ng-model="$newAddress" value="{{newAddress}}" required />{{newAddress.fullName}}, {{newAddress.line1}} {{newAddress.line2}}, {{newAddress.city}}, {{newAddress.state}}, {{newAddress.zipCode}}
+                    <input ng-change='insertAddress(address)' type="radio" ng-model="$newAddress" value="{{newAddress}}" required />{{newAddress.fullName}}, {{newAddress.line1}} {{newAddress.line2}}, {{newAddress.city}}, {{newAddress.state}}, {{newAddress.zipCode}}
                 </label>
             </li>
         </ul>
@@ -261,13 +261,13 @@
         <ul>
             <li ng-repeat="card in cards">
                 <label>
-                    <input type="radio" ng-model="$card" value="{{card}}" required />{{card.number}}
+                    <input ng-change='insertCard(card)' type="radio" ng-model="$card" value="{{card}}" required />{{card.number}}
                 </label>
             </li>
 
             <li ng-repeat="newCard in addCard">
                 <label>
-                    <input type="radio" ng-model="$newCard" value="{{newCard}}" required />{{newCard.number}}
+                    <input ng-change='insertCard(card)' type="radio" ng-model="$newCard" value="{{newCard}}" required />{{newCard.number}}
                 </label>
             </li>
         </ul>
@@ -344,6 +344,7 @@
         </div>
     </form>
     <div class="form-group container col-md-1"> <!-- Submit Button -->
-        <button type="submit" class="btn btn-success">Overview</button>
+        <a href="#Overview" class="btn btn-success">Overview</a>
+        <!--<a href="#Billing" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right">-->
     </div>
 </div>
