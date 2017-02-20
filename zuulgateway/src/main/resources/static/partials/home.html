@@ -1,72 +1,42 @@
-<div>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#Cart">Cart</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Page Content -->
-    <div class="container">
+<!-- Page Content -->
+<div class="container">
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="product in products">
-                        <div class="thumbnail">
-                            <img data-ng-src="{{product.productImage}}" alt=""  ng-style="{ 'width' : 320, 'height' : 150 }">
-                            <div class="caption">
-                                <h4 class="pull-right">${{product.price}}</h4>
-                                <h4><a href="#">{{product.productName}}</a></h4>
-                                <p>{{product.description}}</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                            <button ng-click="addToCart(product)">Add to cart</button>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="product in products">
+                    <div class="thumbnail">
+                        <img data-ng-src="{{product.productImage}}" alt="" ng-style="{ 'width' : 320, 'height' : 150 }">
+                        <div class="caption">
+                            <h4 class="pull-right">${{product.price}}</h4>
+                            <h4><a href="#">{{product.productName}}</a></h4>
+                            <p>{{product.description}}</p>
                         </div>
+                        <div class="ratings">
+                            <p class="pull-right">15 reviews</p>
+                            <p>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                            </p>
+                        </div>
+                        <button ng-click="addToCart(product)">Add to cart</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="container">
-        <hr>
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
+<div class="container">
+    <hr>
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Your Website 2014</p>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 </div>
