@@ -36,7 +36,7 @@ angular.module("MainApp").controller('CartController', function ($scope) {
 
 angular.module("MainApp").controller('ProductAccessController', function ($scope, $http) {
     var productImage;
-    document.getElementById("fileInput").addEventListener("change", function () {
+    document.getElementById("productImage").addEventListener("change", function () {
         var file = document.querySelector('input[type=file]').files[0];
         var reader = new FileReader();
 
@@ -52,16 +52,27 @@ angular.module("MainApp").controller('ProductAccessController', function ($scope
             url: '/product',
             method: 'POST',
             data: {
-                "productId": 1,
-                "productName": "Apples",
-                "price": 2,
-                "description": "Apples",
-                "manufacturer": "Farm",
-                "productImage": "",
-                "availableQuantity": 2
+                "productId": $scope.productId,
+                "productName": $scope.productName,
+                "price": $scope.price,
+                "description": $scope.description,
+                "manufacturer": $scope.manufacturer,
+                "productImage": productImage,
+                "availableQuantity": $scope.availableQuantity
             }
         }).then(function () {
             alert("Success");
+        }, function () {
+            alert("Failure");
+        });
+    };
+
+    $scope.getImage = function() {
+        $http({
+            url: '/product/1',
+            method: 'GET'
+        }).then(function () {
+            alert("Success")
         }, function () {
             alert("Failure");
         });
