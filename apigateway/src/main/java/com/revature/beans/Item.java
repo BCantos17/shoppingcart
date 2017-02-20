@@ -1,10 +1,32 @@
 package com.revature.beans;
 
 
+import org.springframework.data.annotation.Id;
+
 public class Item {
+
+    @Id
     private String itemId;
     private String productId;
     private Integer quantity;
+
+    public Item() {
+    }
+
+    public Item(String itemId, String productId, Integer quantity) {
+        this.itemId = itemId;
+        this.productId = productId;
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemId='" + itemId + '\'' +
+                ", productId='" + productId + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
 
     public String getItemId() {
         return itemId;
@@ -28,9 +50,5 @@ public class Item {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    public Item() {
-        super();
     }
 }
