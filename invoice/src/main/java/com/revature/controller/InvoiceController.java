@@ -77,7 +77,7 @@ public class InvoiceController {
                 returnEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
             else
                 returnEntity = new ResponseEntity<>(invoices, HttpStatus.OK);
-        } catch(RuntimeExcept tion e) {
+        } catch(RuntimeException e) {
             e.printStackTrace();
             returnEntity = new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
