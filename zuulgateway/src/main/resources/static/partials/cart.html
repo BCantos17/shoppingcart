@@ -12,7 +12,7 @@
 
         <tbody>
         <tr ng-repeat="item in itemList">
-            <div id="{{item.itemId}}">
+            <div id="{{item.productId}}">
                 <td data-th="Product">
                     <div class="row">
                         <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
@@ -30,7 +30,7 @@
                 </td>
                 <td data-th="Subtotal" class="text-center">{{item.itemTotal}}</td>
                 <td class="actions" data-th="">
-                    <button class="btn btn-danger btn-sm">Remove Item<i class="fa fa-trash-o"></i></button>
+                    <button id="{{item.itemId}}" class="btn btn-danger btn-sm" data-ng-click="removeItem(itemList,$index)">Remove Item</button>
                 </td>
             </div>
         </tr>

@@ -14,7 +14,7 @@ angular.module("MainApp").controller('OverviewController', function($http, $scop
     //$scope.invoice.customerId = 7;
 /*
     $scope.customer.id;*/
-
+    $log.debug($scope.invoice.itemList);
     $log.debug($scope.customer.id);
     $log.debug(billingService.getAddress());
 
