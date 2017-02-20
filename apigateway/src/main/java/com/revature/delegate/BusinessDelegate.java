@@ -20,8 +20,11 @@ public interface BusinessDelegate {
     //Add an item to the cart
     ResponseEntity<Cart> addCartItem(CartFormData formData);
     //Delete an item from the cart
+    ResponseEntity<Cart> removeCartItem(CartFormData formData);
     //Update the quantity of an item from the cart
     ResponseEntity<Cart> updateCartItemQuantity(CartFormData formData);
     //Get all the Items in the cart
     ResponseEntity<List<ItemDTO>> getAllCartItems(CartFormData formData);
+    //Empty cart
+    public ResponseEntity<Cart> emptyCart (CartFormData formData);
 }

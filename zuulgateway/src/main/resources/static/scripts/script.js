@@ -29,7 +29,7 @@ angular.module("MainApp").controller('HomeController', function($scope){
 
 });
 
-angular.module("MainApp").controller('CartController', function ($scope, $http) {
+angular.module("MainApp").controller('CartController', function ($scope, $http, cartService) {
 
     var formData = {
         "cartId":"58a5f3a7ffcda228089b82bc"
@@ -43,10 +43,25 @@ angular.module("MainApp").controller('CartController', function ($scope, $http) 
         // server successfully sends data -- 200 code range
         // .data is response body
         $scope.itemList = response.data;
+        cartService.setItemList($scope.itemList);
     }, function(response) {
         console.log("GET ALL: Failed to fetch cart items");
     });
 
+});
+
+angular.module("MainApp").service('cartService', function() {
+    var itemList;
+
+    var setItemList = function( pickedAddress ) { itemList = pickedAddress;};
+
+
+    var getItemList = function(){return itemList;};
+
+    return {
+        setItemList: setItemList,
+        getItemList: getItemList
+    };
 });
 
 
