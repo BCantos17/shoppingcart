@@ -34,4 +34,10 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAllProducts() {
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/", method = RequestMethod.DELETE)
+    public ResponseEntity deleteAll() {
+        productService.deleteAll();
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }
