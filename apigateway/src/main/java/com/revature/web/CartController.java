@@ -58,7 +58,13 @@ public class CartController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Cart> addCartItem(@RequestBody CartFormData formData){
-        return delegate.addCartItem(formData);
+        ResponseEntity<Cart>responseEntity = null;
+        try {
+            responseEntity = delegate.addCartItem(formData);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+        return responseEntity;
     }
 
     @RequestMapping(value="/removeCartItem",

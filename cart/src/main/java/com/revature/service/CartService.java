@@ -4,7 +4,11 @@ import com.revature.data.Cart;
 import com.revature.data.CartRepository;
 import com.revature.data.Item;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CartService {
@@ -53,5 +57,9 @@ public class CartService {
         cart.getItem().add(new Item(itemId, productId, itemQuantity));
         this.repository.save(cart);
         return this.repository.findOne(cart.getCartId());
+    }
+
+    public ResponseEntity<List<Cart>> getAllCarts() {
+        return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
 }
