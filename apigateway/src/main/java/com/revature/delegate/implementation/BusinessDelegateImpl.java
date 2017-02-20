@@ -4,6 +4,7 @@ import com.revature.beans.*;
 import com.revature.delegate.BusinessDelegate;
 import com.revature.service.BillingService;
 import com.revature.service.CartService;
+import com.revature.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,11 @@ public class BusinessDelegateImpl implements BusinessDelegate{
     @Autowired
     public void setCartService(CartService cartService) {this.cartService = cartService;}
 
+    private ProductService productService;
+    @Autowired
+    public void setProductService(ProductService productService) {this.productService = productService;}
+
+
     public ResponseEntity<Address> insertAddress(Address address) {return billingService.insertAddress(address);}
     public ResponseEntity<Address> saveAddress(Address address) {return billingService.saveAddress(address);}
     public ResponseEntity<List<Address>> findAddressByCustomerId(Integer customerId) {return billingService.findAddressByCustomerId(customerId);}
@@ -40,9 +46,9 @@ public class BusinessDelegateImpl implements BusinessDelegate{
         List<ItemDTO> itemDTOList = new ArrayList<ItemDTO>();
 
         for(Item item : cart.getItem()){
-            //once Osher implements product service, we get product by item.getProductId()
-            Product product = null;
-            ItemDTO newItem = new ItemDTO(item);
+            System.out.println(productService.getProductById(item.getProductId()).getBody());
+            Product product = productService.getProductById(item.getProductId()).getBody();
+            ItemDTO newItem = new ItemDTO(item, product);
             itemDTOList.add(newItem);
         }
         return new ResponseEntity<List<ItemDTO>>(itemDTOList, HttpStatus.OK);

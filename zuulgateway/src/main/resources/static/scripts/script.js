@@ -27,13 +27,26 @@ angular.module("MainApp").controller("MainController", function($scope){
 
 angular.module("MainApp").controller('HomeController', function($scope){
 
-
 });
 
-angular.module("MainApp").controller('CartController', function ($scope) {
-    $scope.price = 22;
-    $scope.quantity = 10;
-    $scope.subtotal = $scope.price * $scope.quantity;
+angular.module("MainApp").controller('CartController', function ($scope, $http) {
+
+    var formData = {
+        "cartId":"58a5f3a7ffcda228089b82bc"
+    };
+
+    $http({
+        url: "http://localhost:8723/shopping/cart/getAllCartItems",
+        method: "POST",
+        data: formData
+    }).then(function(response) {
+        // server successfully sends data -- 200 code range
+        // .data is response body
+        $scope.itemList = response.data;
+    }, function(response) {
+        console.log("GET ALL: Failed to fetch cart items");
+    });
+
 });
 
 

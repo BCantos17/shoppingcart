@@ -15,5 +15,5 @@ public interface ProductService {
     void storeProduct(@RequestBody Product product);
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Product> getProductById(@PathVariable int id);
+    ResponseEntity<Product> getProductById(@PathVariable("id") int id);
 }
