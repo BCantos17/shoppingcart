@@ -1,4 +1,30 @@
-angular.module("MainApp").controller('BillingController', function ($http, $scope, $log) {
+angular.module("MainApp").service('billingService', function() {
+    var address;
+    var card;
+
+    var setAddress = function( pickedAddress ) { address = pickedAddress;};
+    var setCard = function( pickedCard ) { card = pickedCard;};
+
+    var getAddress = function(){return address;};
+    var getCard = function () {return card;};
+
+    return {
+        setAddress: setAddress,
+        setCard:    setCard,
+        getAddress: getAddress,
+        getCard:    getCard
+    };
+});
+
+angular.module("MainApp").controller('BillingController', function ($http, $scope, $log, billingService) {
+
+    $scope.insertAddress = function(address) {
+        billingService.setAddress(address)
+    };
+
+    $scope.insertCard = function(card) {
+        billingService.setCard(card)
+    };
 
     $log.debug('Starting Billing Controller');
 

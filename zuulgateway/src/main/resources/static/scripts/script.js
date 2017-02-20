@@ -19,6 +19,9 @@ angular.module("MainApp").controller("MainController", function($scope){
     }).when('/productAccess', {
         templateUrl: '../partials/productAccess.html',
         controller: 'ProductAccessController'
+    }).when('/Overview', {
+        templateUrl: '../partials/overview.html',
+        controller: 'OverviewController'
     });
 });
 
