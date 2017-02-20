@@ -41,4 +41,13 @@ public class CartController {
     ResponseEntity<List<ItemDTO>> getAllCartItems (@RequestBody CartFormData formData){
         return delegate.getAllCartItems(formData);
     }
+
+    @RequestMapping(value="/updateItemQuantity",
+            method=RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Cart> updateCartItemQuantity(@RequestBody CartFormData formData){
+        return delegate.updateCartItemQuantity(formData);
+    }
+
 }
