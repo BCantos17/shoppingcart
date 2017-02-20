@@ -31,52 +31,71 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http) 
         method: 'GET'
     }).then(function (response) {
         $scope.products = response.data;
-        alert("Success");
     }, function () {
         alert("Failure");
     });
+
+    $scope.addToCart = function (product) {
+        alert(" productId: " + product.productId + " quantity: " + product.availableQuantity);
+        $http({
+            url: '/shopping/cart/addCartItem',
+            method: 'POST',
+            data: {
+                "cartId": "1",
+                "itemId": product.productId + 2,
+                "quantity": product.availableQuantity,
+                "productId": product.productId,
+                "userId": 2
+            }
+        });
+    }
 });
 
 angular.module("MainApp").controller('CartController', function ($scope, $http, cartService) {
 
     var getAllformData = {
-        "cartId":"58a5f3a7ffcda228089b82bc"
+        "cartId": "58a5f3a7ffcda228089b82bc"
+    };
 
     $http({
         url: "http://localhost:8723/shopping/cart/getAllCartItems",
         method: "POST",
         data: getAllformData
-    }).then(function(response) {
+    }).then(function (response) {
         $scope.itemList = response.data;
         cartService.setItemList($scope.itemList);
-    }, function(response) {
+    }, function () {
         console.log("GET ALL: Failed to fetch cart items");
     });
 
-    $scope.removeItem = function(itemList, index) {
+    $scope.removeItem = function (itemList, index) {
         var deleteItemformData = {
-            "cartId":"58a5f3a7ffcda228089b82bc",
-            "itemId":itemList[index].itemId
+            "cartId": "58a5f3a7ffcda228089b82bc",
+            "itemId": itemList[index].itemId
         };
         $http({
             url: "http://localhost:8723/shopping/cart/removeCartItem",
             method: "POST",
             data: deleteItemformData
-        }).then(function(response) {
-            itemList.splice(index,1);
-        }, function(response) {
+        }).then(function () {
+            itemList.splice(index, 1);
+        }, function () {
             console.log("GET ALL: Failed to delete cart items");
         });
     };
 });
 
-angular.module("MainApp").service('cartService', function() {
+angular.module("MainApp").service('cartService', function () {
     var itemList;
 
-    var setItemList = function( pickedAddress ) { itemList = pickedAddress;};
+    var setItemList = function (pickedAddress) {
+        itemList = pickedAddress;
+    };
 
 
-    var getItemList = function(){return itemList;};
+    var getItemList = function () {
+        return itemList;
+    };
 
     return {
         setItemList: setItemList,
