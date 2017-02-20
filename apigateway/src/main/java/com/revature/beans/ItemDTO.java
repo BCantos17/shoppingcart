@@ -14,6 +14,7 @@ public class ItemDTO {
     private double itemTotal;
 
     public ItemDTO() {
+
     }
 
     public ItemDTO(Item item){
