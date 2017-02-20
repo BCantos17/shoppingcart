@@ -31,23 +31,36 @@ angular.module("MainApp").controller('HomeController', function($scope){
 
 angular.module("MainApp").controller('CartController', function ($scope, $http, cartService) {
 
-    var formData = {
+    var getAllformData = {
         "cartId":"58a5f3a7ffcda228089b82bc"
     };
 
     $http({
         url: "http://localhost:8723/shopping/cart/getAllCartItems",
         method: "POST",
-        data: formData
+        data: getAllformData
     }).then(function(response) {
-        // server successfully sends data -- 200 code range
-        // .data is response body
         $scope.itemList = response.data;
         cartService.setItemList($scope.itemList);
     }, function(response) {
         console.log("GET ALL: Failed to fetch cart items");
     });
 
+    $scope.removeItem = function(itemList, index) {
+        var deleteItemformData = {
+            "cartId":"58a5f3a7ffcda228089b82bc",
+            "itemId":itemList[index].itemId
+        };
+        $http({
+            url: "http://localhost:8723/shopping/cart/removeCartItem",
+            method: "POST",
+            data: deleteItemformData
+        }).then(function(response) {
+            itemList.splice(index,1);
+        }, function(response) {
+            console.log("GET ALL: Failed to delete cart items");
+        });
+    };
 });
 
 angular.module("MainApp").service('cartService', function() {
