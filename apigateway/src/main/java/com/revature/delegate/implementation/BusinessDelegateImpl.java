@@ -1,21 +1,27 @@
 package com.revature.delegate.implementation;
 
-import com.revature.beans.Address;
-import com.revature.beans.CreditCard;
+import com.revature.beans.*;
 import com.revature.delegate.BusinessDelegate;
 import com.revature.service.BillingService;
+import com.revature.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class BusinessDelegateImpl implements BusinessDelegate{
-    private BillingService billingService;
 
+    private BillingService billingService;
     @Autowired
     public void setBillingService(BillingService billingService) {this.billingService = billingService;}
+
+    private CartService cartService;
+    @Autowired
+    public void setCartService(CartService cartService) {this.cartService = cartService;}
 
     public ResponseEntity<Address> insertAddress(Address address) {return billingService.insertAddress(address);}
     public ResponseEntity<Address> saveAddress(Address address) {return billingService.saveAddress(address);}
@@ -27,4 +33,18 @@ public class BusinessDelegateImpl implements BusinessDelegate{
     public ResponseEntity<CreditCard> saveCreditCard(CreditCard creditCard) {return billingService.saveCreditCard(creditCard);}
     public ResponseEntity<List<CreditCard>> findCreditCardByCustomerId(Integer customerId) {return billingService.findCreditCardByCustomerId(customerId);}
     public ResponseEntity deleteCreditCard(String id) {return billingService.deleteCreditCard(id);}
+
+    //Get all the Items in the cart
+    public ResponseEntity<List<ItemDTO>> getAllCartItems (CartFormData formData){
+        Cart cart = cartService.findCartById(formData.getCartId()).getBody();
+        List<ItemDTO> itemDTOList = new ArrayList<ItemDTO>();
+
+        for(Item item : cart.getItem()){
+            //once Osher implements product service, we get product by item.getProductId()
+            Product product = null;
+            ItemDTO newItem = new ItemDTO(item);
+            itemDTOList.add(newItem);
+        }
+        return new ResponseEntity<List<ItemDTO>>(itemDTOList, HttpStatus.OK);
+    }
 }
