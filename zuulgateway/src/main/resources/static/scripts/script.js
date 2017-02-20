@@ -3,6 +3,10 @@ angular.module("MainApp", ['ngRoute']);
 angular.module("MainApp").config(function ($logProvider) {
     $logProvider.debugEnabled(true);
 });
+
+var userId = 2;
+var cartId = "1";
+
 angular.module("MainApp").controller("MainController", function ($scope) {
 
 }).config(function ($routeProvider, $locationProvider) {
@@ -41,11 +45,11 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http) 
             url: '/shopping/cart/addCartItem',
             method: 'POST',
             data: {
-                "cartId": "1",
+                "cartId": cartId,
                 "itemId": product.productId + 2,
                 "quantity": product.availableQuantity,
                 "productId": product.productId,
-                "userId": 2
+                "userId": userId
             }
         });
     }
@@ -54,7 +58,7 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http) 
 angular.module("MainApp").controller('CartController', function ($scope, $http, cartService) {
 
     var getAllformData = {
-        "cartId":"58a5f3a7ffcda228089b82bc"
+        "cartId":cartId
     };
 
     $http({
@@ -70,7 +74,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
 
     $scope.removeItem = function (itemList, index) {
         var deleteItemformData = {
-            "cartId": "58a5f3a7ffcda228089b82bc",
+            "cartId": cartId,
             "itemId": itemList[index].itemId
         };
         $http({
@@ -87,7 +91,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
     $scope.increaseItemCount = function(item){
         var newQuantity = item.quantity+1;
         var increaseItemCountformData = {
-            "cartId":"58a5f3a7ffcda228089b82bc",
+            "cartId":cartId,
             "itemId":item.itemId,
             "quantity":newQuantity
         };
@@ -106,7 +110,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
     $scope.decreaseItemCount = function(item){
         var newQuantity = item.quantity-1;
         var decreaseItemCountformData = {
-            "cartId":"58a5f3a7ffcda228089b82bc",
+            "cartId":cartId,
             "itemId":item.itemId,
             "quantity":newQuantity
         };
