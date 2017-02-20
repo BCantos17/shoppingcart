@@ -6,17 +6,9 @@ public class CartFormData {
     private String itemId;
     private Integer quantity;
     private int productId;
-    private int userId;
+    private String userId;
 
     public CartFormData() {
-    }
-
-    public CartFormData(String cartId, String itemId, Integer quantity, int productId, int userId) {
-        this.cartId = cartId;
-        this.itemId = itemId;
-        this.quantity = quantity;
-        this.productId = productId;
-        this.userId = userId;
     }
 
     @Override
@@ -62,11 +54,11 @@ public class CartFormData {
         this.productId = productId;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

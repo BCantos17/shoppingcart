@@ -18,6 +18,7 @@ public interface BusinessDelegate {
 
     //Create a new cart
     //Add an item to the cart
+    ResponseEntity<Cart> addCartItem(CartFormData formData);
     //Delete an item from the cart
     //Update the quantity of an item from the cart
     ResponseEntity<Cart> updateCartItemQuantity(CartFormData formData);
