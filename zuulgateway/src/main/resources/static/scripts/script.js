@@ -1,9 +1,9 @@
-angular.module("MainApp",['ngRoute']);
+angular.module("MainApp", ['ngRoute']);
 
-angular.module("MainApp").config(function($logProvider){
-        $logProvider.debugEnabled(true);
+angular.module("MainApp").config(function ($logProvider) {
+    $logProvider.debugEnabled(true);
 });
-angular.module("MainApp").controller("MainController", function($scope){
+angular.module("MainApp").controller("MainController", function ($scope) {
 
 }).config(function ($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix("");
@@ -11,11 +11,11 @@ angular.module("MainApp").controller("MainController", function($scope){
         templateUrl: '../partials/home.html',
         controller: 'HomeController'
     }).when('/Cart', {
-        templateUrl:"../partials/cart.html",
-        controller:'CartController'
+        templateUrl: "../partials/cart.html",
+        controller: 'CartController'
     }).when('/Billing', {
-        templateUrl:'../partials/billing.html',
-        controller:'BillingController'
+        templateUrl: '../partials/billing.html',
+        controller: 'BillingController'
     }).when('/productAccess', {
         templateUrl: '../partials/productAccess.html',
         controller: 'ProductAccessController'
@@ -25,25 +25,33 @@ angular.module("MainApp").controller("MainController", function($scope){
     });
 });
 
-angular.module("MainApp").controller('HomeController', function($scope){
-
+angular.module("MainApp").controller('HomeController', function ($scope, $http) {
+    $http({
+        url: '/product',
+        method: 'GET'
+    }).then(function (response) {
+        $scope.products = response.data;
+        alert("Success");
+    }, function () {
+        alert("Failure");
+    });
 });
 
 angular.module("MainApp").controller('CartController', function ($scope, $http) {
 
     var formData = {
-        "cartId":"58a5f3a7ffcda228089b82bc"
+        "cartId": "58a5f3a7ffcda228089b82bc"
     };
 
     $http({
         url: "http://localhost:8723/shopping/cart/getAllCartItems",
         method: "POST",
         data: formData
-    }).then(function(response) {
+    }).then(function (response) {
         // server successfully sends data -- 200 code range
         // .data is response body
         $scope.itemList = response.data;
-    }, function(response) {
+    }, function (response) {
         console.log("GET ALL: Failed to fetch cart items");
     });
 
@@ -83,13 +91,13 @@ angular.module("MainApp").controller('ProductAccessController', function ($scope
         });
     };
 
-    $scope.getImage = function() {
+    $scope.getImage = function () {
         $http({
-            url: '/product/234',
+            url: '/product',
             method: 'GET'
         }).then(function (response) {
-            document.getElementById("productImg").src = response.data.productImage;
-            alert("Success")
+            $scope.products = response.data;
+            alert("Success");
         }, function () {
             alert("Failure");
         });
