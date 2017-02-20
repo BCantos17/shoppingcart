@@ -40,7 +40,7 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http) 
 angular.module("MainApp").controller('CartController', function ($scope, $http, cartService) {
 
     var getAllformData = {
-        "cartId":"58a5f3a7ffcda228089b82bc"
+        "cartId":"58a5f3a7ffcda228089b82bc"};
 
     $http({
         url: "http://localhost:8723/shopping/cart/getAllCartItems",
@@ -95,7 +95,6 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
             "itemId":item.itemId,
             "quantity":newQuantity
         };
-        alert()
         $http({
             url: "http://localhost:8723/shopping/cart/updateItemQuantity",
             method: "POST",
