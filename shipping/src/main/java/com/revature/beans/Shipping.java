@@ -12,8 +12,8 @@ import javax.validation.constraints.NotNull;
 public class Shipping {
 
     @Id
-    String id;
-    String shippingType;
+    private String id;
+    private String shippingType;
 
     public Shipping() {super();}
 
