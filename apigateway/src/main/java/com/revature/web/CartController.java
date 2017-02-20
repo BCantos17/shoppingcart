@@ -29,7 +29,10 @@ public class CartController {
     @Autowired
     public void setDelegate(BusinessDelegate delegate) {this.delegate = delegate;}
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/",
+                    method = RequestMethod.POST,
+                    produces = MediaType.APPLICATION_JSON_VALUE,
+                    consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Cart> createCart(@RequestBody Cart cart) {
         return cartService.createCart(cart);
     }
@@ -48,6 +51,14 @@ public class CartController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Cart> updateCartItemQuantity(@RequestBody CartFormData formData){
         return delegate.updateCartItemQuantity(formData);
+    }
+
+    @RequestMapping(value="/addCartItem",
+            method=RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Cart> addCartItem(@RequestBody CartFormData formData){
+        return delegate.addCartItem(formData);
     }
 
 }
