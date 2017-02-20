@@ -33,3 +33,30 @@
     <img src="" alt="" id="productImg">
     <button type="submit" class="btn btn-default" ng-click="getImage()">Submit</button>
 </form>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>productId</th>
+            <th>productName</th>
+            <th>price</th>
+            <th>description</th>
+            <th>manufacturer</th>
+            <th>productImage</th>
+            <th>availableQuantity</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="product in products">
+            <td>{{product.productId}}</td>
+            <td>{{product.productName}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.manufacturer}}</td>
+            <td><img data-ng-src="{{product.productImage}}" alt=""></td>
+            <td>{{product.availableQuantity}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+

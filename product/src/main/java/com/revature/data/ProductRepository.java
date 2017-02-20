@@ -13,4 +13,7 @@ public interface ProductRepository extends MongoRepository<Product, Integer> {
 
     @Override
     List<Product> findAll();
+
+    @Override
+    void deleteAll();
 }
