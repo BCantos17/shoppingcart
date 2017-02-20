@@ -18,10 +18,12 @@ angular.module("MainApp").service('billingService', function() {
 
 angular.module("MainApp").controller('BillingController', function ($http, $scope, $log, billingService) {
 
+    /**
+     *For Billing Service
+     */
     $scope.insertAddress = function(address) {
         billingService.setAddress(address)
     };
-
     $scope.insertCard = function(card) {
         billingService.setCard(card)
     };
@@ -38,6 +40,9 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
     var billingAddresses    = [];
     var cards               = [];
 
+    /**
+     * Get address by Customer Id
+     */
     $http({
         url: "http://localhost:8723/shopping/billing/address/byId/" +$scope.customer.id ,
         method: "GET"
@@ -57,6 +62,9 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
         console.log("GET ALL: Failed to fetch addresses");
     });
 
+    /**
+     * Get credit card by Customer Id
+     */
     $http({
         url: "http://localhost:8723/shopping/billing/creditCard/byId/" +$scope.customer.id ,
         method: "GET"
@@ -67,6 +75,9 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
         console.log("GET ALL: Failed to fetch credit card");
     });
 
+    /**
+     * Add new shipping Address
+     */
     $scope.sendShipping = function() {
         var shippingAddress = {
             customerId:     $scope.customer.id,
@@ -84,7 +95,11 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
             method: "POST",
             data: shippingAddress
         }).then(function(response) {
-            $log.debug(response.data);
+            // To add new address in the list dynamically
+            if(response.data.billing === false )
+                $scope.addShippingAddresses.push(response.data);
+            else
+                $scope.addBillingAddresses.push(response.data);
             // reset form
             $scope.shippingFullName = "";
             $scope.shippingLine1    = "";
@@ -95,11 +110,14 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
         }, function(response) {
             console.log("Errors in data you're sending");
         });
-    }
+    };
 
     $scope.addShippingAddresses = [];
     $scope.addBillingAddresses  = [];
 
+    /**
+     * Add new billing Address
+     */
     $scope.sendBilling = function () {
         var billingAddress = {
             customerId: $scope.customer.id,
@@ -132,10 +150,13 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
         }, function(response) {
             console.log("Errors in data you're sending");
         });
-    }
+    };
 
     $scope.addCard = [];
-    
+
+    /**
+     * Add new credit card
+     */
     $scope.sendCard = function () {
         var card = {
             customerId: $scope.customer.id,
