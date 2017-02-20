@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -40,6 +42,11 @@ public class CartController {
             produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<Cart> findCartById(@PathVariable String id) {
         return new ResponseEntity<>(service.findOne(id), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Cart>> getAllCarts() {
+        return service.getAllCarts();
     }
 
     @RequestMapping(value = "/cart/user/{userId}",
