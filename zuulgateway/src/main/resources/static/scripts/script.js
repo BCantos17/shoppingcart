@@ -3,6 +3,10 @@ angular.module("MainApp", ['ngRoute']);
 angular.module("MainApp").config(function ($logProvider) {
     $logProvider.debugEnabled(true);
 });
+
+var userId = 2;
+var cartId = "1";
+
 angular.module("MainApp").controller("MainController", function ($scope) {
 
 }).config(function ($routeProvider, $locationProvider) {
@@ -41,11 +45,11 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http) 
             url: '/shopping/cart/addCartItem',
             method: 'POST',
             data: {
-                "cartId": "1",
+                "cartId": cartId,
                 "itemId": product.productId + 2,
                 "quantity": product.availableQuantity,
                 "productId": product.productId,
-                "userId": 2
+                "userId": userId
             }
         });
     }
@@ -54,7 +58,7 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http) 
 angular.module("MainApp").controller('CartController', function ($scope, $http, cartService) {
 
     var getAllformData = {
-        "cartId": "58a5f3a7ffcda228089b82bc"
+        "cartId":cartId
     };
 
     $http({
@@ -64,25 +68,63 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
     }).then(function (response) {
         $scope.itemList = response.data;
         cartService.setItemList($scope.itemList);
-    }, function () {
-        console.log("GET ALL: Failed to fetch cart items");
+    }, function(response) {
+        console.log("Failed to fetch cart items");
     });
 
     $scope.removeItem = function (itemList, index) {
         var deleteItemformData = {
-            "cartId": "58a5f3a7ffcda228089b82bc",
+            "cartId": cartId,
             "itemId": itemList[index].itemId
         };
         $http({
             url: "http://localhost:8723/shopping/cart/removeCartItem",
             method: "POST",
             data: deleteItemformData
-        }).then(function () {
+        }).then(function(response) {
             itemList.splice(index, 1);
-        }, function () {
-            console.log("GET ALL: Failed to delete cart items");
+        }, function(response) {
+            console.log("Failed to delete cart items");
         });
     };
+
+    $scope.increaseItemCount = function(item){
+        var newQuantity = item.quantity+1;
+        var increaseItemCountformData = {
+            "cartId":cartId,
+            "itemId":item.itemId,
+            "quantity":newQuantity
+        };
+        $http({
+            url: "http://localhost:8723/shopping/cart/updateItemQuantity",
+            method: "POST",
+            data: increaseItemCountformData
+        }).then(function(response) {
+            item.quantity++;
+            item.itemTotal = item.quantity*item.price;
+        }, function(response) {
+            console.log("Failed to incremease cart item quantity");
+        });
+    }
+
+    $scope.decreaseItemCount = function(item){
+        var newQuantity = item.quantity-1;
+        var decreaseItemCountformData = {
+            "cartId":cartId,
+            "itemId":item.itemId,
+            "quantity":newQuantity
+        };
+        $http({
+            url: "http://localhost:8723/shopping/cart/updateItemQuantity",
+            method: "POST",
+            data: decreaseItemCountformData
+        }).then(function(response) {
+            item.quantity--;
+            item.itemTotal = item.quantity*item.price;
+        }, function(response) {
+            console.log("Failed to decrease cart item quantity");
+        });
+    }
 });
 
 angular.module("MainApp").service('cartService', function () {

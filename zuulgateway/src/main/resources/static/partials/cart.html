@@ -22,24 +22,21 @@
                         </div>
                     </div>
                 </td>
-
                 <td data-th="Price">{{item.price}}</td>
                 <td data-th="Quantity">
-                    <label for="quantityInput"></label>
-                    <input id="quantityInput" type="number" class="form-control text-center" value="{{item.quantity}}">
+                        <a class="button" ng-click="increaseItemCount(item)">+</a>
+                        <p>{{item.quantity}}</p>
+                        <a class="button" ng-click="decreaseItemCount(item)">-</a>
                 </td>
                 <td data-th="Subtotal" class="text-center">{{item.itemTotal}}</td>
                 <td class="actions" data-th="">
-                    <button id="{{item.itemId}}" class="btn btn-danger btn-sm" data-ng-click="removeItem(itemList,$index)">Remove Item</button>
+                    <button id="{{item.itemId}}" class="btn btn-danger btn-sm" ng-click="removeItem(itemList,$index)">Remove Item</button>
                 </td>
             </div>
         </tr>
         </tbody>
 
         <tfoot>
-        <tr class="visible-xs">
-            <td class="text-center"><strong>Total {{total}}</strong></td>
-        </tr>
         <tr>
             <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
             <td colspan="2" class="hidden-xs"></td>
