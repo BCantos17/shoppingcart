@@ -1,9 +1,6 @@
 package com.revature.delegate;
 
-import com.revature.beans.Address;
-import com.revature.beans.CartFormData;
-import com.revature.beans.CreditCard;
-import com.revature.beans.ItemDTO;
+import com.revature.beans.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -23,6 +20,7 @@ public interface BusinessDelegate {
     //Add an item to the cart
     //Delete an item from the cart
     //Update the quantity of an item from the cart
+    ResponseEntity<Cart> updateCartItemQuantity(CartFormData formData);
     //Get all the Items in the cart
-    ResponseEntity<List<ItemDTO>> getAllCartItems (CartFormData formData);
+    ResponseEntity<List<ItemDTO>> getAllCartItems(CartFormData formData);
 }

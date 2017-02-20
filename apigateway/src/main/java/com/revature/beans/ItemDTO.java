@@ -11,6 +11,7 @@ public class ItemDTO {
     private String manufacturer;
     private String productImage;
     private int availableQuantity;
+    private double itemTotal;
 
     public ItemDTO() {
     }
@@ -30,6 +31,7 @@ public class ItemDTO {
         this.manufacturer = product.getManufacturer();
         this.productImage = product.getProductImage();
         this.availableQuantity = product.getAvailableQuantity();
+        this.itemTotal= quantity * price;
     }
 
     @Override
@@ -117,5 +119,13 @@ public class ItemDTO {
 
     public void setAvailableQuantity(int availableQuantity) {
         this.availableQuantity = availableQuantity;
+    }
+
+    public double getItemTotal() {
+        return itemTotal;
+    }
+
+    public void setItemTotal(double itemTotal) {
+        this.itemTotal = itemTotal;
     }
 }

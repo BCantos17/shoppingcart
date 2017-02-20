@@ -40,6 +40,22 @@ public class BusinessDelegateImpl implements BusinessDelegate{
     public ResponseEntity<List<CreditCard>> findCreditCardByCustomerId(Integer customerId) {return billingService.findCreditCardByCustomerId(customerId);}
     public ResponseEntity deleteCreditCard(String id) {return billingService.deleteCreditCard(id);}
 
+
+    //Update the quantity of an item from the cart
+    public ResponseEntity<Cart> updateCartItemQuantity(CartFormData formData){
+        System.out.println(formData.getCartId());
+        System.out.println(formData.getItemId());
+        System.out.println(formData.getQuantity());
+        Cart cart = cartService.findCartById(formData.getCartId()).getBody();
+        System.out.println(cart);
+        for( Item item:  cart.getItem()){
+            System.out.println(item);
+            if(item.getItemId().equals(formData.getItemId())){
+                item.setQuantity(formData.getQuantity());
+            }
+        }
+        return cartService.updateCart(cart);
+    }
     //Get all the Items in the cart
     public ResponseEntity<List<ItemDTO>> getAllCartItems (CartFormData formData){
         Cart cart = cartService.findCartById(formData.getCartId()).getBody();
