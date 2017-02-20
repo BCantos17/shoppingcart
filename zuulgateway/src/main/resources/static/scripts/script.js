@@ -43,7 +43,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
         $scope.itemList = response.data;
         cartService.setItemList($scope.itemList);
     }, function(response) {
-        console.log("GET ALL: Failed to fetch cart items");
+        console.log("Failed to fetch cart items");
     });
 
     $scope.removeItem = function(itemList, index) {
@@ -56,11 +56,50 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
             method: "POST",
             data: deleteItemformData
         }).then(function(response) {
-            itemList.splice(index,1);
+            itemList.splice(index, 1);
         }, function(response) {
-            console.log("GET ALL: Failed to delete cart items");
+            console.log("Failed to delete cart items");
         });
     };
+
+    $scope.increaseItemCount = function(item){
+        var newQuantity = item.quantity+1;
+        var increaseItemCountformData = {
+            "cartId":"58a5f3a7ffcda228089b82bc",
+            "itemId":item.itemId,
+            "quantity":newQuantity
+        };
+        $http({
+            url: "http://localhost:8723/shopping/cart/updateItemQuantity",
+            method: "POST",
+            data: increaseItemCountformData
+        }).then(function(response) {
+            item.quantity++;
+            item.itemTotal = item.quantity*item.price;
+        }, function(response) {
+            console.log("Failed to incremease cart item quantity");
+        });
+    }
+
+    $scope.decreaseItemCount = function(item){
+        var newQuantity = item.quantity-1;
+        var decreaseItemCountformData = {
+            "cartId":"58a5f3a7ffcda228089b82bc",
+            "itemId":item.itemId,
+            "quantity":newQuantity
+        };
+        alert()
+        $http({
+            url: "http://localhost:8723/shopping/cart/updateItemQuantity",
+            method: "POST",
+            data: decreaseItemCountformData
+        }).then(function(response) {
+            item.quantity--;
+            item.itemTotal = item.quantity*item.price;
+        }, function(response) {
+            console.log("Failed to decrease cart item quantity");
+        });
+    }
 });
 
 angular.module("MainApp").service('cartService', function() {
