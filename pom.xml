@@ -16,7 +16,6 @@
         <module>zuulgateway</module>
         <module>cart</module>
         <module>creditcard</module>
-        <module>discount</module>
         <module>price</module>
         <module>product</module>
         <module>shipping</module>
