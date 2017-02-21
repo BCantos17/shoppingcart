@@ -105,7 +105,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
         }, function(response) {
             console.log("Failed to incremease cart item quantity");
         });
-    }
+    };
 
     $scope.decreaseItemCount = function(item){
         var newQuantity = item.quantity-1;
