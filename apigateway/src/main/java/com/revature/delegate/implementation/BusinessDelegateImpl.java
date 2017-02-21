@@ -28,18 +28,15 @@ public class BusinessDelegateImpl implements BusinessDelegate{
     @Autowired
     public void setProductService(ProductService productService) {this.productService = productService;}
 
-
     public ResponseEntity<Address> insertAddress(Address address) {return billingService.insertAddress(address);}
     public ResponseEntity<Address> saveAddress(Address address) {return billingService.saveAddress(address);}
     public ResponseEntity<List<Address>> findAddressByCustomerId(Integer customerId) {return billingService.findAddressByCustomerId(customerId);}
     public ResponseEntity deleteAddress(String id) {return billingService.deleteAddress(id);}
 
-
     public ResponseEntity<CreditCard> insertCreditCard(CreditCard creditCard) {return billingService.insertCreditCard(creditCard);}
     public ResponseEntity<CreditCard> saveCreditCard(CreditCard creditCard) {return billingService.saveCreditCard(creditCard);}
     public ResponseEntity<List<CreditCard>> findCreditCardByCustomerId(Integer customerId) {return billingService.findCreditCardByCustomerId(customerId);}
     public ResponseEntity deleteCreditCard(String id) {return billingService.deleteCreditCard(id);}
-
 
     //Add an item to the cart
     public ResponseEntity<Cart> addCartItem(CartFormData formData){
@@ -73,7 +70,9 @@ public class BusinessDelegateImpl implements BusinessDelegate{
     public ResponseEntity<List<ItemDTO>> getAllCartItems (CartFormData formData){
         Cart cart = cartService.findCartById(formData.getCartId()).getBody();
         List<ItemDTO> itemDTOList = new ArrayList<ItemDTO>();
-
+        if(cart.getItem() == null){
+            cart.setItem(new ArrayList<Item>());
+        }
         for(Item item : cart.getItem()){
             System.out.println(productService.getProductById(item.getProductId()).getBody());
             Product product = productService.getProductById(item.getProductId()).getBody();
