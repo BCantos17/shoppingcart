@@ -40,14 +40,13 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http) 
     });
 
     $scope.addToCart = function (product) {
-        alert(" productId: " + product.productId + " quantity: " + product.availableQuantity);
         $http({
             url: '/shopping/cart/addCartItem',
             method: 'POST',
             data: {
                 "cartId": cartId,
                 "itemId": product.productId + 2,
-                "quantity": product.availableQuantity,
+                "quantity": angular.element('#input' + product.productId).val(),
                 "productId": product.productId,
                 "userId": userId
             }
