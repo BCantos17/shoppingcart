@@ -40,17 +40,23 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http) 
     });
 
     $scope.addToCart = function (product) {
-        $http({
-            url: '/shopping/cart/addCartItem',
-            method: 'POST',
-            data: {
-                "cartId": cartId,
-                "itemId": product.productId + 2,
-                "quantity": angular.element('#input' + product.productId).val(),
-                "productId": product.productId,
-                "userId": userId
-            }
-        });
+        var selectedQuantity = angular.element('#input' + product.productId).val();
+        if(selectedQuantity <= product.availableQuantity) {
+            $http({
+                url: '/shopping/cart/addCartItem',
+                method: 'POST',
+                data: {
+                    "cartId": cartId,
+                    "itemId": product.productId + 2,
+                    "quantity": selectedQuantity,
+                    "productId": product.productId,
+                    "userId": userId
+                }
+            });
+        } else {
+            alert("Not enough stock. Choose a value less than " + product.availableQuantity);
+        }
+
     }
 });
 
