@@ -24,7 +24,7 @@
                         </div>
                         <button ng-click="addToCart(product)">Add to cart</button>
                         <label for="input{{product.productId}}">Quantity</label>
-                        <input type="number" id="input{{product.productId}}">
+                        <input type="number" id="input{{product.productId}}" max="{{product.availableQuantity}}">
                     </div>
                 </div>
             </div>
