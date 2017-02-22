@@ -5,44 +5,27 @@ services:
   mongodb:
     container_name: mongodb
     image: mongo:3.4.2
-    volumes:
-      - "db-data:/opt/mongo/data"
     hostname: mongodb
+    command: mongod --smallfiles
     ports:
       - "12565:12565"
-    networks:
-      - backend
 
   eureka:
+  container_name: eureka
     build: ./eureka
-    command: ["-t", "0", "db:27015", "--", "java","-Djava.security.egd=file:/dev/./urandom","-jar","/eureka.jar"]
     depends_on:
       - "mongodb"
-    volumes:
-     - ./eureka:/app
+    image: eureka-service
     hostname: eureka
     ports:
       - "8761:8761"
-    networks:
-      - backend
 
   address:
-    build: ./address
     container_name: address
-    command: ["-t", "0", "db:27015", "--", "java","-Djava.security.egd=file:/dev/./urandom","-jar","/address.jar"]
+    build: ./address
     depends_on:
       - "eureka"
-    volumes:
-      - ./eureka:/app
+    image: eureka-service
     hostname: eureka
     ports:
       - "55555:55555"
-    networks:
-          - backend
-
-  volumes:
-    db-data:
-
-  networks:
-    backend:
-    frontend:
