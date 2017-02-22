@@ -16,6 +16,8 @@ services:
     depends_on:
       - "mongodb"
     image: eureka-service
+    links:
+      - "mongodb"
     hostname: eureka
     ports:
       - "8761:8761"
@@ -26,6 +28,8 @@ services:
     depends_on:
       - "eureka"
     image: eureka-service
+    links:
+          - "eureka"
     hostname: eureka
     ports:
       - "55555:55555"
