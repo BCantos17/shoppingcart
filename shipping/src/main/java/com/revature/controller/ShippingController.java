@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/shipping")
+@RequestMapping
 public class ShippingController {
     private ShippingService service;
 

@@ -29,7 +29,7 @@
                         <ul>
                             <li style="list-style-type: none;">
                                 <label>
-                                    <input ng-change='insertAddress(address)' name="select-shipping" type="radio" ng-model="$newAddress"
+                                    <input ng-change='insertAddress(newAddress)' name="select-shipping" type="radio" ng-model="$newAddress"
                                            value="{{newAddress}}" required/>{{newAddress.fullName}}, {{newAddress.line1}}
                                     {{newAddress.line2}}, {{newAddress.city}}, {{newAddress.state}}, {{newAddress.zipCode}}
                                 </label>
@@ -111,7 +111,7 @@
                     <ul>
                         <li style="list-style-type: none;">
                             <label>
-                                <input ng-change='insertCard(card)' name="select-card" type="radio" ng-model="$newCard" value="{{newCard}}"
+                                <input ng-change='insertCard(newCard)' name="select-card" type="radio" ng-model="$newCard" value="{{newCard}}"
                                        required/>{{newCard.number}}
                             </label>
                         </li>
@@ -121,8 +121,69 @@
             </tbody>
         </table>
     </div>
+
     <div class="container" >
-        <a href="#Overview" class="btn btn-success pull-right">Overview</a>
+        <table class="table table-hover table-condensed">
+            <thead>
+            <tr>
+                <th style="width:85%">Pick Shipping Option</th>
+                <th style="width:85%">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <ul>
+                        <li style="list-style-type: none;">
+                            <label>
+                                <input ng-change='insertShipping({{oneDay}})' name="select-option" type="radio" ng-model="$oneDay" value="{{oneDay}}" required/> {{oneDay.method}}
+                            </label>
+                        </li>
+                    </ul>
+                </td>
+                <td>{{oneDay.price}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li style="list-style-type: none;">
+                            <label>
+                                <input ng-change='insertShipping({{twoDay}})' name="select-option" type="radio" ng-model="$twoDay" value="{{twoDay}}" required/> {{twoDay.method}}
+                            </label>
+                        </li>
+                    </ul>
+                </td>
+                <td>{{twoDay.price}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li style="list-style-type: none;">
+                            <label>
+                                <input ng-change='insertShipping({{expedited}})' name="select-option" type="radio" ng-model="$expedited" value="{{expedited}}" required/> {{expedited.method}}
+                            </label>
+                        </li>
+                    </ul>
+                </td>
+                <td>{{expedited.price}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li style="list-style-type: none;">
+                            <label>
+                                <input ng-change='insertShipping({{standard}})' name="select-option" type="radio" ng-model="$standard" value="{{standard}}" required/> {{standard.method}}
+                            </label>
+                        </li>
+                    </ul>
+                </td>
+                <td>{{standard.price}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container" >
+        <a ng-click="sendShippingMethod()" href="#Overview" class="btn btn-success pull-right">Overview</a>
     </div>
 </div>
 

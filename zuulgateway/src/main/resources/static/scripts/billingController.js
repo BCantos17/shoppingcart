@@ -1,18 +1,23 @@
 angular.module("MainApp").service('billingService', function() {
     var address;
     var card;
+    var shipping;
 
-    var setAddress = function( pickedAddress ) { address = pickedAddress;};
-    var setCard = function( pickedCard ) { card = pickedCard;};
+    var setAddress  = function( pickedAddress ) { address = pickedAddress;};
+    var setCard     = function( pickedCard ) { card = pickedCard;};
+    var setShipping = function( pickedShipping ) { card = pickedShipping;};
 
-    var getAddress = function(){return address;};
-    var getCard = function () {return card;};
+    var getAddress  = function(){return address;};
+    var getCard     = function() {return card;};
+    var getShipping = function() {return shipping;};
 
     return {
-        setAddress: setAddress,
-        setCard:    setCard,
-        getAddress: getAddress,
-        getCard:    getCard
+        setAddress  : setAddress,
+        setCard     : setCard,
+        getAddress  : getAddress,
+        getCard     : getCard,
+        setShipping : setShipping,
+        getShipping : getShipping
     };
 });
 
@@ -27,6 +32,10 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
     $scope.insertCard = function(card) {
         billingService.setCard(card)
     };
+    $scope.insertShipping = function(shipping) {
+        $log.debug(shipping);
+        billingService.setShipping(shipping);
+    };
 
     $log.debug('Starting Billing Controller');
 
@@ -39,6 +48,36 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
     var shippingAddresses   = [];
     var billingAddresses    = [];
     var cards               = [];
+    $scope.oneDay ={
+        cartId  : "1",
+        price   : 19.99,
+        method  : "One-Day Shipping (1 business day)"
+    };
+    $scope.twoDay ={
+        cartId  : "1",
+        price   : 14.99,
+        method  : "Two-Day Shipping (2 business day)"
+    };
+    $scope.expedited ={
+        cartId  : "1",
+        price   : 6.99,
+        method  : "Expedited Shipping (2 - 6 business days**)"
+    };
+    $scope.standard ={
+        cartId  : "1",
+        price   : 3.99,
+        method  : "Standard Shipping (4 - 14 business days**)"
+    };
+    /*$scope.shippingMethod = {
+        ONE_DAY         : "One-Day",
+        TWO_DAY         : "Two-Day",
+        EXPEDITED       : "Expedited",
+        STANDARD        : "Standard",
+        ONE_DAY_PRICE   : 19.99,
+        TWO_DAY_PRICE   : 14.99,
+        EXPEDITED_PRICE : 6.99,
+        STANDARD_PRICE  : 3.99
+    };*/
 
     /**
      * Get address by Customer Id
@@ -182,5 +221,22 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
         }, function(response) {
             console.log("Errors in data you're sending");
         });
+    }
+
+    /**
+     * Insert new Shipping bean
+     */
+    $scope.sendShippingMethod = function () {
+        //WIP
+        $/*http({
+            url:"http://localhost:8723/shipping/save",
+            method: "POST",
+            data: billingService.getShipping()
+        }).then(function(response) {
+            $lo
+            billingService.setShipping(response.data);
+        }, function(response) {
+            console.log("Errors in data you're sending");
+        });*/
     }
 });
