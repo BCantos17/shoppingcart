@@ -16,4 +16,7 @@ public interface ProductRepository extends MongoRepository<Product, Integer> {
 
     @Override
     void deleteAll();
+
+
+
 }
