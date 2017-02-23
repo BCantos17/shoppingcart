@@ -11,7 +11,6 @@ import java.util.Date;
 @Document
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreditCard {
-
     @Id
     String id;
 
