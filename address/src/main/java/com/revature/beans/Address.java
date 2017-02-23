@@ -45,6 +45,8 @@ public class Address{
     @NotNull
     private boolean billing;
 
+    private final Shipping shipping = new Shipping();
+
     public Address() {super();}
 
     public Address(Integer customerId, String fullName, String line1, String line2, String city, String state, int zipCode, boolean billing) {
@@ -86,4 +88,5 @@ public class Address{
     public void setCustomerId(int customerId) {this.customerId = customerId;}
     public boolean isBilling() {return billing;}
     public void setBilling(boolean billing) {this.billing = billing;}
+    public Shipping getShipping() {return shipping;}
 }
