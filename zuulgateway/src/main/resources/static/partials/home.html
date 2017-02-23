@@ -13,7 +13,7 @@
                             <p>{{product.description}}</p>
                         </div>
                         <div class="ratings">
-                            <p class="pull-right">15 reviews</p>
+                            <p class="pull-right">{{product.reviews.length}} reviews</p>
                             <div class="form-group">
                                 <label for="comment{{product.productId}}">Comment:</label>
                                 <textarea class="form-control" rows="5" id="comment{{product.productId}}"></textarea>
