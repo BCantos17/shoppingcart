@@ -13,5 +13,10 @@ public class ShippingService {
     @Autowired
     public void setRepository(ShippingRepository repository) {this.repository = repository;}
 
+    public Shipping insert(Shipping shipping){return repository.insert(shipping);}
+    public Shipping save(Shipping shipping){return repository.save(shipping);}
     public List<Shipping> findAll(){ return  repository.findAll(); }
+    public List<Shipping> findByCartId(String cartId){return repository.findByCartId(cartId);}
+    public Shipping findByInvoiceId(String invoiceId){ return repository.findByInvoiceId(invoiceId);}
+    public void delete(String id){ repository.delete(id);}
 }
