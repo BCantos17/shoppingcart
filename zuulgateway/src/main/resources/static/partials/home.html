@@ -14,14 +14,12 @@
                         </div>
                         <div class="ratings">
                             <p class="pull-right">15 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                            </p>
+                            <div class="form-group">
+                                <label for="comment{{product.productId}}">Comment:</label>
+                                <textarea class="form-control" rows="5" id="comment{{product.productId}}"></textarea>
+                            </div>
                         </div>
+                        <button ng-click="submitComment(product)">Submit comment</button>
                         <button ng-click="addToCart(product)">Add to cart</button>
                         <label for="input{{product.productId}}">Quantity</label>
                         <input type="number" id="input{{product.productId}}" max="{{product.availableQuantity}}">

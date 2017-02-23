@@ -41,7 +41,7 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http) 
 
     $scope.addToCart = function (product) {
         var selectedQuantity = angular.element('#input' + product.productId).val();
-        if(selectedQuantity <= product.availableQuantity) {
+        if (selectedQuantity <= product.availableQuantity) {
             $http({
                 url: '/shopping/cart/addCartItem',
                 method: 'POST',
@@ -56,14 +56,34 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http) 
         } else {
             alert("Not enough stock. Choose a value less than " + product.availableQuantity);
         }
-
-    }
+    };
+    $scope.submitComment = function (product) {
+        product.reviews.push(angular.element('#comment' + product.productId).val());
+        $http({
+            url: '/product',
+            method: 'PUT',
+            data: {
+                "productId": product.productId,
+                "productName": product.productName,
+                "price": product.price,
+                "description": product.description,
+                "manufacturer": product.manufacturer,
+                "productImage": product.productImage,
+                "availableQuantity": product.availableQuantity,
+                "reviews": product.reviews
+            }
+        }).then(function () {
+            alert("The review was submitted successfully");
+        }, function () {
+            alert("The function failed to submit");
+        });
+    };
 });
 
 angular.module("MainApp").controller('CartController', function ($scope, $http, cartService) {
 
     var getAllformData = {
-        "cartId":cartId
+        "cartId": cartId
     };
 
     $http({
@@ -73,7 +93,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
     }).then(function (response) {
         $scope.itemList = response.data;
         cartService.setItemList($scope.itemList);
-    }, function(response) {
+    }, function () {
         console.log("Failed to fetch cart items");
     });
 
@@ -86,47 +106,47 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
             url: "http://localhost:8723/shopping/cart/removeCartItem",
             method: "POST",
             data: deleteItemformData
-        }).then(function(response) {
+        }).then(function () {
             itemList.splice(index, 1);
-        }, function(response) {
+        }, function () {
             console.log("Failed to delete cart items");
         });
     };
 
-    $scope.increaseItemCount = function(item){
-        var newQuantity = item.quantity+1;
+    $scope.increaseItemCount = function (item) {
+        var newQuantity = item.quantity + 1;
         var increaseItemCountformData = {
-            "cartId":cartId,
-            "itemId":item.itemId,
-            "quantity":newQuantity
+            "cartId": cartId,
+            "itemId": item.itemId,
+            "quantity": newQuantity
         };
         $http({
             url: "http://localhost:8723/shopping/cart/updateItemQuantity",
             method: "POST",
             data: increaseItemCountformData
-        }).then(function(response) {
+        }).then(function () {
             item.quantity++;
-            item.itemTotal = item.quantity*item.price;
-        }, function(response) {
+            item.itemTotal = item.quantity * item.price;
+        }, function () {
             console.log("Failed to incremease cart item quantity");
         });
     };
 
-    $scope.decreaseItemCount = function(item){
-        var newQuantity = item.quantity-1;
+    $scope.decreaseItemCount = function (item) {
+        var newQuantity = item.quantity - 1;
         var decreaseItemCountformData = {
-            "cartId":cartId,
-            "itemId":item.itemId,
-            "quantity":newQuantity
+            "cartId": cartId,
+            "itemId": item.itemId,
+            "quantity": newQuantity
         };
         $http({
             url: "http://localhost:8723/shopping/cart/updateItemQuantity",
             method: "POST",
             data: decreaseItemCountformData
-        }).then(function(response) {
+        }).then(function () {
             item.quantity--;
-            item.itemTotal = item.quantity*item.price;
-        }, function(response) {
+            item.itemTotal = item.quantity * item.price;
+        }, function () {
             console.log("Failed to decrease cart item quantity");
         });
     }
@@ -175,7 +195,8 @@ angular.module("MainApp").controller('ProductAccessController', function ($scope
                 "description": $scope.description,
                 "manufacturer": $scope.manufacturer,
                 "productImage": productImage,
-                "availableQuantity": $scope.availableQuantity
+                "availableQuantity": $scope.availableQuantity,
+                "reviews":[]
             }
         }).then(function () {
             alert("Success");
