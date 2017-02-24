@@ -30,6 +30,7 @@ angular.module("MainApp").controller("MainController", function ($scope) {
 });
 
 angular.module("MainApp").controller('HomeController', function ($scope, $http) {
+
     $http({
         url: '/product',
         method: 'GET'
@@ -128,7 +129,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
             item.quantity++;
             item.itemTotal = item.quantity * item.price;
         }, function () {
-            console.log("Failed to incremease cart item quantity");
+            console.log("Failed to increase cart item quantity");
         });
     };
 
