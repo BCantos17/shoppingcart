@@ -1,45 +1,57 @@
 <div class="container">
-    <table id="cart" class="table table-hover table-condensed">
-        <thead>
-        <tr>
-            <th style="width:50%">Product</th>
-            <th style="width:10%">Price</th>
-            <th style="width:8%">Quantity</th>
-            <th style="width:22%" class="text-center">Subtotal</th>
-            <th style="width:10%"></th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr ng-repeat="item in invoice.itemList">
-            <div id="{{item.productId}}">
-                <td data-th="Product">
-                    <div class="row">
-                        <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
-                        <div class="col-sm-10">
-                            <h4 class="nomargin">{{item.productName}}</h4>
-                            <p>{{item.description}}</p>
-                        </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>Order Overview</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                            <tr>
+                                <td><strong>Item</strong></td>
+                                <td class="text-center"><strong>Price</strong></td>
+                                <td class="text-center"><strong>Quantity</strong></td>
+                                <td class="text-right"><strong>Totals</strong></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- for each item in itemList -->
+                            <tr ng-repeat="item in invoice.itemList">
+                                <td><strong>{{item.productName}}</strong></td>
+                                <td class="text-center"><strong>${{item.price}}</strong></td>
+                                <td class="text-center"><strong>{{item.quantity}}</strong></td>
+                                <td class="text-right"><strong>${{item.itemTotal}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="thick-line"></td>
+                                <td class="thick-line"></td>
+                                <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                                <td class="thick-line text-right">${{prices.subTotal}}</td>
+                            </tr>
+                            <tr>
+                                <td class="no-line"></td>
+                                <td class="no-line"></td>
+                                <td class="no-line text-center"><strong>Tax</strong></td>
+                                <td class="no-line text-right">${{prices.tax}}</td>
+                            </tr>
+                            <tr>
+                                <td class="no-line"></td>
+                                <td class="no-line"></td>
+                                <td class="no-line text-center"><strong>Total</strong></td>
+                                <td class="no-line text-right">${{total}}</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td><a class="btn btn-success btn-block">Confirm<i class="fa fa-angle-right"></i></a></td>
+                            </tr>
+                            </tfoot>
+                        </table>
                     </div>
-                </td>
-
-                <td data-th="Price">{{item.price}}</td>
-                <td data-th="Quantity">{{item.quantity}}</td>
-                <td data-th="Subtotal" class="text-center">{{item.itemTotal}}</td>
+                </div>
             </div>
-        </tr>
-        </tbody>
-
-        <tfoot>
-        <tr class="visible-xs">
-            <td class="text-center"><strong>Total {{total}}</strong></td>
-        </tr>
-        <tr>
-            <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
-            <td colspan="2" class="hidden-xs"></td>
-            <td class="hidden-xs text-center"><strong>Total {{total}}</strong></td>
-            <td><a class="btn btn-success btn-block">Confirm<i class="fa fa-angle-right"></i></a></td>
-        </tr>
-        </tfoot>
-    </table>
+        </div>
+    </div>
 </div>

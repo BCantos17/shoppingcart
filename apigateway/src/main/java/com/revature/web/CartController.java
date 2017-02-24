@@ -42,7 +42,7 @@ public class CartController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<ItemDTO>> getAllCartItems (@RequestBody CartFormData formData){
-        return delegate.getAllCartItems(formData);
+        return delegate.getAllCartItems(formData.getCartId());
     }
 
     @RequestMapping(value="/updateItemQuantity",

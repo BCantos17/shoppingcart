@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import com.netflix.discovery.converters.Auto;
 import com.revature.beans.Price;
 import com.revature.repository.PriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +10,28 @@ import java.util.List;
 
 @Service
 public class PriceService {
-    private PriceRepository repository;
 
+    PriceRepository priceRepository;
     @Autowired
-    public void setRepository(PriceRepository repository) {this.repository = repository;}
+    public void setPriceRepository(PriceRepository priceRepository) {
+        this.priceRepository = priceRepository;
+    }
 
-    public Price insert(Price price){ return repository.insert(price); }
-    public Price save(Price price){ return repository.save(price); }
-    public List<Price> findAll(){ return repository.findAll(); }
-    public List<Price> findByProductId(String productId){ return repository.findByProductId(productId); }
-    public List<Price> findByInvoiceId(String invoiceId){ return repository.findByInvoiceId(invoiceId); }
-    public void delete(String id){ repository.delete(id); }
+    public Price insertPrice(Price price){
+        return priceRepository.insert(price);
+    }
+    public Price updatePrice(Price price){
+        return priceRepository.save(price);
+    }
+    public Price findByCartId(String cartId){
+        return priceRepository.findByCartId(cartId);
+    }
+    public List<Price> findAll () {
+        return priceRepository.findAll();
+    }
+    public void deleteAll () { priceRepository.deleteAll(); }
+    //discount
+    public Price validateDiscount(String discountCode){
+        return null;
+    }
 }
