@@ -7,7 +7,6 @@ import com.revature.service.CartService;
 import com.revature.service.PriceService;
 import com.revature.service.ProductService;
 import com.revature.service.ShippingService;
-import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -129,8 +128,12 @@ public class BusinessDelegateImpl implements BusinessDelegate{
         if(findPriceByCartId(cartId).getBody() == null) {
             createPrice(cartId);
         }
-
+        if(shippingService.findByCartId(cartId).getBody() == null) {
+            shippingService.save(new Shipping(cartId));
+        }
         Price cartCost = findPriceByCartId(cartId).getBody();
+        Shipping shipping = findShippingByCartId(cartId).getBody();
+
         double subtotal = 0;
         double tax = 0;
 
@@ -142,6 +145,7 @@ public class BusinessDelegateImpl implements BusinessDelegate{
         tax = subtotal * .08875;
         cartCost.setSubTotal(subtotal);
         cartCost.setTax(tax);
+        cartCost.setShipping(shipping.getPrice());
 
         return priceService.update(cartCost);
     }
