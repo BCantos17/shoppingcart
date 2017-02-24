@@ -6,19 +6,18 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface PriceRepository extends MongoRepository<Price, String> {
-    @Override
-    Price insert(Price price);
 
     @Override
-    Price save(Price price);
-
+    Price findOne(String s);
     @Override
     List<Price> findAll();
-
-    List<Price> findByProductId(String productId);
-
-    List<Price> findByInvoiceId(String invoiceId);
-
     @Override
-    void delete(String id);
+    <S extends Price> S save(S s);
+    @Override
+    <S extends Price> S insert(S s);
+    @Override
+    void deleteAll();
+
+    Price findByCartId(String cartId);
+
 }

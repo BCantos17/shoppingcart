@@ -24,7 +24,14 @@ public interface BusinessDelegate {
     //Update the quantity of an item from the cart
     ResponseEntity<Cart> updateCartItemQuantity(CartFormData formData);
     //Get all the Items in the cart
-    ResponseEntity<List<ItemDTO>> getAllCartItems(CartFormData formData);
+    ResponseEntity<List<ItemDTO>> getAllCartItems(String cartId);
     //Empty cart
     public ResponseEntity<Cart> emptyCart (CartFormData formData);
+
+    //updates the subtotal and tax of the cart
+    ResponseEntity<Price> updatePrice(String cartId);
+    //get Price object by cartId
+    ResponseEntity<Price> findPriceByCartId(String cartId);
+    //create new price object with cartId
+    ResponseEntity<Price> createPrice(String cartId);
 }
