@@ -68,18 +68,18 @@ public class ShippingController {
     @RequestMapping(value = "/cart/{cartId}",
             method = RequestMethod.GET,
             produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Shipping>> findByCartId(@PathVariable String cartId){
-        ResponseEntity<List<Shipping>> returnEntity;
-        List<Shipping> shippings = new ArrayList<>();
+    public ResponseEntity<Shipping> findByCartId(@PathVariable String cartId){
+        ResponseEntity<Shipping> returnEntity;
+        Shipping shipping = null;
         try {
-            shippings = service.findByCartId(cartId);
-            if (shippings.size() == 0)
-                returnEntity = new ResponseEntity(shippings, HttpStatus.NOT_FOUND);
+            shipping = service.findByCartId(cartId);
+            if (shipping == null)
+                returnEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
             else
-                returnEntity = new ResponseEntity<>(shippings, HttpStatus.OK);
+                returnEntity = new ResponseEntity<>(shipping, HttpStatus.OK);
         } catch (RuntimeException e) {
             e.printStackTrace();
-            returnEntity = new ResponseEntity(shippings, HttpStatus.BAD_REQUEST);
+            returnEntity = new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
         return returnEntity;
     }
@@ -89,11 +89,11 @@ public class ShippingController {
             produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Shipping> findByInvoiceId(@PathVariable String invoiceId){
         ResponseEntity<Shipping> returnEntity;
-        Shipping shipping;
+        Shipping shipping = null;
         try {
             shipping = service.findByInvoiceId(invoiceId);
             if (shipping == null)
-                returnEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
+                returnEntity = new ResponseEntity(shipping, HttpStatus.NOT_FOUND);
             else
                 returnEntity = new ResponseEntity<>(shipping, HttpStatus.OK);
         } catch (RuntimeException e) {
