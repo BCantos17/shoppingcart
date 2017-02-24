@@ -3,6 +3,8 @@ package com.revature.data;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
 public class Product {
     @Id
     private int productId;
@@ -12,6 +14,15 @@ public class Product {
     private String manufacturer;
     private String productImage;
     private int availableQuantity;
+    private List<String> reviews;
+
+    public List<String> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<String> reviews) {
+        this.reviews = reviews;
+    }
 
     public int getAvailableQuantity() {
         return availableQuantity;

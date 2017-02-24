@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:3.4.2
+    hostname: mongodb
+    command: mongod --smallfiles
+    ports:
+      - "12565:12565"
+
+  eureka:
+  container_name: eureka
+    build: ./eureka
+    depends_on:
+      - "mongodb"
+    image: eureka-service
+    links:
+      - "mongodb"
+    hostname: eureka
+    ports:
+      - "8761:8761"
+
+  address:
+    container_name: address
+    build: ./address
+    depends_on:
+      - "eureka"
+    image: eureka-service
+    links:
+          - "eureka"
+    hostname: eureka
+    ports:
+      - "55555:55555"

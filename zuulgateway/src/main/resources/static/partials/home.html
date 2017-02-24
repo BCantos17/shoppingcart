@@ -1,6 +1,5 @@
 <!-- Page Content -->
 <div class="container">
-
     <div class="row">
         <div class="col-md-12">
             <div class="row">
@@ -13,18 +12,18 @@
                             <p>{{product.description}}</p>
                         </div>
                         <div class="ratings">
-                            <p class="pull-right">15 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                            </p>
+                            <p class="pull-right">{{product.reviews.length}} reviews</p>
+                            <div class="form-group">
+                                <label for="comment{{product.productId}}">Comment:</label>
+                                <textarea class="form-control" rows="5" id="comment{{product.productId}}"></textarea>
+                            </div>
                         </div>
-                        <button ng-click="addToCart(product)">Add to cart</button>
-                        <label for="input{{product.productId}}">Quantity</label>
-                        <input type="number" id="input{{product.productId}}" max="{{product.availableQuantity}}">
+                        <button ng-click="submitComment(product)" class = "btn btn-primary">Submit comment</button>
+                        <div class="form-group">
+                            <label for="input{{product.productId}}">Quantity:</label>
+                            <input type="number" class="form-control" id="input{{product.productId}}" max="{{product.availableQuantity}}">
+                            <button ng-click="addToCart(product)" class = "btn btn-primary">Add to cart</button>
+                        </div>
                     </div>
                 </div>
             </div>

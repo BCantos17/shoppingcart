@@ -1,17 +1,6 @@
 package com.revature.beans;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-@Document
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Shipping {
-
-    @Id
     private String id;
     private String cartId;
     private String invoiceId;
