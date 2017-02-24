@@ -12,17 +12,21 @@
                             <p>{{product.description}}</p>
                         </div>
                         <div class="ratings">
-                            <p class="pull-right">{{product.reviews.length}} reviews</p>
+                            <p class="pull-right"><a href="#reviews" ng-click="viewProduct(product)">{{product.reviews.length}}
+                                reviews</a></p>
                             <div class="form-group">
                                 <label for="comment{{product.productId}}">Comment:</label>
                                 <textarea class="form-control" rows="5" id="comment{{product.productId}}"></textarea>
                             </div>
+                            <button ng-click="submitComment(product)" class="btn btn-primary">Submit comment</button>
                         </div>
-                        <button ng-click="submitComment(product)" class = "btn btn-primary">Submit comment</button>
-                        <div class="form-group">
-                            <label for="input{{product.productId}}">Quantity:</label>
-                            <input type="number" class="form-control" id="input{{product.productId}}" max="{{product.availableQuantity}}">
-                            <button ng-click="addToCart(product)" class = "btn btn-primary">Add to cart</button>
+                        <div class="ratings">
+                            <div class="form-group">
+                                <label for="input{{product.productId}}">Quantity:</label>
+                                <input type="number" class="form-control" id="input{{product.productId}}"
+                                       max="{{product.availableQuantity}}">
+                            </div>
+                            <button ng-click="addToCart(product)" class="btn btn-primary">Add to cart</button>
                         </div>
                     </div>
                 </div>
