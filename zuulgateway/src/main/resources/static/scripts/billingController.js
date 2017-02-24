@@ -5,7 +5,7 @@ angular.module("MainApp").service('billingService', function() {
 
     var setAddress  = function( pickedAddress ) { address = pickedAddress;};
     var setCard     = function( pickedCard ) { card = pickedCard;};
-    var setShipping = function( pickedShipping ) { card = pickedShipping;};
+    var setShipping = function( pickedShipping ) { shipping = pickedShipping;};
 
     var getAddress  = function(){return address;};
     var getCard     = function() {return card;};
@@ -14,9 +14,9 @@ angular.module("MainApp").service('billingService', function() {
     return {
         setAddress  : setAddress,
         setCard     : setCard,
+        setShipping : setShipping,
         getAddress  : getAddress,
         getCard     : getCard,
-        setShipping : setShipping,
         getShipping : getShipping
     };
 });
@@ -27,14 +27,17 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
      *For Billing Service
      */
     $scope.insertAddress = function(address) {
-        billingService.setAddress(address)
+        billingService.setAddress(address);
     };
     $scope.insertCard = function(card) {
-        billingService.setCard(card)
+        billingService.setCard(card);
+        $log.debug(billingService.getCard());
     };
     $scope.insertShipping = function(shipping) {
         $log.debug(shipping);
         billingService.setShipping(shipping);
+        $log.debug("after setting");
+        $log.debug(billingService.getShipping());
     };
 
     $log.debug('Starting Billing Controller');
@@ -227,16 +230,16 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
      * Insert new Shipping bean
      */
     $scope.sendShippingMethod = function () {
-        //WIP
-        $/*http({
-            url:"http://localhost:8723/shipping/save",
+        $log.debug(billingService.getShipping())
+        $http({
+            url:"http://localhost:8723/shopping/shipping/save",
             method: "POST",
             data: billingService.getShipping()
         }).then(function(response) {
-            $lo
+            $log.debug(response.data);
             billingService.setShipping(response.data);
         }, function(response) {
             console.log("Errors in data you're sending");
-        });*/
+        });
     }
 });
