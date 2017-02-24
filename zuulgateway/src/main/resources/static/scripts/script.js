@@ -20,17 +20,19 @@ angular.module("MainApp").controller("MainController", function ($scope) {
     }).when('/Billing', {
         templateUrl: '../partials/billing.html',
         controller: 'BillingController'
-    }).when('/productAccess', {
-        templateUrl: '../partials/productAccess.html',
-        controller: 'ProductAccessController'
+    }).when('/addProduct', {
+        templateUrl: '../partials/addProduct.html',
+        controller: 'AddProductController'
     }).when('/Overview', {
         templateUrl: '../partials/overview.html',
         controller: 'OverviewController'
+    }).when('/reviews', {
+        templateUrl: '../partials/reviews.html',
+        controller: 'ReviewsController'
     });
 });
 
-angular.module("MainApp").controller('HomeController', function ($scope, $http) {
-
+angular.module("MainApp").controller('HomeController', function ($scope, $http, $rootScope) {
     $http({
         url: '/product',
         method: 'GET'
@@ -39,7 +41,6 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http) 
     }, function () {
         alert("Failure");
     });
-
     $scope.addToCart = function (product) {
         var selectedQuantity = angular.element('#input' + product.productId).val();
         if (selectedQuantity <= product.availableQuantity) {
@@ -79,6 +80,9 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http) 
             alert("The function failed to submit");
         });
     };
+    $scope.viewProduct = function (product) {
+        $rootScope.reviews = product.reviews;
+    }
 });
 
 angular.module("MainApp").controller('CartController', function ($scope, $http, cartService) {
@@ -172,7 +176,7 @@ angular.module("MainApp").service('cartService', function () {
 });
 
 
-angular.module("MainApp").controller('ProductAccessController', function ($scope, $http) {
+angular.module("MainApp").controller('AddProductController', function ($scope, $http) {
     var productImage;
     document.getElementById("productImage").addEventListener("change", function () {
         var file = document.querySelector('input[type=file]').files[0];
@@ -197,7 +201,7 @@ angular.module("MainApp").controller('ProductAccessController', function ($scope
                 "manufacturer": $scope.manufacturer,
                 "productImage": productImage,
                 "availableQuantity": $scope.availableQuantity,
-                "reviews":[]
+                "reviews": []
             }
         }).then(function () {
             alert("Success");
@@ -217,4 +221,8 @@ angular.module("MainApp").controller('ProductAccessController', function ($scope
             alert("Failure");
         });
     }
+});
+
+angular.module('MainApp').controller('ReviewsController', function($scope, $rootScope){
+    $scope.reviews = $rootScope.reviews;
 });

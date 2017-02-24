@@ -12,7 +12,7 @@
                             <p>{{product.description}}</p>
                         </div>
                         <div class="ratings">
-                            <p class="pull-right">{{product.reviews.length}} reviews</p>
+                            <p class="pull-right"><a href="#reviews" ng-click="viewProduct(product)">{{product.reviews.length}} reviews</a></p>
                             <div class="form-group">
                                 <label for="comment{{product.productId}}">Comment:</label>
                                 <textarea class="form-control" rows="5" id="comment{{product.productId}}"></textarea>
