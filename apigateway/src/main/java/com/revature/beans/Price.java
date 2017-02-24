@@ -33,55 +33,42 @@ public class Price {
     public String getPriceId() {
         return priceId;
     }
-
     public void setPriceId(String priceId) {
         this.priceId = priceId;
     }
-
     public double getTax() {
         return tax;
     }
-
     public void setTax(double tax) {
         this.tax = tax;
     }
-
     public double getDiscount() {
         return discount;
     }
-
     public void setDiscount(double discount) {
         this.discount = discount;
     }
-
     public double getShipping() {
         return shipping;
     }
-
     public void setShipping(double shipping) {
         this.shipping = shipping;
     }
-
     public double getSubTotal() {
         return subTotal;
     }
-
     public void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
     }
-
     public double getGrandTotal() {
         return grandTotal;
     }
-
     public void setGrandTotal(double grandTotal) {
         this.grandTotal = grandTotal;
     }
-
     public String getCartId() {
         return cartId;
     }
-
     public void setCartId(String cartId) {
         this.cartId = cartId;
     }
