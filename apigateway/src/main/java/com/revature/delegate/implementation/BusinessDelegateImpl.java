@@ -5,6 +5,8 @@ import com.revature.delegate.BusinessDelegate;
 import com.revature.service.BillingService;
 import com.revature.service.CartService;
 import com.revature.service.ProductService;
+import com.revature.service.ShippingService;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,16 +19,18 @@ import java.util.List;
 public class BusinessDelegateImpl implements BusinessDelegate{
 
     private BillingService billingService;
+    private CartService cartService;
+    private ProductService productService;
+    private ShippingService shippingService;
+
     @Autowired
     public void setBillingService(BillingService billingService) {this.billingService = billingService;}
-
-    private CartService cartService;
     @Autowired
     public void setCartService(CartService cartService) {this.cartService = cartService;}
-
-    private ProductService productService;
     @Autowired
     public void setProductService(ProductService productService) {this.productService = productService;}
+    @Autowired
+    public void setShippingService(ShippingService shippingService) {this.shippingService = shippingService;}
 
     public ResponseEntity<Address> insertAddress(Address address) {return billingService.insertAddress(address);}
     public ResponseEntity<Address> saveAddress(Address address) {return billingService.saveAddress(address);}
@@ -37,6 +41,28 @@ public class BusinessDelegateImpl implements BusinessDelegate{
     public ResponseEntity<CreditCard> saveCreditCard(CreditCard creditCard) {return billingService.saveCreditCard(creditCard);}
     public ResponseEntity<List<CreditCard>> findCreditCardByCustomerId(Integer customerId) {return billingService.findCreditCardByCustomerId(customerId);}
     public ResponseEntity deleteCreditCard(String id) {return billingService.deleteCreditCard(id);}
+
+    /**
+     * Add new Shipping bean if none exist by cart Id
+     * @param shipping
+     * @return
+     */
+    public ResponseEntity<Shipping> saveShipping(Shipping shipping) {
+        ResponseEntity<Shipping> entity;
+        try{
+            entity = shippingService.findByCartId(shipping.getCartId());
+            shipping.setId(entity.getBody().getId());
+            shippingService.save(shipping);
+        }catch (RuntimeException e){
+            entity = shippingService.insert(shipping);
+        }
+        return entity;
+    }
+
+    // Find Shipping by Cart Id
+    public ResponseEntity<Shipping> findShippingByCartId(String cartiId) {return shippingService.findByCartId(cartiId);}
+    //Delete Shipping by Id
+    public ResponseEntity<Shipping> deleteShipping(String id) {return shippingService.delete(id);}
 
     //Add an item to the cart
     public ResponseEntity<Cart> addCartItem(CartFormData formData){
