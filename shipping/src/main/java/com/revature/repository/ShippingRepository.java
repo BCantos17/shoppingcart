@@ -15,7 +15,7 @@ public interface ShippingRepository extends MongoRepository<Shipping, String> {
     @Override
     List<Shipping> findAll();
 
-    List<Shipping> findByCartId(String cartId);
+    Shipping findByCartId(String cartId);
 
     Shipping findByInvoiceId(String invoiceId);
 

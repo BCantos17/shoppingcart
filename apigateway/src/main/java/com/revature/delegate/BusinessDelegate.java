@@ -16,6 +16,10 @@ public interface BusinessDelegate {
     ResponseEntity<List<CreditCard>> findCreditCardByCustomerId(Integer customerId);
     ResponseEntity deleteCreditCard(String id);
 
+    ResponseEntity<Shipping> saveShipping(Shipping shipping);
+    ResponseEntity<Shipping> findShippingByCartId(String cartId);
+    ResponseEntity<Shipping> deleteShipping(String id);
+
     //Create a new cart
     //Add an item to the cart
     ResponseEntity<Cart> addCartItem(CartFormData formData);

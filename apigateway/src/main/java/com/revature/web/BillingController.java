@@ -19,17 +19,11 @@ public class BillingController {
 
     private BusinessDelegate delegate;
 
-    /**
-     * Sets delegate.
-     *
-     * @param delegate the delegate
-     */
     @Autowired
     public void setDelegate(BusinessDelegate delegate) {this.delegate = delegate;}
 
-    /************************************ Address controller  @param address the address
-     * @return the response entity
-     */
+    /************************************ Address controller  *******************************************/
+
     @RequestMapping(value = "/address/insert",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -38,12 +32,6 @@ public class BillingController {
         return delegate.insertAddress(address);
     }
 
-    /**
-     * Update address response entity.
-     *
-     * @param address the address
-     * @return the response entity
-     */
     @RequestMapping(value = "/address/save",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -52,12 +40,6 @@ public class BillingController {
         return delegate.saveAddress(address);
     }
 
-    /**
-     * Find address by customer id response entity.
-     *
-     * @param customerId the customer id
-     * @return the response entity
-     */
     @RequestMapping(value = "/address/byId/{customerId}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -65,21 +47,13 @@ public class BillingController {
         return delegate.findAddressByCustomerId(customerId);
     }
 
-    /**
-     * Delete address response entity.
-     *
-     * @param id the id
-     * @return the response entity
-     */
     @RequestMapping(value = "/address/delete/{id}",
             method = RequestMethod.DELETE)
     public ResponseEntity<Address> deleteAddress(@PathVariable String id) {
         return delegate.deleteAddress(id);
     }
 
-    /************************************ Credit card controller  @param creditCard the credit card
-     * @return the response entity
-     */
+    /************************************ Credit card controller  *******************************************/
     @RequestMapping(value = "/creditCard/insert",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -88,12 +62,6 @@ public class BillingController {
         return delegate.insertCreditCard(creditCard);
     }
 
-    /**
-     * Save credit card response entity.
-     *
-     * @param creditCard the credit card
-     * @return the response entity
-     */
     @RequestMapping(value = "/creditCard/save",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -102,12 +70,6 @@ public class BillingController {
         return delegate.saveCreditCard(creditCard);
     }
 
-    /**
-     * Find credit card by customer id response entity.
-     *
-     * @param customerId the customer id
-     * @return the response entity
-     */
     @RequestMapping(value = "/creditCard/byId/{customerId}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -115,12 +77,6 @@ public class BillingController {
         return delegate.findCreditCardByCustomerId(customerId);
     }
 
-    /**
-     * Delete credit card response entity.
-     *
-     * @param id the id
-     * @return the response entity
-     */
     @RequestMapping(value = "/creditCard/delete/{id}",
             method = RequestMethod.DELETE)
     public ResponseEntity<CreditCard> deleteCreditCard(@PathVariable String id) {
