@@ -1,4 +1,4 @@
-version: "3"
+version: "2"
 
 services:
 
@@ -23,7 +23,7 @@ services:
       - "8761:8761"
 
   shopping:
-    container_name: eureka
+    container_name: shopping
     build: ./apigateway
     depends_on:
       - "eureka"
