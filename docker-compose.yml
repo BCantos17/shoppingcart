@@ -11,7 +11,7 @@ services:
       - "12565:12565"
 
   eureka:
-  container_name: eureka
+    container_name: eureka
     build: ./eureka
     depends_on:
       - "mongodb"
@@ -22,14 +22,113 @@ services:
     ports:
       - "8761:8761"
 
-  address:
-    container_name: address
-    build: ./address
+  shopping:
+    container_name: eureka
+    build: ./apigateway
     depends_on:
       - "eureka"
-    image: eureka-service
+    image: shopping-service
+    volumes:
+      - ./apigateway:/app
+    hostname: shopping
     links:
-          - "eureka"
-    hostname: eureka
+      - mongodb:mongodb
+      - eureka:eureka
     ports:
-      - "55555:55555"
+      - "8675:8675"
+
+#  address:
+#    container_name: address
+#    build: ./address
+#    depends_on:
+#      - "eureka"
+#    image: address-service
+#    links:
+#          - "eureka"
+#    hostname: address
+#    ports:
+#      - "55555:55555"
+
+#  creditcard:
+#    container_name: creditcard
+#    build: ./creditcard
+#    depends_on:
+#      - "eureka"
+#    image: creditcard-service
+#    links:
+#          - "eureka"
+#    hostname: creditcard
+#    ports:
+#      - "44444:44444"
+
+#  invoice:
+#    container_name: invoice
+#    build: ./invoice
+#    depends_on:
+#      - "eureka"
+#    image: invoice-service
+#    links:
+#          - "eureka"
+#    hostname: invoice
+#    ports:
+#      - "11223:11223"
+
+#  price:
+#    container_name: price
+#    build: ./price
+#    depends_on:
+#      - "eureka"
+#    image: price-service
+#    links:
+#          - "eureka"
+#    hostname: price
+#    ports:
+#      - "23405:23405"
+
+#  product:
+#    container_name: product
+#    build: ./product
+#    depends_on:
+#      - "eureka"
+#    image: product-service
+#    links:
+#          - "eureka"
+#    hostname: product
+#    ports:
+#      - "12894:12894"
+
+#  shipping:
+#    container_name: shipping
+#    build: ./shipping
+#    depends_on:
+#      - "eureka"
+#    image: shipping-service
+#    links:
+#          - "eureka"
+#    hostname: shipping
+#    ports:
+#      - "7923:7923"
+
+#  cart:
+#    container_name: cart
+#    build: ./cart
+#    depends_on:
+#      - "eureka"
+#    image: eureka-service
+#    links:
+#          - "eureka"
+#    hostname: eureka
+#    ports:
+#      - "22222:22222"
+
+#  zuulgateway:
+#    container_name: zuulgateway
+#    build: ./zuulgateway
+#    depends_on:
+#      - "eureka"
+#    image: zuulgateway-service
+#    links:
+#          - "eureka"
+#    hostname: zuul
+#    ports:
+#      - "22222:22222"
