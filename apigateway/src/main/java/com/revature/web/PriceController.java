@@ -20,8 +20,7 @@ public class PriceController {
 
     @RequestMapping(value = "/updateCartPrice/{cartId}",
                     method = RequestMethod.PUT,
-                    produces = MediaType.APPLICATION_JSON_VALUE,
-                    consumes = MediaType.APPLICATION_JSON_VALUE)
+                    produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Price> updateCartPrice(@PathVariable String cartId) {
         return delegate.updatePrice(cartId);
     }
