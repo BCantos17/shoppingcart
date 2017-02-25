@@ -16,16 +16,16 @@ public interface PriceService {
             method = RequestMethod.POST,
             consumes= MediaType.APPLICATION_JSON_VALUE,
             produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Price> insert (@RequestBody Price price);
+    ResponseEntity<Price> insert (@RequestBody Price price);
 
     @RequestMapping(value = "/update",
             method = RequestMethod.PUT,
             consumes= MediaType.APPLICATION_JSON_VALUE,
             produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Price> update (@RequestBody Price price);
+    ResponseEntity<Price> update (@RequestBody Price price);
 
     @RequestMapping(value = "/findByCartId/{cartId}",
             method = RequestMethod.GET,
             produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Price> findByCartId(@PathVariable("cartId") String cartId);
+    ResponseEntity<Price> findByCartId(@PathVariable("cartId") String cartId);
 }

@@ -22,16 +22,16 @@ public interface CartService {
             method = RequestMethod.POST,
             produces = APPLICATION_JSON_VALUE,
             consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Cart> updateCart(@RequestBody Cart cart);
+    ResponseEntity<Cart> updateCart(@RequestBody Cart cart);
 
     @RequestMapping(value = "/{id}",
             method = RequestMethod.GET,
             produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Cart> findCartById(@PathVariable("id") String id);
+    ResponseEntity<Cart> findCartById(@PathVariable("id") String id);
 
     @RequestMapping(value = "/cart/user/{userId}",
             method = RequestMethod.GET,
             produces = APPLICATION_JSON_VALUE)
-    public Cart findCartByUserId(@PathVariable("userId") Integer userId);
+    Cart findCartByUserId(@PathVariable("userId") Integer userId);
 
 }
