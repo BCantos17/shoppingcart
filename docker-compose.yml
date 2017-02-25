@@ -1,7 +1,7 @@
 version: "2"
 
+version: '2'
 services:
-
   mongodb:
     container_name: mongodb
     image: mongo:3.4.2
@@ -9,126 +9,63 @@ services:
     command: mongod --smallfiles
     ports:
       - "12565:12565"
-
   eureka:
-    container_name: eureka
-    build: ./eureka
+    image: eureka
     depends_on:
-      - "mongodb"
-    image: eureka-service
-    links:
-      - "mongodb"
-    hostname: eureka
+    - mongodb
     ports:
-      - "8761:8761"
-
-  shopping:
-    container_name: shopping
-    build: ./apigateway
+    - "8761:8761"
+  apigateway:
+    image: apigateway
     depends_on:
-      - "eureka"
-    image: shopping-service
-    volumes:
-      - ./apigateway:/app
-    hostname: shopping
-    links:
-      - mongodb:mongodb
-      - eureka:eureka
+    - eureka
     ports:
-      - "8675:8675"
-
-#  address:
-#    container_name: address
-#    build: ./address
-#    depends_on:
-#      - "eureka"
-#    image: address-service
-#    links:
-#          - "eureka"
-#    hostname: address
-#    ports:
-#      - "55555:55555"
-
-#  creditcard:
-#    container_name: creditcard
-#    build: ./creditcard
-#    depends_on:
-#      - "eureka"
-#    image: creditcard-service
-#    links:
-#          - "eureka"
-#    hostname: creditcard
-#    ports:
-#      - "44444:44444"
-
-#  invoice:
-#    container_name: invoice
-#    build: ./invoice
-#    depends_on:
-#      - "eureka"
-#    image: invoice-service
-#    links:
-#          - "eureka"
-#    hostname: invoice
-#    ports:
-#      - "11223:11223"
-
-#  price:
-#    container_name: price
-#    build: ./price
-#    depends_on:
-#      - "eureka"
-#    image: price-service
-#    links:
-#          - "eureka"
-#    hostname: price
-#    ports:
-#      - "23405:23405"
-
-#  product:
-#    container_name: product
-#    build: ./product
-#    depends_on:
-#      - "eureka"
-#    image: product-service
-#    links:
-#          - "eureka"
-#    hostname: product
-#    ports:
-#      - "12894:12894"
-
+    - "8675:8675"
 #  shipping:
-#    container_name: shipping
-#    build: ./shipping
+#    image: shipping
 #    depends_on:
-#      - "eureka"
-#    image: shipping-service
-#    links:
-#          - "eureka"
-#    hostname: shipping
+#    - eureka
 #    ports:
-#      - "7923:7923"
-
+#    - "7923:7923"
+#  price:
+#    image: price
+#    depends_on:
+#    - eureka
+#    ports:
+#    - "23405:23405"
+#  invoice:
+#    image: invoice
+#    depends_on:
+#    - eureka
+#    ports:
+#    - "11223:11223"
+#  creditcard:
+#    image: creditcard
+#    depends_on:
+#    - eureka
+#    ports:
+#    - "44444:44444"
 #  cart:
-#    container_name: cart
-#    build: ./cart
+#    image: cart
 #    depends_on:
-#      - "eureka"
-#    image: eureka-service
-#    links:
-#          - "eureka"
-#    hostname: eureka
+#    - eureka
 #    ports:
-#      - "22222:22222"
-
-#  zuulgateway:
-#    container_name: zuulgateway
-#    build: ./zuulgateway
+#    - "22222:22222"
+#  address:
+#    image: address
 #    depends_on:
-#      - "eureka"
-#    image: zuulgateway-service
-#    links:
-#          - "eureka"
-#    hostname: zuul
+#    - eureka
 #    ports:
-#      - "22222:22222"
+#    - "55555:55555"
+#  product:
+#    image: product
+#    depends_on:
+#    - eureka
+#    ports:
+#    - "12894:12894"
+  zuulgateway:
+    image: zuulgateway
+    depends_on:
+     - eureka
+    ports:
+    - "8723:8723"
