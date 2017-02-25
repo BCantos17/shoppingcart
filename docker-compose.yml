@@ -57,12 +57,12 @@ services:
 #    - eureka
 #    ports:
 #    - "55555:55555"
-#  product:
-#    image: product
-#    depends_on:
-#    - eureka
-#    ports:
-#    - "12894:12894"
+  product:
+    image: product
+    depends_on:
+    - eureka
+    ports:
+    - "12894:12894"
   zuulgateway:
     image: zuulgateway
     depends_on:
