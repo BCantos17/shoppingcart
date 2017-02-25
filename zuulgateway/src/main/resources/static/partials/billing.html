@@ -5,7 +5,7 @@
                 <thead>
                     <tr>
                         <th style="width:85%">Shipping Address</th>
-                        <th><button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#addShipping">
+                        <th><button type="button" class="btn btn-info" data-toggle="modal" data-target="#addShipping">
                                 New Address
                             </button>
                         </th>
@@ -24,18 +24,8 @@
                                 </li>
                             </ul>
                         </td>
-                    </tr>
-                    <tr ng-repeat="newAddress in addShippingAddresses">
-                        <td>
-                            <ul>
-                                <li style="list-style-type: none;">
-                                    <label>
-                                        <input ng-change='insertAddress(newAddress)' name="select-shipping" type="radio" ng-model="$newAddress"
-                                               value="{{newAddress}}" required/>{{newAddress.fullName}}, {{newAddress.line1}}
-                                        {{newAddress.line2}}, {{newAddress.city}}, {{newAddress.state}}, {{newAddress.zipCode}}
-                                    </label>
-                                </li>
-                            </ul>
+                        <td class="actions" data-th="">
+                            <button class="btn btn-danger btn-sm" ng-click="removeAddress( shippingAddresses, $index )">Remove</button>
                         </td>
                     </tr>
                 </tbody>
@@ -45,7 +35,7 @@
                 <thead>
                     <tr>
                         <th style="width:85%">Billing Address</th>
-                        <th><button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#addBilling">
+                        <th><button type="button" class="btn btn-info" data-toggle="modal" data-target="#addBilling">
                             New Address
                         </button>
                         </th>
@@ -63,18 +53,8 @@
                                 </li>
                             </ul>
                         </td>
-                    </tr>
-                    <tr ng-repeat="newAddress in addBillingAddresses">
-                        <td>
-                            <ul>
-                                <li style="list-style-type: none;">
-                                    <label>
-                                        <input type="radio" name="select-billing" ng-model="$newAddress" value="{{newAddress}}" required/>{{newAddress.fullName}},
-                                        {{newAddress.line1}} {{newAddress.line2}}, {{newAddress.city}}, {{newAddress.state}},
-                                        {{newAddress.zipCode}}
-                                    </label>
-                                </li>
-                            </ul>
+                        <td class="actions" data-th="">
+                            <button class="btn btn-danger btn-sm" ng-click="removeAddress( billingAddresses, $index )">Remove</button>
                         </td>
                     </tr>
                 </tbody>
@@ -85,7 +65,7 @@
                 <tr>
                     <th style="width:85%">Pick Credit Card</th>
                     <th>
-                        <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#addCard">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addCard">
                         New Card
                         </button>
                     </th>
@@ -102,17 +82,8 @@
                             </li>
                         </ul>
                     </td>
-                </tr>
-                <tr ng-repeat="newCard in addCard">
-                    <td>
-                        <ul>
-                            <li style="list-style-type: none;">
-                                <label>
-                                    <input ng-change='insertCard(newCard)' name="select-card" type="radio" ng-model="$newCard" value="{{newCard}}"
-                                           required/>{{newCard.number}}
-                                </label>
-                            </li>
-                        </ul>
+                    <td class="actions" data-th="">
+                        <button class="btn btn-danger btn-sm" ng-click="removeCard( cards, $index )">Remove</button>
                     </td>
                 </tr>
                 </tbody>
@@ -284,7 +255,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success pull-left" data-dismiss="modal"
-                            ng-click="sendShipping()">Submit
+                            ng-click="sendShipping(shippingAddresses, $index)">Submit
                     </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
