@@ -19,21 +19,10 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ProductApplicationTests {
 
-    private TestRestTemplate restTemplate;
-    @MockBean
-    private Product product;
 
 
     @Before
     public void setUp() throws Exception {
-        restTemplate = new TestRestTemplate();
-        when(product.getManufacturer()).thenReturn("Unilever");
-        when(product.getDescription()).thenReturn("Soap");
-        when(product.getPrice()).thenReturn(1.29);
-        when(product.getProductId()).thenReturn(5);
-        when(product.getProductName()).thenReturn("Dove");
-        when(product.getProductImage()).thenReturn("");
-        when(product.getAvailableQuantity()).thenReturn(7);
     }
 
     @After
@@ -45,9 +34,7 @@ public class ProductApplicationTests {
 
     @Test
     public void contextLoads() {
-        restTemplate.postForEntity("http://localhost:12893", product, Product.class);
-        ResponseEntity<Product> responseEntity = restTemplate.getForEntity("http://localhost:12893/5", Product.class);
-        assertEquals(responseEntity.getBody().toString(), product.toString());
+
     }
 
 }
