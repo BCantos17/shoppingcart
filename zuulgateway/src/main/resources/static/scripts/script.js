@@ -29,6 +29,9 @@ angular.module("MainApp").controller("MainController", function ($scope) {
     }).when('/reviews', {
         templateUrl: '../partials/reviews.html',
         controller: 'ReviewsController'
+    }).when('/product', {
+        templateUrl: '../partials/product.html',
+        controller: 'ProductController'
     });
 });
 
@@ -80,8 +83,11 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http, 
             alert("The function failed to submit");
         });
     };
-    $scope.viewProduct = function (product) {
+    $scope.viewProductReviews = function (product) {
         $rootScope.reviews = product.reviews;
+    };
+    $scope.viewProductPage = function(product) {
+        $rootScope.product = product;
     }
 });
 
@@ -223,6 +229,10 @@ angular.module("MainApp").controller('AddProductController', function ($scope, $
     }
 });
 
-angular.module('MainApp').controller('ReviewsController', function($scope, $rootScope){
+angular.module('MainApp').controller('ReviewsController', function ($scope, $rootScope) {
     $scope.reviews = $rootScope.reviews;
+});
+
+angular.module("MainApp").controller('ProductController', function($scope, $rootScope){
+    $scope.product = $rootScope.product;
 });
