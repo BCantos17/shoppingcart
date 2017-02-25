@@ -16,6 +16,9 @@ eureka:
 spring:
   application:
     name: creditcard
+  data:
+    mongodb:
+     host: mongodb
 
 #server.port=44444
 #spring.application.name=creditCard

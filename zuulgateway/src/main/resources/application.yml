@@ -9,6 +9,9 @@ eureka:
 spring:
   application:
     name: zuulgateway
+  data:
+    mongodb:
+     host: mongodb
 
 #server.port=8723
 #spring.application.name=zuul

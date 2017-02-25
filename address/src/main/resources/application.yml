@@ -16,6 +16,9 @@ eureka:
 spring:
   application:
     name: address
+  data:
+    mongodb:
+     host: mongodb
 
 #server.port=55555
 #spring.application.name=address

@@ -16,6 +16,9 @@ eureka:
 spring:
   application:
     name: shipping
+  data:
+    mongodb:
+     host: mongodb
 
 
 #server.port=7923

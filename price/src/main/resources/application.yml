@@ -16,6 +16,9 @@ eureka:
 spring:
   application:
     name: price
+  data:
+    mongodb:
+     host: mongodb
 
 
 #server.port=23405

@@ -16,6 +16,9 @@ eureka:
 spring:
   application:
     name: cart
+  data:
+    mongodb:
+     host: mongodb
 
 #spring.application.name=cart
 #server.port=22222

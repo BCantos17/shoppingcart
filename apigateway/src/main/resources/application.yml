@@ -1,6 +1,13 @@
 server:
   port: 8675
 
+spring:
+  application:
+    name: apigateway
+  data:
+    mongodb:
+     host: mongodb
+
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 1
@@ -12,10 +19,6 @@ eureka:
       enabled: true
     lease:
       duration: 5
-
-spring:
-  application:
-    name: apigateway
 
 
 #spring.application.name=shopping
