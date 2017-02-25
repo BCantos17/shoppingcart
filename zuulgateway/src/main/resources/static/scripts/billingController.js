@@ -122,14 +122,14 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
      */
     $scope.sendShipping = function() {
         var shippingAddress = {
-            customerId:     $scope.customer.id,
-            fullName:       $scope.shippingFullName,
-            line1:          $scope.shippingLine1,
-            line2:          $scope.shippingLine2,
-            city:           $scope.shippingCity,
-            state:          $scope.shippingState,
-            zipCode:        $scope.shippingZipCode,
-            billing:        false
+            customerId  : $scope.customer.id,
+            fullName    : $scope.shippingFullName,
+            line1       : $scope.shippingLine1,
+            line2       : $scope.shippingLine2,
+            city        : $scope.shippingCity,
+            state       : $scope.shippingState,
+            zipCode     : $scope.shippingZipCode,
+            billing     : false
         };
 
         $http({
