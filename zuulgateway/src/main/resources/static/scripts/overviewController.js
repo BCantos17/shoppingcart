@@ -15,14 +15,17 @@ angular.module("MainApp").controller('OverviewController', function($http, $scop
 
     $scope.itemList = $scope.invoice.itemList;
 
-
     $http({
         url: "/shopping/price/updateCartPrice/" + cartId,
         method: "PUT"
     }).then(function (response) {
-        alert("success");
-        $scope.prices = response.data;
-        $scope.total = response.data.tax + response.data.subTotal;
+        var prices = response.data;
+        prices.tax = prices.tax.toFixed(2);
+
+        total = parseFloat(response.data.tax) + parseFloat(response.data.subTotal) + parseFloat(response.data.shipping);
+
+        $scope.prices = prices;
+        $scope.total = total.toFixed(2);
     }, function () {
         console.log("Failed to update cart price");
     });

@@ -1,6 +1,10 @@
 package com.revature.beans;
 
+import org.springframework.data.annotation.Id;
+
 public class Shipping {
+
+    @Id
     private String id;
     private String cartId;
     private String invoiceId;
@@ -8,6 +12,10 @@ public class Shipping {
     private String method;
 
     public Shipping() {}
+
+    public Shipping(String cartId) {
+        this.cartId = cartId;
+    }
 
     public Shipping(String id, String cartId, String invoiceId, Double price, String method) {
         this.id = id;
