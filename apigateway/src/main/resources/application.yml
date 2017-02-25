@@ -1,0 +1,22 @@
+server:
+  port: 8675
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+spring:
+  application:
+    name: apigateway
+
+
+#spring.application.name=shopping
+#server.port=8675
