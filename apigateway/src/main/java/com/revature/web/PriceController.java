@@ -33,10 +33,10 @@ public class PriceController {
         return delegate.findPriceByCartId(cartId);
     }
 
-    @RequestMapping(value = "/validateDiscountCode/{discountCode}",
+    @RequestMapping(value = "/validateDiscountCode/{cartId}/{discountCode}",
                     method = RequestMethod.GET,
                     produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Double> validateDiscountCode(@PathVariable String discountCode){
-        return delegate.validateDiscountCode(discountCode);
+    public ResponseEntity<Double> validateDiscountCode(@PathVariable String cartId, @PathVariable String discountCode){
+        return delegate.validateDiscountCode(cartId, discountCode);
     }
 }

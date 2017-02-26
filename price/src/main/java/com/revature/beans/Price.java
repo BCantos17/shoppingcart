@@ -12,6 +12,7 @@ public class Price {
     private double shipping;
     private double subTotal;
     private double grandTotal;
+    private double discountedGrandTotal;
     private String cartId;
 
     public Price() {
@@ -26,6 +27,7 @@ public class Price {
                 ", shipping=" + shipping +
                 ", subTotal=" + subTotal +
                 ", grandTotal=" + grandTotal +
+                ", discountedGrandTotal=" + discountedGrandTotal +
                 ", cartId='" + cartId + '\'' +
                 '}';
     }
@@ -76,6 +78,14 @@ public class Price {
 
     public void setGrandTotal(double grandTotal) {
         this.grandTotal = grandTotal;
+    }
+
+    public double getDiscountedGrandTotal() {
+        return discountedGrandTotal;
+    }
+
+    public void setDiscountedGrandTotal(double discountedGrandTotal) {
+        this.discountedGrandTotal = discountedGrandTotal;
     }
 
     public String getCartId() {
