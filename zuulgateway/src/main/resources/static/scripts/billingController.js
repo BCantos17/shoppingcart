@@ -72,7 +72,7 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
      * Get address by Customer Id
      */
     $http({
-        url: "http://localhost:8723/address/customer/" +$scope.customer.id ,
+        url: "/address/customer/" +$scope.customer.id ,
         method: "GET"
     }).then(function(response) {
         addresses = response.data;
@@ -94,7 +94,7 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
      * Get credit card by Customer Id
      */
     $http({
-        url: "http://localhost:8723/creditcard/customer/" +$scope.customer.id ,
+        url: "/creditcard/customer/" +$scope.customer.id ,
         method: "GET"
     }).then(function(response) {
         cards = response.data
@@ -119,7 +119,7 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
         };
 
         $http({
-            url:"http://localhost:8723/address/insert",
+            url:"/address/insert",
             method: "POST",
             data: shippingAddress
         }).then(function(response) {
@@ -160,7 +160,7 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
         };
 
         $http({
-            url:"http://localhost:8723/address/insert",
+            url:"/address/insert",
             method: "POST",
             data: billingAddress
         }).then(function(response) {
@@ -196,7 +196,7 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
         };
         
         $http({
-            url:"http://localhost:8723/creditcard/insert",
+            url:"/creditcard/insert",
             method: "POST",
             data: card
         }).then(function(response) {
@@ -219,7 +219,7 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
     $scope.sendShippingMethod = function () {
         $log.debug(billingService.getShipping())
         $http({
-            url:"http://localhost:8723/shopping/shipping/save",
+            url:"/shopping/shipping/save",
             method: "POST",
             data: billingService.getShipping()
         }).then(function(response) {
@@ -235,7 +235,7 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
 
     $scope.removeAddress = function (addressList, index) {
         $http({
-            url: "http://localhost:8723/address/delete/" + addressList[index].id,
+            url: "/address/delete/" + addressList[index].id,
             method: "DELETE"
         }).then(function () {
             addressList.splice(index, 1);
@@ -246,7 +246,7 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
 
     $scope.removeCard = function (cardList, index) {
         $http({
-            url: "http://localhost:8723/creditcard/delete/" + cardList[index].id,
+            url: "/creditcard/delete/" + cardList[index].id,
             method: "DELETE"
         }).then(function () {
             cardList.splice(index, 1);
