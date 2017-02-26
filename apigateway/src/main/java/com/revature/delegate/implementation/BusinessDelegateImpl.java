@@ -22,6 +22,7 @@ public class BusinessDelegateImpl implements BusinessDelegate{
     private CartService cartService;
     private ProductService productService;
     private ShippingService shippingService;
+    private PriceService priceService;
 
     @Autowired
     public void setBillingService(BillingService billingService) {this.billingService = billingService;}
@@ -31,8 +32,6 @@ public class BusinessDelegateImpl implements BusinessDelegate{
     public void setProductService(ProductService productService) {this.productService = productService;}
     @Autowired
     public void setShippingService(ShippingService shippingService) {this.shippingService = shippingService;}
-
-    private PriceService priceService;
     @Autowired
     public void setPriceService(PriceService priceService) {
         this.priceService = priceService;

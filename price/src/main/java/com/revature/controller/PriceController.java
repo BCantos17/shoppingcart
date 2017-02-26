@@ -69,7 +69,7 @@ public class PriceController {
 
         ResponseEntity<Price> returnEntity;
         try {
-            returnEntity = new ResponseEntity(service.findAll(), HttpStatus.CREATED);
+            returnEntity = new ResponseEntity(service.findAll(), HttpStatus.OK);
         } catch (RuntimeException e) {
             returnEntity = new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
@@ -82,6 +82,21 @@ public class PriceController {
             produces=MediaType.APPLICATION_JSON_VALUE)
     public void deleteAll(){
         service.deleteAll();
+    }
+
+
+    @RequestMapping(value = "/validateDiscountCode/{discountCode}",
+            method = RequestMethod.GET,
+            produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Double> validateDiscountCode(@PathVariable String discountCode){
+
+        ResponseEntity<Double> returnEntity;
+        try {
+            returnEntity = new ResponseEntity(service.validateDiscount(discountCode), HttpStatus.OK);
+        } catch (RuntimeException e) {
+            returnEntity = new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        return returnEntity;
     }
 
 }
