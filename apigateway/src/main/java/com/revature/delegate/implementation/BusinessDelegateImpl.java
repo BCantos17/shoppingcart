@@ -161,4 +161,8 @@ public class BusinessDelegateImpl implements BusinessDelegate{
         return priceService.insert(newPrice);
     }
 
+    //validate discount code
+    public ResponseEntity<Double> validateDiscountCode(String discountCode){
+        return priceService.validateDiscountCode(discountCode);
+    }
 }
