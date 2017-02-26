@@ -10,6 +10,13 @@ services:
     ports:
       - "12565:12565"
 
+configserver:
+  image: mongodb
+  depends_on:
+  - mongodb
+  ports:
+  - "8761:8761"
+
   eureka:
     image: eureka
     depends_on:
@@ -17,12 +24,12 @@ services:
     ports:
     - "8761:8761"
 
-  apigateway:
-    image: apigateway
-    depends_on:
-    - eureka
-    ports:
-    - "8675:8675"
+#  apigateway:
+#    image: apigateway
+#    depends_on:
+#    - eureka
+#    ports:
+#    - "8675:8675"
 
 #  shipping:
 #    image: shipping
@@ -66,12 +73,12 @@ services:
 #    ports:
 #    - "55555:55555"
 
-  product:
-    image: product
-    depends_on:
-    - eureka
-    ports:
-    - "12894:12894"
+#  product:
+#    image: product
+#    depends_on:
+#    - eureka
+#    ports:
+#    - "12894:12894"
 
   zuulgateway:
     image: zuulgateway
