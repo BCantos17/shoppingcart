@@ -13,9 +13,9 @@
 
 	<modules>
 		<module>eureka</module>
-		<module>apigateway</module>
+		<!--<module>apigateway</module>-->
 		<module>zuulgateway</module>
-		<module>product</module>
+		<!--<module>product</module>-->
 <!--		<module>address</module>
         <module>cart</module>
         <module>creditcard</module>
