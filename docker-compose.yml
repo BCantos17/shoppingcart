@@ -1,7 +1,6 @@
-version: '2'
+version: "2"
 
 services:
-
   mongodb:
     container_name: mongodb
     image: mongo:3.4.2
@@ -9,13 +8,6 @@ services:
     command: mongod --smallfiles
     ports:
       - "12565:12565"
-
-configserver:
-  image: mongodb
-  depends_on:
-  - mongodb
-  ports:
-  - "8761:8761"
 
   eureka:
     image: eureka
@@ -37,35 +29,30 @@ configserver:
 #    - eureka
 #    ports:
 #    - "7923:7923"
-
 #  price:
 #    image: price
 #    depends_on:
 #    - eureka
 #    ports:
 #    - "23405:23405"
-
 #  invoice:
 #    image: invoice
 #    depends_on:
 #    - eureka
 #    ports:
 #    - "11223:11223"
-
 #  creditcard:
 #    image: creditcard
 #    depends_on:
 #    - eureka
 #    ports:
 #    - "44444:44444"
-
 #  cart:
 #    image: cart
 #    depends_on:
 #    - eureka
 #    ports:
 #    - "22222:22222"
-
 #  address:
 #    image: address
 #    depends_on:
