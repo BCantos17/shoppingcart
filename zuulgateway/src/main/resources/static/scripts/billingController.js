@@ -196,7 +196,7 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
         };
         
         $http({
-            url:"http://localhost:8723/creditCard/insert",
+            url:"http://localhost:8723/creditcard/insert",
             method: "POST",
             data: card
         }).then(function(response) {
@@ -223,7 +223,6 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
             method: "POST",
             data: billingService.getShipping()
         }).then(function(response) {
-            $log.debug(response.data);
             billingService.setShipping(response.data);
         }, function(response) {
             console.log("Errors in data you're sending");
@@ -239,7 +238,6 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
             url: "http://localhost:8723/address/delete/" + addressList[index].id,
             method: "DELETE"
         }).then(function () {
-            $log.debug("deleted address")
             addressList.splice(index, 1);
         }, function () {
             console.log("Failed to delete address");
@@ -251,7 +249,6 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
             url: "http://localhost:8723/creditcard/delete/" + cardList[index].id,
             method: "DELETE"
         }).then(function () {
-            $log.debug("deleted card")
             cardList.splice(index, 1);
         }, function () {
             console.log("Failed to delete card");
