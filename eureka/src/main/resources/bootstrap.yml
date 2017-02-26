@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: eureka
+  cloud:
+    config:
+      uri: http://configserver:7007
