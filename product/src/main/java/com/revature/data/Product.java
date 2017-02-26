@@ -10,11 +10,20 @@ public class Product {
     private int productId;
     private String productName;
     private double price;
+    private String information;
     private String description;
     private String manufacturer;
     private String productImage;
     private int availableQuantity;
     private List<String> reviews;
+
+    public String getInformation() {
+        return information;
+    }
+
+    public void setInformation(String information) {
+        this.information = information;
+    }
 
     public List<String> getReviews() {
         return reviews;
