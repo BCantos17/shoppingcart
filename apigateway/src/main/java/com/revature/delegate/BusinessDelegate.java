@@ -40,5 +40,5 @@ public interface BusinessDelegate {
 
 
     //validate discount code
-    ResponseEntity<Double> validateDiscountCode(String discountCode);
+    ResponseEntity<Double> validateDiscountCode(String cartId, String discountCode);
 }
