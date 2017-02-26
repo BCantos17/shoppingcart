@@ -47,6 +47,10 @@
 			<artifactId>spring-boot-autoconfigure</artifactId>
 			<version>1.4.2.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -97,4 +101,5 @@
 			</plugin>
 		</plugins>
 	</build>
+	
 </project>
