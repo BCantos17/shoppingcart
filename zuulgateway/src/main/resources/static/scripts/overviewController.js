@@ -28,7 +28,7 @@ angular.module("MainApp").controller('OverviewController', function($http, $scop
         $scope.prices = prices;
         $scope.total = total.toFixed(2);
 
-        $scope.discountedTotal = $scope.total;
+        $scope.discountedTotal = $scope.total - $scope.prices.discount;
     }, function () {
         console.log("Failed to update cart price");
     });
@@ -36,7 +36,7 @@ angular.module("MainApp").controller('OverviewController', function($http, $scop
 
     $scope.validateCode = function(discountCode){
         $http({
-            url: "/shopping/price/validateDiscountCode/" + discountCode,
+            url: "/shopping/price/validateDiscountCode/" + cartId +"/" + discountCode,
             method: "GET"
         }).then(function (response) {
             $scope.prices.discount = parseFloat(response.data);

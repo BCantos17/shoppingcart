@@ -145,6 +145,8 @@ public class BusinessDelegateImpl implements BusinessDelegate{
         cartCost.setSubTotal(subtotal);
         cartCost.setTax(tax);
         cartCost.setShipping(shipping.getPrice());
+        cartCost.setGrandTotal(cartCost.getTax()+cartCost.getSubTotal()+cartCost.getShipping());
+        cartCost.setDiscountedGrandTotal(cartCost.getGrandTotal()-cartCost.getDiscount());
 
         return priceService.update(cartCost);
     }
@@ -162,7 +164,14 @@ public class BusinessDelegateImpl implements BusinessDelegate{
     }
 
     //validate discount code
-    public ResponseEntity<Double> validateDiscountCode(String discountCode){
-        return priceService.validateDiscountCode(discountCode);
+    public ResponseEntity<Double> validateDiscountCode(String cartId, String discountCode){
+        ResponseEntity<Double> result = priceService.validateDiscountCode(discountCode);
+        if(result.getBody() != null){
+            Price cartPrice = findPriceByCartId(cartId).getBody();
+            cartPrice.setDiscount(result.getBody());
+            cartPrice.setDiscountedGrandTotal(cartPrice.getGrandTotal()-cartPrice.getDiscount());
+            priceService.update(cartPrice);
+        }
+        return result;
     }
 }

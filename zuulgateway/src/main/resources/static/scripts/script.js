@@ -27,7 +27,7 @@ angular.module("MainApp").controller("MainController", function ($scope) {
     }).when('/reviews', {
         templateUrl: '../partials/reviews.html',
         controller: 'ReviewsController'
-    }).when('/product', {
+    }).when('/product/:param', {
         templateUrl: '../partials/product.html',
         controller: 'ProductController'
     });
@@ -42,7 +42,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
     };
 
     $http({
-        url: "http://localhost:8723/shopping/cart/getAllCartItems",
+        url: "/shopping/cart/getAllCartItems",
         method: "POST",
         data: getAllformData
     }).then(function (response) {
@@ -58,7 +58,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
             "itemId": itemList[index].itemId
         };
         $http({
-            url: "http://localhost:8723/shopping/cart/removeCartItem",
+            url: "/shopping/cart/removeCartItem",
             method: "POST",
             data: deleteItemformData
         }).then(function () {
@@ -76,7 +76,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
             "quantity": newQuantity
         };
         $http({
-            url: "http://localhost:8723/shopping/cart/updateItemQuantity",
+            url: "/shopping/cart/updateItemQuantity",
             method: "POST",
             data: increaseItemCountformData
         }).then(function () {
@@ -95,7 +95,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
             "quantity": newQuantity
         };
         $http({
-            url: "http://localhost:8723/shopping/cart/updateItemQuantity",
+            url: "/shopping/cart/updateItemQuantity",
             method: "POST",
             data: decreaseItemCountformData
         }).then(function () {
@@ -178,6 +178,3 @@ angular.module('MainApp').controller('ReviewsController', function ($scope, $roo
     $scope.reviews = $rootScope.reviews;
 });
 
-angular.module("MainApp").controller('ProductController', function($scope, $rootScope){
-    $scope.product = $rootScope.product;
-});
