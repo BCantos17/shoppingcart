@@ -27,7 +27,7 @@ angular.module("MainApp").controller("MainController", function ($scope) {
     }).when('/reviews', {
         templateUrl: '../partials/reviews.html',
         controller: 'ReviewsController'
-    }).when('/product', {
+    }).when('/product/:param', {
         templateUrl: '../partials/product.html',
         controller: 'ProductController'
     });
@@ -178,6 +178,3 @@ angular.module('MainApp').controller('ReviewsController', function ($scope, $roo
     $scope.reviews = $rootScope.reviews;
 });
 
-angular.module("MainApp").controller('ProductController', function($scope, $rootScope){
-    $scope.product = $rootScope.product;
-});
