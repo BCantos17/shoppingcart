@@ -1,8 +1,13 @@
 var userId = 2;
 var cartId = "1";
 
-angular.module("MainApp").controller('ProductController', function($scope, $rootScope, $http){
-    $scope.product = $rootScope.product;
+angular.module("MainApp").controller('ProductController', function($scope, $rootScope, $http, $routeParams){
+    $http({
+        url:'/product/' + $routeParams.param,
+        method:'GET'
+    }).then(function(response){
+        $scope.product = response.data;
+    });
     $scope.selectedTab = "description";
     $scope.goToDescription = function() {
         angular.element("#reviewsTab").removeClass("active");

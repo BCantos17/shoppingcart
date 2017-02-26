@@ -1,4 +1,4 @@
-angular.module("MainApp").controller('HomeController', function ($scope, $http, $rootScope) {
+angular.module("MainApp").controller('HomeController', function ($scope, $http) {
     $http({
         url: '/product',
         method: 'GET'
@@ -7,7 +7,4 @@ angular.module("MainApp").controller('HomeController', function ($scope, $http, 
     }, function () {
         alert("Failure");
     });
-    $scope.viewProductPage = function(product) {
-        $rootScope.product = product;
-    };
 });
