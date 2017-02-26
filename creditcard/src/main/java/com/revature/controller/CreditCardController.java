@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/creditCard")
+@RequestMapping
 public class CreditCardController {
     private CreditCardService service;
 

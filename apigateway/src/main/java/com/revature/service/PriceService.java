@@ -28,4 +28,9 @@ public interface PriceService {
             method = RequestMethod.GET,
             produces=MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Price> findByCartId(@PathVariable("cartId") String cartId);
+
+    @RequestMapping(value = "/validateDiscountCode/{discountCode}",
+            method = RequestMethod.GET,
+            produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Double> validateDiscountCode(@PathVariable("discountCode") String discountCode);
 }

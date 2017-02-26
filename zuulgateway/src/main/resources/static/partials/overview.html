@@ -27,26 +27,44 @@
                             <tr>
                                 <td class="thick-line"></td>
                                 <td class="thick-line"></td>
-                                <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                                <td class="thick-line text-right"><input type="text" name="name" ng-model="discountCode" /></td>
+                                <td class="thick-line text-right"><button ng-click="validateCode(discountCode)">Enter Code</button></td>
+                            </tr>
+                            <tr>
+                                <td class="thick-line"></td>
+                                <td class="thick-line"></td>
+                                <td class="thick-line text-right"><strong>Subtotal</strong></td>
                                 <td class="thick-line text-right">${{prices.subTotal}}</td>
                             </tr>
                             <tr>
                                 <td class="no-line"></td>
                                 <td class="no-line"></td>
-                                <td class="no-line text-center"><strong>Tax Amount</strong></td>
+                                <td class="no-line text-right"><strong>Tax Amount</strong></td>
                                 <td class="no-line text-right">${{prices.tax}}</td>
                             </tr>
                             <tr>
                                 <td class="no-line"></td>
                                 <td class="no-line"></td>
-                                <td class="no-line text-center"><strong>Shipping Cost</strong></td>
+                                <td class="no-line text-right"><strong>Shipping Cost</strong></td>
                                 <td class="no-line text-right">${{prices.shipping}}</td>
                             </tr>
                             <tr>
                                 <td class="no-line"></td>
                                 <td class="no-line"></td>
-                                <td class="no-line text-center"><strong>Total</strong></td>
+                                <td class="no-line text-right"><strong>Total</strong></td>
                                 <td class="no-line text-right">${{total}}</td>
+                            </tr>
+                            <tr>
+                                <td class="no-line"></td>
+                                <td class="no-line"></td>
+                                <td class="no-line text-right"><strong>Discounted Amount</strong></td>
+                                <td class="no-line text-right">${{prices.discount}}</td>
+                            </tr>
+                            <tr>
+                                <td class="no-line"></td>
+                                <td class="no-line"></td>
+                                <td class="no-line text-right"><strong>Discounted Total</strong></td>
+                                <td class="no-line text-right">${{discountedTotal}}</td>
                             </tr>
                             </tbody>
                             <tfoot>
