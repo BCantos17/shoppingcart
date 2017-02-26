@@ -33,7 +33,8 @@
                     <hr>
                     <div class="form-group">
                         <label for="quantityInput">Quantity:</label>
-                        <input type="number" class="form-control" id="quantityInput" max="{{product.availableQuantity}}">
+                        <input type="number" class="form-control" id="quantityInput"
+                               max="{{product.availableQuantity}}">
                     </div>
                     <div class="btn-group cart">
                         <button type="button" class="btn btn-success" ng-click="addToCart(product)">Add to cart</button>
@@ -47,12 +48,15 @@
         <div class="container-fluid">
             <div class="col-md-12 product-info">
                 <ul id="myTab" class="nav nav-tabs nav_tabs">
-                    <li id="descriptionTab" class="active"><a data-toggle="tab" ng-click="goToDescription()">DESCRIPTION</a></li>
-                    <li id="reviewsTab"><a data-toggle="tab" ng-click="goToReviews()">REVIEWS</a></li>
-                    <li id="addReviewTab"><a data-toggle="tab" ng-click="goToAddReview()">ADD REVIEW</a></li>
+                    <li id="descriptionTab" class="active productTab"><a data-toggle="tab" ng-click="goToDescription()">DESCRIPTION</a>
+                    </li>
+                    <li id="reviewsTab" class="productTab"><a data-toggle="tab" ng-click="goToReviews()">REVIEWS</a>
+                    </li>
+                    <li id="addReviewTab" class="productTab"><a data-toggle="tab" ng-click="goToAddReview()">ADD
+                        REVIEW</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane active" id="description" >
+                    <div class="tab-pane active" id="description">
                         <section class="container product-info">{{product.description}}</section>
                     </div>
                     <div class="tab-pane" id="reviews">
@@ -64,7 +68,7 @@
                             </div>
                         </section>
                     </div>
-                    <div class="tab-pane" id="addReview" >
+                    <div class="tab-pane" id="addReview">
                         <section class="container product-info">
                             <div class="form-group">
                                 <label for="comment">Comment:</label>
