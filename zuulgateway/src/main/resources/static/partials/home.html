@@ -8,7 +8,7 @@
                         <img data-ng-src="{{product.productImage}}" alt="" ng-style="{ 'width' : 320, 'height' : 150 }">
                         <div class="caption">
                             <h4 class="pull-right">${{product.price}}</h4>
-                            <h4><a href="#product" ng-click="viewProductPage(product)">{{product.productName}}</a></h4>
+                            <h4><a href="#product/{{product.productId}}">{{product.productName}}</a></h4>
                             <p>{{product.information}}</p>
                             <p class="pull-right">{{product.reviews.length}} reviews</p>
                         </div>
