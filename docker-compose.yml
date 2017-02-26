@@ -57,14 +57,14 @@ services:
     depends_on:
     - eureka
     ports:
-    - "23405:23405"
+    - "22222:22222"
 
   address:
     image: address
     depends_on:
     - eureka
     ports:
-    - "23405:23405"
+    - "55555:55555"
 
   product:
     image: product
