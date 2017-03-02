@@ -3,4 +3,4 @@ spring:
     name: cart
   cloud:
     config:
-      uri: http://localhost:7007
+      uri: http://configserver:7007
