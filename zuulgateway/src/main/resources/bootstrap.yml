@@ -3,4 +3,4 @@ spring:
     name: zuulgateway
   cloud:
     config:
-      uri: http://configserver:7007
+      uri: http://localhost:7007
