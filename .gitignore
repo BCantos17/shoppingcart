@@ -16,6 +16,8 @@ hs_err_pid*
 **/.idea/
 **/*.iml
 **/**.iml
+**/mvnw
+**/mvnw.cmd
 **/.tern-project
 
 #Spring Boot .mvn

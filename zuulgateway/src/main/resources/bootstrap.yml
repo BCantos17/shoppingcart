@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: zuulgateway
+  cloud:
+    config:
+      uri: http://configserver:7007

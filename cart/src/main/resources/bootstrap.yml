@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: cart
+  cloud:
+    config:
+      uri: http://localhost:7007
