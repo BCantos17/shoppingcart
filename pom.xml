@@ -12,15 +12,15 @@
 	<description>Demo project for Spring Boot</description>
 
 	<modules>
-		<module>address</module>
-        <module>zuulgateway</module>
+		<module>eureka</module>
+		<module>apigateway</module>
+		<module>zuulgateway</module>
+		<module>product</module>
+<!--		<module>address</module>
         <module>cart</module>
         <module>creditcard</module>
         <module>price</module>
-        <module>product</module>
         <module>shipping</module>
-        <module>eureka</module>
-        <module>apigateway</module>
-		<module>invoice</module>
+		<module>invoice</module>-->
 	</modules>
 </project>
