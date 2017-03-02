@@ -14,7 +14,7 @@ hs_err_pid*
 **/target/
 **/bin/
 **/.idea/
-**/*.iml
+*.iml
 **/**.iml
 **/mvnw
 **/mvnw.cmd
