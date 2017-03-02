@@ -9,63 +9,70 @@ services:
     ports:
       - "12565:12565"
 
+  configserver:
+    image: eureka
+    depends_on:
+      - mongodb
+    ports:
+      - "7007:7007"
+
   eureka:
     image: eureka
     depends_on:
-    - mongodb
+    - configserver
     ports:
     - "8761:8761"
 
-#  apigateway:
-#    image: apigateway
-#    depends_on:
-#    - eureka
-#    ports:
-#    - "8675:8675"
+  apigateway:
+    image: apigateway
+    depends_on:
+    - eureka
+    ports:
+    - "8675:8675"
 
-#  shipping:
-#    image: shipping
-#    depends_on:
-#    - eureka
-#    ports:
-#    - "7923:7923"
-#  price:
-#    image: price
-#    depends_on:
-#    - eureka
-#    ports:
-#    - "23405:23405"
-#  invoice:
-#    image: invoice
-#    depends_on:
-#    - eureka
-#    ports:
-#    - "11223:11223"
-#  creditcard:
-#    image: creditcard
-#    depends_on:
-#    - eureka
-#    ports:
-#    - "44444:44444"
-#  cart:
-#    image: cart
-#    depends_on:
-#    - eureka
-#    ports:
-#    - "22222:22222"
-#  address:
-#    image: address
-#    depends_on:
-#    - eureka
-#    ports:
-#    - "55555:55555"
+  shipping:
+    image: shipping
+    depends_on:
+    - eureka
+    ports:
+    - "7923:7923"
+  price:
+    image: price
+    depends_on:
+    - eureka
+    ports:
+    - "23405:23405"
+  invoice:
+    image: invoice
+    depends_on:
+    - eureka
+    ports:
+    - "11223:11223"
+  creditcard:
+    image: creditcard
+    depends_on:
+    - eureka
+    ports:
+    - "44444:44444"
+  cart:
+    image: cart
+    depends_on:
+    - eureka
+    ports:
+    - "22222:22222"
+  address:
+    image: address
+    depends_on:
+    - eureka
+    ports:
+    - "55555:55555"
 
-#  product:
-#    image: product
-#    depends_on:
-#    - eureka
-#    ports:
-#    - "12894:12894"
+  product:
+    image: product
+    depends_on:
+    - eureka
+    ports:
+    - "12894:12894"
 
   zuulgateway:
     image: zuulgateway

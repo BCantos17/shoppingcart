@@ -1,6 +1,6 @@
 spring:
   application:
-    name: eureka
+    name: creditcard
   cloud:
     config:
       uri: http://localhost:7007

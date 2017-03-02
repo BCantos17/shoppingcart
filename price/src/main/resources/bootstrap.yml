@@ -1,6 +1,6 @@
 spring:
   application:
-    name: eureka
+    name: price
   cloud:
     config:
       uri: http://localhost:7007
