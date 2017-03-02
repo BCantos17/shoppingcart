@@ -1,7 +1,6 @@
-version: '2'
+version: "2"
 
 services:
-
   mongodb:
     container_name: mongodb
     image: mongo:3.4.2
@@ -10,10 +9,17 @@ services:
     ports:
       - "12565:12565"
 
-  eureka:
+  configserver:
     image: eureka
     depends_on:
       - mongodb
+    ports:
+      - "7007:7007"
+
+  eureka:
+    image: eureka
+    depends_on:
+    - configserver
     ports:
       - "8761:8761"
 

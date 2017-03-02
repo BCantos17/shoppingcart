@@ -42,7 +42,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
     };
 
     $http({
-        url: "/shopping/cart/getAllCartItems",
+        url: "/apigateway/cart/getAllCartItems",
         method: "POST",
         data: getAllformData
     }).then(function (response) {
@@ -58,7 +58,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
             "itemId": itemList[index].itemId
         };
         $http({
-            url: "/shopping/cart/removeCartItem",
+            url: "/apigateway/cart/removeCartItem",
             method: "POST",
             data: deleteItemformData
         }).then(function () {
@@ -76,7 +76,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
             "quantity": newQuantity
         };
         $http({
-            url: "/shopping/cart/updateItemQuantity",
+            url: "/apigateway/cart/updateItemQuantity",
             method: "POST",
             data: increaseItemCountformData
         }).then(function () {
@@ -95,7 +95,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
             "quantity": newQuantity
         };
         $http({
-            url: "/shopping/cart/updateItemQuantity",
+            url: "/apigateway/cart/updateItemQuantity",
             method: "POST",
             data: decreaseItemCountformData
         }).then(function () {

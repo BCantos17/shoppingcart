@@ -12,6 +12,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<modules>
+		<module>configserver</module>
 		<module>eureka</module>
 		<module>apigateway</module>
 		<module>zuulgateway</module>

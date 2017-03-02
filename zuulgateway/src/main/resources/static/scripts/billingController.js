@@ -219,7 +219,7 @@ angular.module("MainApp").controller('BillingController', function ($http, $scop
     $scope.sendShippingMethod = function () {
         $log.debug(billingService.getShipping())
         $http({
-            url:"/shopping/shipping/save",
+            url:"/apigateway/shipping/save",
             method: "POST",
             data: billingService.getShipping()
         }).then(function(response) {

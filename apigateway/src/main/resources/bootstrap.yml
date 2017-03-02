@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: apigateway
+  cloud:
+    config:
+      uri: http://localhost:7007

@@ -1,24 +1,25 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
+*.class
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+**/target/
+**/bin/
+**/.idea/
 *.iml
-*.ipr
+**/**.iml
+**/mvnw
+**/mvnw.cmd
+**/.tern-project
 
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
+#Spring Boot .mvn
+.mvn
+.idea
