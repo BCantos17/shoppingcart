@@ -17,7 +17,7 @@ angular.module("MainApp").controller('OverviewController', function($http, $scop
     $scope.itemList = $scope.invoice.itemList;
 
     $http({
-        url: "/shopping/price/updateCartPrice/" + cartId,
+        url: "/apigateway/price/updateCartPrice/" + cartId,
         method: "PUT"
     }).then(function (response) {
         var prices = response.data;
@@ -36,7 +36,7 @@ angular.module("MainApp").controller('OverviewController', function($http, $scop
 
     $scope.validateCode = function(discountCode){
         $http({
-            url: "/shopping/price/validateDiscountCode/" + cartId +"/" + discountCode,
+            url: "/apigateway/price/validateDiscountCode/" + cartId +"/" + discountCode,
             method: "GET"
         }).then(function (response) {
             $scope.prices.discount = parseFloat(response.data);
