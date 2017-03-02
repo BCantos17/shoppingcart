@@ -3,6 +3,7 @@ package com.revature.web;
 import com.revature.beans.Price;
 import com.revature.delegate.BusinessDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,5 +31,12 @@ public class PriceController {
                     produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Price> getAllCartItems (@PathVariable String cartId){
         return delegate.findPriceByCartId(cartId);
+    }
+
+    @RequestMapping(value = "/validateDiscountCode/{cartId}/{discountCode}",
+                    method = RequestMethod.GET,
+                    produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Double> validateDiscountCode(@PathVariable String cartId, @PathVariable String discountCode){
+        return delegate.validateDiscountCode(cartId, discountCode);
     }
 }

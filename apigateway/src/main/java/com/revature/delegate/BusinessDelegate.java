@@ -20,7 +20,6 @@ public interface BusinessDelegate {
     ResponseEntity<Shipping> findShippingByCartId(String cartId);
     ResponseEntity<Shipping> deleteShipping(String id);
 
-    //Create a new cart
     //Add an item to the cart
     ResponseEntity<Cart> addCartItem(CartFormData formData);
     //Delete an item from the cart
@@ -38,4 +37,8 @@ public interface BusinessDelegate {
     ResponseEntity<Price> findPriceByCartId(String cartId);
     //create new price object with cartId
     ResponseEntity<Price> createPrice(String cartId);
+
+
+    //validate discount code
+    ResponseEntity<Double> validateDiscountCode(String cartId, String discountCode);
 }

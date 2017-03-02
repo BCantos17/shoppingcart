@@ -5,30 +5,13 @@
             <div class="row">
                 <div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="product in products">
                     <div class="thumbnail">
-                        <img data-ng-src="{{product.productImage}}" alt="" ng-style="{ 'width' : 320, 'height' : 150 }">
+                        <img data-ng-src="{{product.productImage}}" alt="" ng-style="{ 'width' : 230, 'height' : 230 }">
                         <div class="caption">
                             <h4 class="pull-right">${{product.price}}</h4>
-                            <h4><a href="#">{{product.productName}}</a></h4>
-                            <p>{{product.description}}</p>
+                            <h4><a href="#product/{{product.productId}}">{{product.productName}}</a></h4>
+                            <p>{{product.information}}</p>
+                            <p class="pull-right">{{product.reviews.length}} reviews</p>
                         </div>
-                        <div class="ratings">
-                            <p class="pull-right"><a href="#reviews" ng-click="viewProductReviews(product)">{{product.reviews.length}}
-                                reviews</a></p>
-                            <div class="form-group">
-                                <label for="comment{{product.productId}}">Comment:</label>
-                                <textarea class="form-control" rows="5" id="comment{{product.productId}}"></textarea>
-                            </div>
-                            <button ng-click="submitComment(product)" class="btn btn-primary">Submit comment</button>
-                        </div>
-                        <div class="ratings">
-                            <div class="form-group">
-                                <label for="input{{product.productId}}">Quantity:</label>
-                                <input type="number" class="form-control" id="input{{product.productId}}"
-                                       max="{{product.availableQuantity}}">
-                            </div>
-                            <button ng-click="addToCart(product)" class="btn btn-primary">Add to cart</button>
-                        </div>
-                        <a href="#product" ng-click="viewProductPage(product)">View product page</a>
                     </div>
                 </div>
             </div>

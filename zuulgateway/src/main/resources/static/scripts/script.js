@@ -1,5 +1,4 @@
 angular.module("MainApp", ['ngRoute']);
-
 angular.module("MainApp").config(function ($logProvider) {
     $logProvider.debugEnabled(true);
 });
@@ -8,7 +7,6 @@ var userId = 2;
 var cartId = "1";
 
 angular.module("MainApp").controller("MainController", function ($scope) {
-
 }).config(function ($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix("");
     $routeProvider.when('/', {
@@ -29,67 +27,13 @@ angular.module("MainApp").controller("MainController", function ($scope) {
     }).when('/reviews', {
         templateUrl: '../partials/reviews.html',
         controller: 'ReviewsController'
-    }).when('/product', {
+    }).when('/product/:param', {
         templateUrl: '../partials/product.html',
         controller: 'ProductController'
     });
 });
 
-angular.module("MainApp").controller('HomeController', function ($scope, $http, $rootScope) {
-    $http({
-        url: '/product',
-        method: 'GET'
-    }).then(function (response) {
-        $scope.products = response.data;
-    }, function () {
-        alert("Failure");
-    });
-    $scope.addToCart = function (product) {
-        var selectedQuantity = angular.element('#input' + product.productId).val();
-        if (selectedQuantity <= product.availableQuantity) {
-            $http({
-                url: '/shopping/cart/addCartItem',
-                method: 'POST',
-                data: {
-                    "cartId": cartId,
-                    "itemId": product.productId + 2,
-                    "quantity": selectedQuantity,
-                    "productId": product.productId,
-                    "userId": userId
-                }
-            });
-        } else {
-            alert("Not enough stock. Choose a value less than " + product.availableQuantity);
-        }
-    };
-    $scope.submitComment = function (product) {
-        product.reviews.push(angular.element('#comment' + product.productId).val());
-        $http({
-            url: '/product',
-            method: 'PUT',
-            data: {
-                "productId": product.productId,
-                "productName": product.productName,
-                "price": product.price,
-                "description": product.description,
-                "manufacturer": product.manufacturer,
-                "productImage": product.productImage,
-                "availableQuantity": product.availableQuantity,
-                "reviews": product.reviews
-            }
-        }).then(function () {
-            alert("The review was submitted successfully");
-        }, function () {
-            alert("The function failed to submit");
-        });
-    };
-    $scope.viewProductReviews = function (product) {
-        $rootScope.reviews = product.reviews;
-    };
-    $scope.viewProductPage = function(product) {
-        $rootScope.product = product;
-    }
-});
+
 
 angular.module("MainApp").controller('CartController', function ($scope, $http, cartService) {
 
@@ -98,7 +42,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
     };
 
     $http({
-        url: "http://localhost:8723/shopping/cart/getAllCartItems",
+        url: "/apigateway/cart/getAllCartItems",
         method: "POST",
         data: getAllformData
     }).then(function (response) {
@@ -114,7 +58,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
             "itemId": itemList[index].itemId
         };
         $http({
-            url: "http://localhost:8723/shopping/cart/removeCartItem",
+            url: "/apigateway/cart/removeCartItem",
             method: "POST",
             data: deleteItemformData
         }).then(function () {
@@ -132,7 +76,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
             "quantity": newQuantity
         };
         $http({
-            url: "http://localhost:8723/shopping/cart/updateItemQuantity",
+            url: "/apigateway/cart/updateItemQuantity",
             method: "POST",
             data: increaseItemCountformData
         }).then(function () {
@@ -151,7 +95,7 @@ angular.module("MainApp").controller('CartController', function ($scope, $http, 
             "quantity": newQuantity
         };
         $http({
-            url: "http://localhost:8723/shopping/cart/updateItemQuantity",
+            url: "/apigateway/cart/updateItemQuantity",
             method: "POST",
             data: decreaseItemCountformData
         }).then(function () {
@@ -203,6 +147,7 @@ angular.module("MainApp").controller('AddProductController', function ($scope, $
                 "productId": $scope.productId,
                 "productName": $scope.productName,
                 "price": $scope.price,
+                "information":$scope.information,
                 "description": $scope.description,
                 "manufacturer": $scope.manufacturer,
                 "productImage": productImage,
@@ -233,6 +178,3 @@ angular.module('MainApp').controller('ReviewsController', function ($scope, $roo
     $scope.reviews = $rootScope.reviews;
 });
 
-angular.module("MainApp").controller('ProductController', function($scope, $rootScope){
-    $scope.product = $rootScope.product;
-});

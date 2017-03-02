@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/address")
+@RequestMapping
 public class AddressController {
     private AddressService service;
 

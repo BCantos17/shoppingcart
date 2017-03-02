@@ -22,6 +22,7 @@ public class BusinessDelegateImpl implements BusinessDelegate{
     private CartService cartService;
     private ProductService productService;
     private ShippingService shippingService;
+    private PriceService priceService;
 
     @Autowired
     public void setBillingService(BillingService billingService) {this.billingService = billingService;}
@@ -31,8 +32,6 @@ public class BusinessDelegateImpl implements BusinessDelegate{
     public void setProductService(ProductService productService) {this.productService = productService;}
     @Autowired
     public void setShippingService(ShippingService shippingService) {this.shippingService = shippingService;}
-
-    private PriceService priceService;
     @Autowired
     public void setPriceService(PriceService priceService) {
         this.priceService = priceService;
@@ -146,6 +145,8 @@ public class BusinessDelegateImpl implements BusinessDelegate{
         cartCost.setSubTotal(subtotal);
         cartCost.setTax(tax);
         cartCost.setShipping(shipping.getPrice());
+        cartCost.setGrandTotal(cartCost.getTax()+cartCost.getSubTotal()+cartCost.getShipping());
+        cartCost.setDiscountedGrandTotal(cartCost.getGrandTotal()-cartCost.getDiscount());
 
         return priceService.update(cartCost);
     }
@@ -162,4 +163,15 @@ public class BusinessDelegateImpl implements BusinessDelegate{
         return priceService.insert(newPrice);
     }
 
+    //validate discount code
+    public ResponseEntity<Double> validateDiscountCode(String cartId, String discountCode){
+        ResponseEntity<Double> result = priceService.validateDiscountCode(discountCode);
+        if(result.getBody() != null){
+            Price cartPrice = findPriceByCartId(cartId).getBody();
+            cartPrice.setDiscount(result.getBody());
+            cartPrice.setDiscountedGrandTotal(cartPrice.getGrandTotal()-cartPrice.getDiscount());
+            priceService.update(cartPrice);
+        }
+        return result;
+    }
 }

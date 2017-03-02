@@ -1,186 +1,159 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-10">
-            <table class="table table-hover table-condensed">
-                <thead>
-                    <tr>
-                        <th style="width:85%">Shipping Address</th>
-                        <th><button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#addShipping">
+    <form action="#Overview">
+        <div class="row">
+            <div class="col-md-10">
+                <table class="table table-hover table-condensed table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="panel-title"style="width:85%">Shipping Address</th>
+                            <th><button type="button" class="btn btn-info" data-toggle="modal" data-target="#addShipping">
+                                    New Address
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="address in shippingAddresses">
+                            <td>
+                                <ul>
+                                    <li style="list-style-type: none;">
+                                        <label>
+                                            <input ng-change='insertAddress(address)' name="select-shipping" type="radio" ng-model="$address" value="{{address}}"
+                                                   required/>{{address.fullName}}, {{address.line1}} {{address.line2}}, {{address.city}},
+                                            {{address.state}}, {{address.zipCode}}
+                                        </label>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="actions text-center">
+                                <button class="btn btn-danger btn-sm" ng-click="removeAddress( shippingAddresses, $index )">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-hover table-condensed table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width:85%">Billing Address</th>
+                            <th><button type="button" class="btn btn-info" data-toggle="modal" data-target="#addBilling">
                                 New Address
+                            </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="address in billingAddresses">
+                            <td>
+                                <ul>
+                                    <li style="list-style-type: none;">
+                                        <label>
+                                            <input type="radio" name="select-billing" ng-model="$address" value="{{address}}" required/>{{address.fullName}},
+                                            {{address.line1}} {{address.line2}}, {{address.city}}, {{address.state}}, {{address.zipCode}}
+                                        </label>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="actions text-center">
+                                <button class="btn btn-danger btn-sm" ng-click="removeAddress( billingAddresses, $index )">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-hover table-condensed table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th style="width:85%">Pick Credit Card</th>
+                        <th class="text-center"">
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addCard">
+                            New Card
                             </button>
                         </th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="address in shippingAddresses">
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="card in cards">
                         <td>
                             <ul>
                                 <li style="list-style-type: none;">
                                     <label>
-                                        <input ng-change='insertAddress(address)' name="select-shipping" type="radio" ng-model="$address" value="{{address}}"
-                                               required/>{{address.fullName}}, {{address.line1}} {{address.line2}}, {{address.city}},
-                                        {{address.state}}, {{address.zipCode}}
+                                        <input ng-change='insertCard(card)' name="select-card" type="radio" ng-model="$card" value="{{card}}" required/>{{card.number}}
                                     </label>
                                 </li>
                             </ul>
                         </td>
-                    </tr>
-                    <tr ng-repeat="newAddress in addShippingAddresses">
-                        <td>
-                            <ul>
-                                <li style="list-style-type: none;">
-                                    <label>
-                                        <input ng-change='insertAddress(newAddress)' name="select-shipping" type="radio" ng-model="$newAddress"
-                                               value="{{newAddress}}" required/>{{newAddress.fullName}}, {{newAddress.line1}}
-                                        {{newAddress.line2}}, {{newAddress.city}}, {{newAddress.state}}, {{newAddress.zipCode}}
-                                    </label>
-                                </li>
-                            </ul>
+                        <td class="actions text-center">
+                            <button class="btn btn-danger btn-sm" ng-click="removeCard( cards, $index )">Remove</button>
                         </td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
 
-            <table class="table table-hover table-condensed">
-                <thead>
+                <table class="table table-hover table-condensed table-bordered table-striped">
+                    <thead>
                     <tr>
-                        <th style="width:85%">Billing Address</th>
-                        <th><button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#addBilling">
-                            New Address
-                        </button>
-                        </th>
+                        <th style="width:85%">Pick Shipping Option</th>
+                        <th style="width:85%">Price</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="address in billingAddresses">
+                    </thead>
+                    <tbody>
+                    <tr>
                         <td>
                             <ul>
                                 <li style="list-style-type: none;">
                                     <label>
-                                        <input type="radio" name="select-billing" ng-model="$address" value="{{address}}" required/>{{address.fullName}},
-                                        {{address.line1}} {{address.line2}}, {{address.city}}, {{address.state}}, {{address.zipCode}}
+                                        <input ng-change='insertShipping({{oneDay}})' name="select-option" type="radio" ng-model="$oneDay" value="{{oneDay}}" required/> {{oneDay.method}}
                                     </label>
                                 </li>
                             </ul>
                         </td>
+                        <td>{{oneDay.price}}</td>
                     </tr>
-                    <tr ng-repeat="newAddress in addBillingAddresses">
+                    <tr>
                         <td>
                             <ul>
                                 <li style="list-style-type: none;">
                                     <label>
-                                        <input type="radio" name="select-billing" ng-model="$newAddress" value="{{newAddress}}" required/>{{newAddress.fullName}},
-                                        {{newAddress.line1}} {{newAddress.line2}}, {{newAddress.city}}, {{newAddress.state}},
-                                        {{newAddress.zipCode}}
+                                        <input ng-change='insertShipping({{twoDay}})' name="select-option" type="radio" ng-model="$twoDay" value="{{twoDay}}" required/> {{twoDay.method}}
                                     </label>
                                 </li>
                             </ul>
                         </td>
+                        <td>{{twoDay.price}}</td>
                     </tr>
-                </tbody>
-            </table>
-
-            <table class="table table-hover table-condensed">
-                <thead>
-                <tr>
-                    <th style="width:85%">Pick Credit Card</th>
-                    <th>
-                        <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#addCard">
-                        New Card
-                        </button>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="card in cards">
-                    <td>
-                        <ul>
-                            <li style="list-style-type: none;">
-                                <label>
-                                    <input ng-change='insertCard(card)' name="select-card" type="radio" ng-model="$card" value="{{card}}" required/>{{card.number}}
-                                </label>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr ng-repeat="newCard in addCard">
-                    <td>
-                        <ul>
-                            <li style="list-style-type: none;">
-                                <label>
-                                    <input ng-change='insertCard(newCard)' name="select-card" type="radio" ng-model="$newCard" value="{{newCard}}"
-                                           required/>{{newCard.number}}
-                                </label>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <table class="table table-hover table-condensed">
-                <thead>
-                <tr>
-                    <th style="width:85%">Pick Shipping Option</th>
-                    <th style="width:85%">Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <ul>
-                            <li style="list-style-type: none;">
-                                <label>
-                                    <input ng-change='insertShipping({{oneDay}})' name="select-option" type="radio" ng-model="$oneDay" value="{{oneDay}}" required/> {{oneDay.method}}
-                                </label>
-                            </li>
-                        </ul>
-                    </td>
-                    <td>{{oneDay.price}}</td>
-                </tr>
-                <tr>
-                    <td>
-                        <ul>
-                            <li style="list-style-type: none;">
-                                <label>
-                                    <input ng-change='insertShipping({{twoDay}})' name="select-option" type="radio" ng-model="$twoDay" value="{{twoDay}}" required/> {{twoDay.method}}
-                                </label>
-                            </li>
-                        </ul>
-                    </td>
-                    <td>{{twoDay.price}}</td>
-                </tr>
-                <tr>
-                    <td>
-                        <ul>
-                            <li style="list-style-type: none;">
-                                <label>
-                                    <input ng-change='insertShipping({{expedited}})' name="select-option" type="radio" ng-model="$expedited" value="{{expedited}}" required/> {{expedited.method}}
-                                </label>
-                            </li>
-                        </ul>
-                    </td>
-                    <td>{{expedited.price}}</td>
-                </tr>
-                <tr>
-                    <td>
-                        <ul>
-                            <li style="list-style-type: none;">
-                                <label>
-                                    <input ng-change='insertShipping({{standard}})' name="select-option" type="radio" ng-model="$standard" value="{{standard}}" required/> {{standard.method}}
-                                </label>
-                            </li>
-                        </ul>
-                    </td>
-                    <td>{{standard.price}}</td>
-                </tr>
-                </tbody>
-            </table>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li style="list-style-type: none;">
+                                    <label>
+                                        <input ng-change='insertShipping({{expedited}})' name="select-option" type="radio" ng-model="$expedited" value="{{expedited}}" required/> {{expedited.method}}
+                                    </label>
+                                </li>
+                            </ul>
+                        </td>
+                        <td>{{expedited.price}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li style="list-style-type: none;">
+                                    <label>
+                                        <input ng-change='insertShipping({{standard}})' name="select-option" type="radio" ng-model="$standard" value="{{standard}}" required/> {{standard.method}}
+                                    </label>
+                                </li>
+                            </ul>
+                        </td>
+                        <td>{{standard.price}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-2" >
+                <button ng-click="sendShippingMethod()" type="submit" class="btn btn-success">Overview</button>
+            </div>
         </div>
-        <div class="col-md-2" >
-            <a ng-click="sendShippingMethod()" href="#Overview" class="btn btn-success">Overview</a>
-        </div>
-    </div>
+    </form>
 </div>
 
 <form ng-submit="sendShipping()">
@@ -284,7 +257,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success pull-left" data-dismiss="modal"
-                            ng-click="sendShipping()">Submit
+                            ng-click="sendShipping(shippingAddresses, $index)">Submit
                     </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
