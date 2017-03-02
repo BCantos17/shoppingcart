@@ -61,7 +61,7 @@ angular.module("MainApp").controller('ProductController', function($scope, $root
         var selectedQuantity = angular.element('#quantityInput').val();
         if (selectedQuantity <= product.availableQuantity) {
             $http({
-                url: '/shopping/cart/addCartItem',
+                url: '/apigateway/cart/addCartItem',
                 method: 'POST',
                 data: {
                     "cartId": cartId,
