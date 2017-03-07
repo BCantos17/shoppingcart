@@ -14,7 +14,7 @@
 	<modules>
 		<module>configserver</module>
 		<module>eureka</module>
-		<module>apigateway</module>
+<!--		<module>apigateway</module>
 		<module>zuulgateway</module>
 		<module>product</module>
 		<module>address</module>
@@ -22,6 +22,6 @@
         <module>creditcard</module>
         <module>price</module>
         <module>shipping</module>
-		<module>invoice</module>
+		<module>invoice</module>-->
 	</modules>
 </project>
