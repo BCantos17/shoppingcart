@@ -25,7 +25,7 @@ public class CartService {
 
     //find by cart id
     public Cart findOne(String id){
-        return this.repository.findOne(id);
+        return (Cart)this.repository.findById(id).get();
     }
 
     //retrieve cart by user id
@@ -37,7 +37,7 @@ public class CartService {
     public Cart deleteItemFromCart(Cart cart, String itemId) {
         cart.getItem().removeIf(item -> item.getItemId().equals(itemId));
         this.repository.save(cart);
-        return this.repository.findOne(cart.getCartId());
+        return (Cart)this.repository.findById(cart.getCartId()).get();
     }
 
     //update item quantity by item id
@@ -48,7 +48,7 @@ public class CartService {
             }
         }
         this.repository.save(cart);
-        return this.repository.findOne(cart.getCartId());
+        return (Cart)this.repository.findById(cart.getCartId()).get();
     }
 
     //insert a new item into cart
@@ -56,7 +56,7 @@ public class CartService {
         String itemId = cart.getUserId() + productId;
         cart.getItem().add(new Item(itemId, productId, itemQuantity));
         this.repository.save(cart);
-        return this.repository.findOne(cart.getCartId());
+        return (Cart)this.repository.findById(cart.getCartId()).get();
     }
 
     public ResponseEntity<List<Cart>> getAllCarts() {

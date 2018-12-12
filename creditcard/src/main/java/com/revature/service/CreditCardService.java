@@ -17,5 +17,5 @@ public class CreditCardService {
     public CreditCard save(CreditCard address){return repository.save(address);}
     public List<CreditCard> findAll(){ return  repository.findAll(); }
     public List<CreditCard> findByCustomerId(int customerId){return repository.findByCustomerId(customerId);}
-    public void delete(String id){repository.delete(id);}
+    public void delete(String id){repository.deleteById(id);}
 }

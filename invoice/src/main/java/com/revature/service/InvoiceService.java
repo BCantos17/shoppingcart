@@ -18,6 +18,6 @@ public class InvoiceService {
     public Invoice save(Invoice invoice){ return repository.save(invoice); }
     public List<Invoice> findAll(){ return repository.findAll(); }
     public List<Invoice> findByCustomerId(Integer customerId){ return repository.findByCustomerId(customerId); }
-    public void delete(String id){ repository.delete(id); }
+    public void delete(String id){ repository.deleteById(id); }
 
 }

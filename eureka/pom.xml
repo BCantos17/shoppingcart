@@ -28,13 +28,13 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka-server</artifactId>
-            <version>1.2.5.RELEASE</version>
+            <version>1.4.3.RELEASE</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
-            <version>RELEASE</version>
+            <version>1.4.3.RELEASE</version>
 		</dependency>
 
 		<dependency>
@@ -51,6 +51,18 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.cloud</groupId>-->
+			<!--<artifactId>spring-cloud-netflix-eureka-server</artifactId>-->
+			<!--<version>1.4.3.RELEASE</version>-->
+			<!--<scope>compile</scope>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.cloud</groupId>-->
+			<!--<artifactId>spring-cloud-netflix-eureka-server</artifactId>-->
+			<!--<version>1.4.3.RELEASE</version>-->
+			<!--<scope>compile</scope>-->
+		<!--</dependency>-->
 	</dependencies>
 
 	<dependencyManagement>

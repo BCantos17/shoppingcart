@@ -18,5 +18,5 @@ public interface InvoiceRepository extends MongoRepository<Invoice, String>{
     List<Invoice> findByCustomerId(Integer customerId);
 
     @Override
-    void delete(String id);
+    void deleteById(String id);
 }

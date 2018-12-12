@@ -26,5 +26,5 @@ public class AddressService {
     public List<Address> findByCustomerId(int customerId){
         return repository.findByCustomerId(customerId);
     }
-    public void delete(String id){repository.delete(id);}
+    public void delete(String id){repository.deleteById(id);}
 }
