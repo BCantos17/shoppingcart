@@ -4,17 +4,18 @@ import com.revature.beans.Discount;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DiscountRepository extends MongoRepository<Discount, String>{
 
     @Override
-    Discount findOne(String s);
+    Optional findById(String id);
 
     @Override
     List<Discount> findAll();
 
     @Override
-    void delete(String s);
+    void deleteById(String s);
 
     @Override
     <S extends Discount> S save(S s);

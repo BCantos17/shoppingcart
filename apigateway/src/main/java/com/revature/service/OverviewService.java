@@ -1,6 +1,6 @@
 package com.revature.service;
 
-import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.cloud.openfeign.FeignClient;
 
 @FeignClient("overview")
 public interface OverviewService {

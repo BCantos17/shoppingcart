@@ -20,5 +20,5 @@ public interface ShippingRepository extends MongoRepository<Shipping, String> {
     Shipping findByInvoiceId(String invoiceId);
 
     @Override
-    void delete(String id);
+    void deleteById(String id);
 }

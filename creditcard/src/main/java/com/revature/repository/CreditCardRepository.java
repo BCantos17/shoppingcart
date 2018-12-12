@@ -19,5 +19,5 @@ public interface CreditCardRepository extends MongoRepository<CreditCard, String
     List<CreditCard> findByCustomerId(int customerId);
 
     @Override
-    void delete(String id);
+    void deleteById(String id);
 }
